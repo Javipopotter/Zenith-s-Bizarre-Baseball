@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ball
+  - Enemy
+  - Knocked
+  - bat
+  - wall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - inmune
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BackGround
+    uniqueID: 1116141543
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 1937888227
+    locked: 0
+  - name: Enemies
+    uniqueID: 2943080191
+    locked: 0
+  - name: GameUI(Behind)
+    uniqueID: 2190179507
+    locked: 0
+  - name: Player
+    uniqueID: 4148659775
+    locked: 0
+  - name: GameUI(General)
+    uniqueID: 2555988829
+    locked: 0

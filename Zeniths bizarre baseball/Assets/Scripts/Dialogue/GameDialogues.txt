@@ -1,0 +1,144 @@
+Fer//
+Hola nena, deja que te enseñe a usar eso
+-choice-Déjame en paz gilipollas!!>>
+Veo que eres de la duras eh?
+-choice-No gracias, ya sé usarlo>>
+No no, déjame enseñarte a hacerlo bien nena*
+[END]
+___Claus//
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Holaaaa, super encantada de conocerte*
+te voy a dar una paliza*
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+EHHH?!?!*
+¿y eso por qué?*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+por guarra ksjdakjasjdksa*
+-choice- te odio>>
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+das asco*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Acabaré contigo zorra*
+[AN]Claus,init[AN]*
+[END]
+-choice- te quiero>>
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+eres preciosa, te amo*
+[TXT]tq_path[TXT]*
+___tq_path_original202//
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+No valeeee, si me dices eso me sonrojo awa*
+-choice- quiero casarme contigo>>
+[An]talk1[An]*
+[NAME]Zenith[NAME]*
+quiero casarme contigo*
+[An]talk2[An]*
+QUE?!? n-no crees que es muy pronto?*
+ni si quiera te conozco*
+[AN]Claus,init[AN]*
+[END]
+-choice- te follaba>>
+PARAAA!!! ME ESTOY MOJANDO!!*
+[AN]Claus,init[AN]*
+[END]
+___tq_path//
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+QUEEE?!!?*
+A QUÉ DEMONIOS VIENE ESO?!*
+-choice- quiero casarme contigo>>
+[An]talk1[An]*
+[NAME]Zenith[NAME]*
+Que quiero casarme contigo*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+QUE?!?*
+C-como puedes decir eso?!*
+Ni si quiera te conozco*
+Da igual, lucha contra mi!!*
+[AN]Claus,init[AN]*
+[END]
+-choice- Púdrete>>
+[An]talk1[An]*
+[NAME]Zenith[NAME]*
+Era broma, púdrete*
+[An]talk2[An]*
+[NAME]Claus[NAME]*
+C-como te atreves a jugar así con mis sentimientos :(*
+Eres de lo peor, voy a acabar contigo*
+[AN]Claus,init[AN]*
+[END]
+___ClausDefeat//
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Me has derrotado*
+Haré lo que me pidas, maestra*
+-choice- CÁSATE CONMINGO>>
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Cásate conmigo por favor :3*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+OTRA VEZ CON ESO?!*
+Bueno si tanto insistes...*
+ACEPTO!!*
+<Event>MainMenu<Event>*
+-choice- Déjame en paz>>
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Tú solo no me molestes más*
+Te has cargado mi nintendo con una bola, y ya se acabo la garantía*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Enserio?*
+Lo siento muchísimo, no era mi intención*
+Déjame comprarte una nueva*
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Está bien, no te preocupes*
+Tienes el animal crossing?*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+OMG sí, es literalmente mi juego favorito*
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Entonces te voy a pedir 2 millones de bayas, que la hipoteca no se paga sola*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Jolín, está bien TUT*
+<Event>MainMenu<Event>*
+___InitialCutscene//
+[NAME] [NAME]*
+[IMG]0[IMG]*
+Zenith se pasaba los días aburrida en su habitación*
+[NAME]Zenith[NAME]*
+Joder, estoy aburrida en mi habitación*
+[IMG]1[IMG]*
+Hasta que un día una bola de beisbol por su ventana entró y su Nintendo reventó*
+[NAME]Zenith[NAME]*
+¡¡JODER MI PUTA NINTENDO!!*
+[IMG]2[IMG]*
+...*
+¿Una bola de beísbol naranja?*
+[HIDE]*
+[IMG]3[IMG]*
+[Wait]1.2[Wait]*
+[IMG]4[IMG]*
+[Wait]1.2[Wait]*
+[IMG]5[IMG]*
+[Wait]1.2[Wait]*
+[IMG]6[IMG]*
+[Wait]0.8[Wait]*
+[UNHIDE]*
+[NAME]Zenith[NAME]*
+Vamos a matar a ese hijo de perra*
+[IMG]none[IMG]*
+[GM]StartLevel[GM]*
+[END]
