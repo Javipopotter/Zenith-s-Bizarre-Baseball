@@ -81,6 +81,7 @@ public class Spawner : MonoBehaviour
         switch (spawnLevel)
         {
             case -1:
+                
                 DialoguesManager.dialoguesManager.ExecuteDialog(Dialogues.dialogues.texts["InitialCutscene"]);
                 hordes = 1;
                 numberOfSpawns = 0;

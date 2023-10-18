@@ -145,40 +145,43 @@ public class DialoguesManager : MonoBehaviour
             }
 
 
+            if(line.Contains("[Wait]") && !skip)
+            {
+                yield return new WaitForSecondsRealtime(float.Parse(line.Split("[Wait]")[1]));
+                continue;
+            }
+
             text.text = "";
 
-            if(!skip)
+            foreach(char character in line)
             {
-                if(line.Contains("[Wait]"))
+                if(character == "<"[0])
                 {
-                    yield return new WaitForSecondsRealtime(float.Parse(line.Split("[Wait]")[1]));
-                    continue;
+                    if(line.Contains("<until>"))
+                    {
+                        while(!Input.GetKeyDown(line.Split("<until>")[1])) yield return null;
+                        break;
+                    }
+                    if(line.Contains("<Wait>"))
+                    {
+                        yield return new WaitForSeconds(float.Parse(line.Split("<Wait>")[1]));
+                        break;
+                    }
                 }
 
-                foreach(char character in line)
-                {
-                    if(character == "<"[0])
-                    {
-                        if(line.Contains("<until>"))
-                        {
-                            while(!Input.GetKeyDown(line.Split("<until>")[1])) yield return null;
-                            break;
-                        }
-                        if(line.Contains("<Wait>"))
-                        {
-                            yield return new WaitForSeconds(float.Parse(line.Split("<Wait>")[1]));
-                            break;
-                        }
-                    }
-
-                    text.text = text.text + character;
+                text.text = text.text + character;
+                if(!skip){
                     if(Input.GetKey(KeyCode.Space)){yield return new WaitForSeconds(0.015f);}
                     else if(Input.GetMouseButton(0)){}
                     else{yield return new WaitForSeconds(0.05f);}
                 }
-                UIpointer.SetActive(true);
-                while(!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))) yield return null;
+                else
+                {
+                    yield return new WaitForSeconds(0.0015f);
+                }
             }
+            UIpointer.SetActive(true);
+            while(!(Input.GetKeyDown(KeyCode.Space) || skip)) yield return null;
         }
         skip = false;
     }

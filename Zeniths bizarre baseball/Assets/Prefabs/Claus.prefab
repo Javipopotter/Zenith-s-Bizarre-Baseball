@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1351887105
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -1759855074, guid: e51a746591eb3ea44a7e9ea4344e658c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -343,7 +343,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifes: 30
   poise: 0.1
-  lifeBar: {fileID: 0}
+  DeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5731585839713842694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 8937390125720889862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3798921647520762038}

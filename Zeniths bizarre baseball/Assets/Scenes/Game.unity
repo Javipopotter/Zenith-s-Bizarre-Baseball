@@ -187,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19403598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02092254, y: -26.4, z: -10}
+  m_LocalPosition: {x: 0.6, y: -4.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6842,6 +6842,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6908,7 +6909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21208106, y: -4.3719006, z: -10}
+  m_LocalPosition: {x: 0.6019655, y: -4.37297, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6982,6 +6983,29 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 16
+  m_RefResolutionX: 954
+  m_RefResolutionY: 536
+  m_CropFrame: 0
+  m_GridSnapping: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!224 &534199944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5805887753355104584, guid: 2bb3fd84064374d4bbdb9fe841a2d97b, type: 3}
@@ -8103,7 +8127,7 @@ TilemapRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.3888889, y: 0.3888889, z: 0}
+  m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -22733,8 +22757,8 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884382174}
   m_Enabled: 1
-  m_CellSize: {x: 1.77, y: 1.77, z: 1}
-  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 1, y: 1, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!1 &885253151
@@ -41671,11 +41695,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3962199619717618851, guid: 1365e59c79f4dfb4383c5638895ff945, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02092254
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3962199619717618851, guid: 1365e59c79f4dfb4383c5638895ff945, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.4
+      value: -4.6
       objectReference: {fileID: 0}
     - target: {fileID: 3962199619717618851, guid: 1365e59c79f4dfb4383c5638895ff945, type: 3}
       propertyPath: m_LocalPosition.z

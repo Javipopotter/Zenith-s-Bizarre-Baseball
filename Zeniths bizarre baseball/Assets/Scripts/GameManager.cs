@@ -18,18 +18,6 @@ public class GameManager : MonoBehaviour
         GM = this;
         uIManager = GetComponent<UIManager>();
         #region 
-        // for(int i = 0; i < 100; i++)
-        // {
-        //     var vall = Instantiate(objects[0]);
-        //     balls.Add(vall);
-        //     var pitch = Instantiate(objects[1]);
-        //     pitchers.Add(pitch);
-        //     var man = Instantiate(objects[2]);
-        //     manSplainners.Add(man);
-        // }
-        // objectDict.Add("pitcher", pitchers);
-        // objectDict.Add("man", manSplainners);
-        // objectDict.Add("ball", balls);
         #endregion
 
         for(int i = 0; i < object_names.Length; i++)
@@ -100,7 +88,10 @@ public class GameManager : MonoBehaviour
                     uIManager.ShowSkipText(false);
                     DialoguesManager.dialoguesManager.skip = true;
                 }
-                uIManager.ShowSkipText(true);
+                else
+                {
+                    uIManager.ShowSkipText(true);
+                }
             }
         }
 

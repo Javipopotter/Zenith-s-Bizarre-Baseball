@@ -149,10 +149,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   getNear: 1
-  rush: 0
   player: {fileID: 0}
   vel: 5
   knocked: 0
+  OnPlayerHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-341918873109147679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 5966376081434666197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 1.0619, y: 1.0619, z: 1.0619}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4041428098358889820}
