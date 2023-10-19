@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || blockControls){return;}
+        if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || blockControls || GameManager.paused){return;}
         
         rb.velocity = new Vector2(Input.GetAxisRaw("horizontal") * vel, Input.GetAxisRaw("vertical") * vel);
 

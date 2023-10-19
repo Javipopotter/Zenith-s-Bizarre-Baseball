@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update() {
-        if(DialoguesManager.dialoguesManager.cinematic || knocked){return;}
+        if(DialoguesManager.dialoguesManager.cinematic || knocked || GameManager.paused){return;}
 
         if(getNear){
             rb.velocity = GetPlayerDirection() * vel;

@@ -25,7 +25,7 @@ public class ClausBoss : MonoBehaviour
     }
 
     private void Update() {
-        if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic){return;}
+        if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || GameManager.paused){return;}
 
         if(reactionTime <= 0)
         {

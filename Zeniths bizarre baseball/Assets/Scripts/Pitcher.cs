@@ -18,7 +18,7 @@ public class Pitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DialoguesManager.dialoguesManager.cinematic || me.knocked){return;}
+        if(DialoguesManager.dialoguesManager.cinematic || me.knocked || GameManager.paused){return;}
         coolDown -= Time.deltaTime;
         if(coolDown <= 0)
         {

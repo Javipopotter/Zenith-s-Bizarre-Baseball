@@ -13,9 +13,12 @@ public class UIManager : MonoBehaviour
     public GameObject _skipText;
     [SerializeField] Sprite[] _heartSprites;
     Canvas gameUICanvas;
+    CinemachineBasicMultiChannelPerlin channelPerlin;
+    [SerializeField] GameObject gameOverScreen;
     
     private void Awake() {
         an = GameObject.Find("GameUI").GetComponent<Animator>();
+        channelPerlin = cineMachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         gameUICanvas = GameObject.Find("GameUI").GetComponent<Canvas>();
         _lifesContainer.transform.GetChild(_lifesContainer.transform.childCount - 1).GetComponent<Animator>().Play("beat");
         _lifesContainer.transform.GetChild(0).GetComponent<Animator>().speed = 2;
@@ -31,6 +34,18 @@ public class UIManager : MonoBehaviour
         an.Play(name);
     }
 
+    public void GameOver()
+    {
+        gameOverScreen.SetActive(true);
+        an.Play("GameOver");
+    }
+
+    public void Restart()
+    {
+        gameOverScreen.SetActive(false);
+        an.Play("Restart");
+    }
+
     public void SetSortingLayerInFront(bool inFront)
     {
         if(inFront) gameUICanvas.sortingLayerID = SortingLayer.NameToID("GameUI(General)");
@@ -39,11 +54,11 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator CameraShake(int num)
     {
-        cineMachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = num;
-        cineMachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = num;
+        channelPerlin.m_AmplitudeGain = num;
+        channelPerlin.m_FrequencyGain = num;
         yield return new WaitForSecondsRealtime(0.2f);
-        cineMachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
-        cineMachineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
+        channelPerlin.m_AmplitudeGain = 0;
+        channelPerlin.m_FrequencyGain = 0;
     }
 
     public void UpdateLifeBar(float n1, float n2)

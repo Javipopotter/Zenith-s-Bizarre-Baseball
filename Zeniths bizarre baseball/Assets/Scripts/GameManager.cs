@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] objects;
     string[] object_names = {"pitcher", "man", "cart", "ball"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
+    public static bool paused = false;
+    [SerializeField] bool paused_Serialized;
 
     private void Awake() {
         GM = this;
@@ -38,6 +40,14 @@ public class GameManager : MonoBehaviour
         {
             objectDict.Add(object_names[i], _typeOfObject[i]);
         }
+    }
+
+    IEnumerator SlowMotion()
+    {
+        float originalTime = Time.timeScale;
+        Time.timeScale = 0.2f;
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = originalTime;
     }
 
     private void Start() {
@@ -70,8 +80,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
+        paused_Serialized = paused;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            if(paused && Time.timeScale != 0){return;}
             if(!DialoguesManager.dialoguesManager.cinematic)
             {
                 Menu.SetActive(!Menu.activeInHierarchy);
@@ -80,6 +92,7 @@ public class GameManager : MonoBehaviour
                 }else{
                     SetTime(0);
                 }
+                paused = !paused;
             }
             else
             {
@@ -107,12 +120,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = time;
     }
 
+    public void GameOver()
+    {
+        StartCoroutine(SlowMotion());
+        print("GameOvers");
+        paused = true;
+        uIManager.SetSortingLayerInFront(false);
+        uIManager.GameOver();
+    }
     public void RestartGame()
     {
+        print("Restart");
         uIManager.SetSortingLayerInFront(true);
-        DialoguesManager.dialoguesManager.cinematic = false;
+        paused = false;
         player.Restart();
-        uIManager.PlayAn("Restart");
+        uIManager.Restart();
         foreach(GameObject en in GameObject.FindGameObjectsWithTag("Enemy")){
             en.SetActive(false);
             Spawner.sp.enemyCount--;
@@ -123,12 +145,6 @@ public class GameManager : MonoBehaviour
         Spawner.sp.PlayHorde();
     }
 
-    public void GameOver()
-    {
-        DialoguesManager.dialoguesManager.cinematic = true;
-        uIManager.SetSortingLayerInFront(false);
-        uIManager.PlayAn("GameOver");
-    }
 
     public void Victory()
     {

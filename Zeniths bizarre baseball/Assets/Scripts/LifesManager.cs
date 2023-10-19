@@ -39,7 +39,7 @@ public class LifesManager : MonoBehaviour
     }
 
     public void GetDmg(){
-        if(lifes <= 0){return;}
+        if(GameManager.paused){return;}
         GameManager.GM.CameraShake(10);
         lifes--;
         an.Play("getDmg");

@@ -11,13 +11,10 @@ public class Ball_Explosion : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        if(_hitType != 0){return;}
         if(other.TryGetComponent(out ball b))
         {
             _hitType = b.ball_Type;
-        }
-        else
-        {
-            _hitType = 0;
         }
     }
 }
