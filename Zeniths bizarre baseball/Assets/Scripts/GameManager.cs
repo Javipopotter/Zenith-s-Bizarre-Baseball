@@ -14,14 +14,35 @@ public class GameManager : MonoBehaviour
     string[] object_names = {"pitcher", "man", "cart", "ball"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
     public static bool paused = false;
+    [SerializeField] bool serialized_pause;
     public Transform backGrounds;
     [SerializeField] GameObject gameElementsContainer;
+    public enum gameStates
+    {
+        playing, paused, cinematic, 
+    }
+    gameStates _stateOfGame;
+    public gameStates stateOfGame
+    {
+        get{return _stateOfGame;}
+        set{
+            _stateOfGame = value;
+            switch(value)
+            {
+                case gameStates.playing:
+                break;
+                case gameStates.paused:
+                break;
+                case gameStates.cinematic:
+                break;
+            }
+        }
+    }
 
     private void Awake() {
+        paused = false;
         GM = this;
         uIManager = GetComponent<UIManager>();
-        #region 
-        #endregion
 
         for(int i = 0; i < object_names.Length; i++)
         {
@@ -86,6 +107,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() {
+        serialized_pause = paused;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(paused && Time.timeScale != 0){return;}
@@ -158,7 +180,22 @@ public class GameManager : MonoBehaviour
         Spawner.sp.PlayHorde();
     }
 
-    
+    public void SetScenario(int n)
+    {
+        for(int i = 0; i < backGrounds.childCount; i++)
+        {
+            if(i == n)
+            {
+                backGrounds.GetChild(n).gameObject.SetActive(true);
+            }
+            backGrounds.GetChild(n).gameObject.SetActive(false);
+        }
+    }
+
+    public void SetGameState(gameStates state)
+    {
+        stateOfGame = state;
+    }
 
     public void Victory()
     {
