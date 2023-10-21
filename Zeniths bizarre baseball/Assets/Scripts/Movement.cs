@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -121,7 +122,7 @@ public class Movement : MonoBehaviour
         an.Play("init");
         gameObject.SetActive(true);
         lifesMan.Setlifes();
-        transform.position = new Vector2(0, -25);
+        transform.position = new Vector2(0, -23);
         an.Rebind();
         an.Play("EnterZone");
         gameObject.layer = LayerMask.NameToLayer("Default");

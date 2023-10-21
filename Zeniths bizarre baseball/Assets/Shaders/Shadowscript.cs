@@ -28,6 +28,7 @@ public class Shadowscript : MonoBehaviour
             if(_shadow_rotation == value){return;}
             _shadow_rotation = value;
             transform.localRotation = value;
+            transform.Rotate(new Vector3(40, 0, 0));
         }
     }
 

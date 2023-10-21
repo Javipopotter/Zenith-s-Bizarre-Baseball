@@ -71,6 +71,7 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[END]"))
             {
+                GameManager.GM.GameElementsAreActive(true);
                 cinematic = false;
                 dialogueUI.SetActive(false);
                 break;
@@ -129,6 +130,12 @@ public class DialoguesManager : MonoBehaviour
             if(line.Contains("[Img]"))
             {
                 img[int.Parse(line.Split(")")[0])].transform.GetComponentInChildren<Image>().sprite = Resources.Load("Sprites/" + line.Split("[Img]")[1]) as Sprite;
+            }
+
+            if(line.Contains("[NOTGAME]"))
+            {
+                GameManager.GM.GameElementsAreActive(false);
+                continue;
             }
 
             if(line.Contains("[HIDE]"))

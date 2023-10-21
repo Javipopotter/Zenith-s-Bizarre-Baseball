@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class AnimationOnTrigger : MonoBehaviour
@@ -9,6 +10,7 @@ public class AnimationOnTrigger : MonoBehaviour
     private void Awake() {
         an = GetComponent<Animator>();
         sr = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
+        transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

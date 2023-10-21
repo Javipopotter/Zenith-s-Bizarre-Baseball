@@ -81,7 +81,6 @@ public class Spawner : MonoBehaviour
         switch (spawnLevel)
         {
             case -1:
-                
                 DialoguesManager.dialoguesManager.ExecuteDialog(Dialogues.dialogues.texts["InitialCutscene"]);
                 hordes = 1;
                 numberOfSpawns = 0;
@@ -101,8 +100,12 @@ public class Spawner : MonoBehaviour
                 maxEnLimit = 8;
                 break;
             case 2:
-                cine.dialog = "Claus";
-                ClausBoss.SetActive(true);
+                cine.dialog = "";
+                if(!ClausBoss.gameObject.activeInHierarchy)
+                {
+                    cine.dialog = "Claus";
+                    ClausBoss.SetActive(true);
+                }
                 ClausBoss.GetComponent<ClausBoss>().Restart();
                 break;
         }

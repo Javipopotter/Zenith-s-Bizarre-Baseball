@@ -115,6 +115,7 @@ Entonces te voy a pedir 2 millones de bayas, que la hipoteca no se paga sola*
 Jolín, está bien TUT*
 <Event>MainMenu<Event>*
 ___InitialCutscene//
+[NOTGAME]*
 [NAME] [NAME]*
 [IMG]0[IMG]*
 Zenith se pasaba los días aburrida en su habitación*

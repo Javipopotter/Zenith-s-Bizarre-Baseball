@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     string[] object_names = {"pitcher", "man", "cart", "ball"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
     public static bool paused = false;
-    [SerializeField] bool paused_Serialized;
+    public Transform backGrounds;
+    [SerializeField] GameObject gameElementsContainer;
 
     private void Awake() {
         GM = this;
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             for(int a = 0; a < object_names.Length; a++)
             {
-                var obj = Instantiate(objects[a]);
+                var obj = Instantiate(objects[a], gameElementsContainer.transform);
                 _typeOfObject[a].Add(obj);
             }
         }
@@ -79,20 +80,18 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
+    public void GameElementsAreActive(bool n)
+    {
+        gameElementsContainer.SetActive(n);
+    }
+
     private void Update() {
-        paused_Serialized = paused;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(paused && Time.timeScale != 0){return;}
             if(!DialoguesManager.dialoguesManager.cinematic)
             {
-                Menu.SetActive(!Menu.activeInHierarchy);
-                if(Time.timeScale == 0){
-                    SetTime(1);
-                }else{
-                    SetTime(0);
-                }
-                paused = !paused;
+                PauseSwitch();
             }
             else
             {
@@ -115,6 +114,20 @@ public class GameManager : MonoBehaviour
         // }
     }
 
+    public void PauseSwitch()
+    {
+        Menu.SetActive(!Menu.activeInHierarchy);
+        if (Time.timeScale == 0)
+        {
+            SetTime(1);
+        }
+        else
+        {
+            SetTime(0);
+        }
+        paused = !paused;
+    }
+
     public void SetTime(float time)
     {
         Time.timeScale = time;
@@ -122,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        StartCoroutine(SlowMotion());
+        // StartCoroutine(SlowMotion());
         print("GameOvers");
         paused = true;
         uIManager.SetSortingLayerInFront(false);
@@ -145,6 +158,7 @@ public class GameManager : MonoBehaviour
         Spawner.sp.PlayHorde();
     }
 
+    
 
     public void Victory()
     {
