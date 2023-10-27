@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -61,13 +62,9 @@ public class UIManager : MonoBehaviour
         channelPerlin.m_FrequencyGain = 0;
     }
 
-    public void UpdateLifeBar(float n1, float n2)
+    public void UpdateLifes(float lifes)
     {
-        lifeBar.value = n1/n2;
-    }
-
-    public void UpdateLifes(int i)
-    {
+        int i = (int)MathF.Round(lifes);
         for(int a = 0; a <= i; a++)
         {
             _lifesContainer.transform.GetChild(a).GetComponent<Image>().sprite = _heartSprites[0];
@@ -85,6 +82,16 @@ public class UIManager : MonoBehaviour
         sr.sprite = _heartSprites[1];
     }
 
+    public void UpdateBossLifeBar(float value, float maxValue)
+    {
+        lifeBar.maxValue = maxValue;
+        lifeBar.value = value;
+    }
+
+    public void BossLifeBarIsActive(bool enabled)
+    {
+        lifeBar.gameObject.SetActive(enabled);
+    }
     public void ShowSkipText(bool show)
     {
         _skipText.SetActive(show);

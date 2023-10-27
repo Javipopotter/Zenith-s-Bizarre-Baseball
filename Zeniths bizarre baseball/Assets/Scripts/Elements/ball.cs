@@ -27,7 +27,7 @@ public class ball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.CompareTag("Player") && !hit){
-            other.GetComponent<LifesManager>().GetDmg();
+            other.GetComponent<LifesManager>().GetDmg(1);
             gameObject.SetActive(false);
         }
 
@@ -44,7 +44,7 @@ public class ball : MonoBehaviour
                 gameObject.SetActive(false);
                 hit = false;
             }
-            other.GetComponent<LifesManager>().GetDmg();
+            other.GetComponent<LifesManager>().GetDmg(1);
         }
 
         if(other.transform.CompareTag("ball") && hit){

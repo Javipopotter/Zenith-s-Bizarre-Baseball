@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1351887105
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1759855074, guid: e51a746591eb3ea44a7e9ea4344e658c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 5206603642504668444}
   - component: {fileID: 5731585839713842694}
   - component: {fileID: 834699487998776623}
+  - component: {fileID: 6753808096505119503}
   m_Layer: 0
   m_Name: Claus
   m_TagString: Enemy
@@ -361,9 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dangerTrigger: 0
-  ballVel: 0
   moveTrigger: 0
   attackTrigger: 0
+  appeared: 0
+  hitCount: 0
   target: {x: 0, y: 0}
 --- !u!114 &834699487998776623
 MonoBehaviour:
@@ -372,11 +374,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5444207530989307612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a190246076ede7544a06fc69b8b49cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6753808096505119503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444207530989307612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4979522d8c46a0c45b2de3418ff1ac49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: a61b2ffdaa30b464784d75a0dd6ea2cb, type: 2}
 --- !u!1 &6731280169354008334
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +403,7 @@ GameObject:
   - component: {fileID: 9127439695608015550}
   - component: {fileID: 2028340212079104273}
   - component: {fileID: 4322650009465591567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DangerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

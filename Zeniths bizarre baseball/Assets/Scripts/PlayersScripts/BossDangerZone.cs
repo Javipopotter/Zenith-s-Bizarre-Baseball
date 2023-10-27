@@ -13,11 +13,11 @@ public class BossDangerZone : MonoBehaviour
         if(other.CompareTag("Player") || other.CompareTag("ball"))
         {
             if(other.CompareTag("ball")){
-                clausBoss.ballVel = other.GetComponent<Rigidbody2D>().velocity.magnitude;
+                clausBoss.hitCount++;
                 clausBoss.dangerTrigger = true;
                 clausBoss.target = other.transform.position;
             }else if(other.CompareTag("Player")){
-                clausBoss.ballVel = 0;
+                clausBoss.hitCount = 0;
                 clausBoss.dangerTrigger = true;
                 clausBoss.target = other.transform.position;
             }

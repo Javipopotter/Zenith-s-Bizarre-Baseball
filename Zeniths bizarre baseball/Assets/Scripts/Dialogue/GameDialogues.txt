@@ -130,13 +130,13 @@ Hasta que un día una bola de beisbol por su ventana entró y su Nintendo revent
 ¿Una bola de beísbol naranja?*
 [HIDE]*
 [IMG]3[IMG]*
-[Wait]1.2[Wait]*
+[Wait]1[Wait]*
 [IMG]4[IMG]*
-[Wait]1.2[Wait]*
+[Wait]1[Wait]*
 [IMG]5[IMG]*
-[Wait]1.2[Wait]*
+[Wait]1[Wait]*
 [IMG]6[IMG]*
-[Wait]0.8[Wait]*
+[Wait]1[Wait]*
 [UNHIDE]*
 [NAME]Zenith[NAME]*
 Vamos a matar a ese hijo de perra*

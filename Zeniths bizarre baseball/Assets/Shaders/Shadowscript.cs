@@ -34,7 +34,6 @@ public class Shadowscript : MonoBehaviour
 
     private void Awake() {
         sr = GetComponent<SpriteRenderer>();
-        shadow_pos = imitate.transform.localPosition;
     }
     private void Update() {
         shadow_pos = imitate.transform.localPosition;

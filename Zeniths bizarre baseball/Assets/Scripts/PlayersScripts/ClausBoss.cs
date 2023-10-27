@@ -1,18 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class ClausBoss : MonoBehaviour
 {
     public bool dangerTrigger;
-    public float ballVel;
     public bool moveTrigger;
     public bool attackTrigger;
+    public bool appeared;
     Animator an;
     GameObject player;
-    float reactionTime = 0.1f;
+    float reactionTime;
+    public int hitCount = 0;
     public Vector2 target;
     Rigidbody2D rb;
     LifesManager lifesMan;
@@ -27,10 +24,16 @@ public class ClausBoss : MonoBehaviour
     private void Update() {
         if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || GameManager.paused){return;}
 
-        if(reactionTime <= 0)
+        if(hitCount > 5)
+        {
+            hitCount = 0;
+            dangerTrigger = false;
+            an.Play("Stun");
+        }
+
+        if(reactionTime <= 0 && dangerTrigger)
         {
             dangerTrigger = false;
-            reactionTime = 0.1f;
             var xdifer = target.x - transform.position.x;
             var ydifer = target.y - transform.position.y;
 
@@ -73,11 +76,6 @@ public class ClausBoss : MonoBehaviour
             an.SetBool("moveDir", false);
         }
 
-        if(an.GetCurrentAnimatorStateInfo(1).IsName("getDmg") && ballVel > 40)
-        {
-            ballVel = 0;
-            an.Play("Stun");
-        }
     }
 
     public void hitBall()
@@ -107,20 +105,17 @@ public class ClausBoss : MonoBehaviour
 
     public void Restart()
     {
-        transform.position = new Vector2 (-0.06f,4.66f);
+        transform.position = new Vector2 (-3.41f,4.66f);
         lifesMan.Setlifes();
-    }
-
-    private void OnEnable() {
-        Spawner.sp.enemyCount++;
-    }
-
-    private void OnDisable() {
-        Spawner.sp.enemyCount--;
     }
 
     public void SetReactionTime(float reactTime)
     {
         reactionTime = reactTime;
+    }
+
+    public void OnDeath()
+    {
+        an.Rebind();
     }
 }

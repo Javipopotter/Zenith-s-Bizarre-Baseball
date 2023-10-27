@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject spawn;
+    static GameObject spawn;
     string[] enemies = new string[] {"pitcher", "man", "cart"};
     float spCoolDown = 2;
     [SerializeField] float levelCoolDown = 3;
@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     GameObject limits;
     public static Spawner sp;
     CinematicPlayerController cine;
-    GameObject ClausBoss;
+    [SerializeField] ClausBoss clausBoss;
     [SerializeField]TextMeshProUGUI EnemyCounter;
     int EnMax = 1;
     int _KillCount = 0;
@@ -39,12 +39,10 @@ public class Spawner : MonoBehaviour
         sp = this;
         limits = GameObject.Find("limits");
         cine = GameObject.Find("Player").GetComponent<CinematicPlayerController>();
-        ClausBoss = GameObject.Find("Claus");
-        ClausBoss.SetActive(false);
     }
 
     private void Start() {
-        PlayHorde();
+        spawnLevel = _spawnLevel;
     }
 
     // Update is called once per frame
@@ -66,7 +64,7 @@ public class Spawner : MonoBehaviour
             spCoolDown -= Time.deltaTime;
         }
 
-        if (KillCount >= EnMax && EnMax != 0){
+        if (KillCount >= EnMax && EnMax != 0 || spawnLevel == -1){
             GameManager.GM.NextStageText();
             foreach(Collider2D col in limits.GetComponents<Collider2D>())
             {
@@ -77,12 +75,16 @@ public class Spawner : MonoBehaviour
 
     public void PlayHorde()
     {
+        GameManager.GM.StartLevel();
         spCoolDown = 3f;
+        spawn = GameObject.Find("Spawners");
+        GameManager.GM.BossLifeBarIsActive(false);
         switch (spawnLevel)
         {
             case -1:
+                GameManager.GM.SetScenario(0);
                 DialoguesManager.dialoguesManager.ExecuteDialog(Dialogues.dialogues.texts["InitialCutscene"]);
-                hordes = 1;
+                hordes = 0;
                 numberOfSpawns = 0;
                 break;
             case 0:
@@ -100,13 +102,19 @@ public class Spawner : MonoBehaviour
                 maxEnLimit = 8;
                 break;
             case 2:
-                cine.dialog = "";
-                if(!ClausBoss.gameObject.activeInHierarchy)
+                GameManager.GM.SetScenario(1);
+                GameManager.GM.BossLifeBarIsActive(true);
+                if(!clausBoss.appeared)
                 {
+                    clausBoss.appeared = true;
                     cine.dialog = "Claus";
-                    ClausBoss.SetActive(true);
+                    clausBoss.gameObject.SetActive(true);
                 }
-                ClausBoss.GetComponent<ClausBoss>().Restart();
+                else
+                {
+                    cine.dialog = "";
+                }
+                clausBoss.GetComponent<ClausBoss>().Restart();
                 break;
         }
 

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -341918873109147679}
   - component: {fileID: 8767479953611834595}
   - component: {fileID: 3918617507263686713}
+  - component: {fileID: -2243956493722433465}
   m_Layer: 0
   m_Name: ManSplainner
   m_TagString: Enemy
@@ -54,7 +55,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06608081, y: 1.7141949}
+  m_Offset: {x: -0.06608081, y: 1.8699279}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.28866667}
@@ -65,7 +66,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.312821, y: 3.791906}
+  m_Size: {x: 3.312821, y: 4.103372}
   m_EdgeRadius: 0
 --- !u!50 &6185211801240432859
 Rigidbody2D:
@@ -152,7 +153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getNear: 1
   player: {fileID: 0}
-  vel: 5
   knocked: 0
   OnPlayerHitEvent:
     m_PersistentCalls:
@@ -182,7 +182,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0381186, y: 0.81955403}
+  m_Offset: {x: -0.0381186, y: 1.9653035}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -193,7 +193,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5717821, y: 1.32401}
+  m_Size: {x: 1.5717821, y: 3.6155088}
   m_EdgeRadius: 0
 --- !u!114 &3918617507263686713
 MonoBehaviour:
@@ -202,11 +202,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3487506806726864513}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a190246076ede7544a06fc69b8b49cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2243956493722433465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3487506806726864513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4979522d8c46a0c45b2de3418ff1ac49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: aef03fcb9b03c204ea42cbd3d8063de5, type: 2}
 --- !u!1 &5966376081434666197
 GameObject:
   m_ObjectHideFlags: 0

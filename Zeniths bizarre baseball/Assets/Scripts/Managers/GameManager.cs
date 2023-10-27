@@ -15,25 +15,43 @@ public class GameManager : MonoBehaviour
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
     public static bool paused = false;
     [SerializeField] bool serialized_pause;
+    Spawner spawner;
     public Transform backGrounds;
     [SerializeField] GameObject gameElementsContainer;
+    [SerializeField] Stats[] stats;
+    Stage currentStage;
     public enum gameStates
     {
-        playing, paused, cinematic, 
+        playing, paused, cinematic, death
     }
     gameStates _stateOfGame;
     public gameStates stateOfGame
     {
         get{return _stateOfGame;}
         set{
-            _stateOfGame = value;
-            switch(value)
+            switch(_stateOfGame)
             {
                 case gameStates.playing:
                 break;
                 case gameStates.paused:
                 break;
                 case gameStates.cinematic:
+                break;
+                case gameStates.death:
+                break;
+            }
+
+            _stateOfGame = value;
+
+            switch(_stateOfGame)
+            {
+                case gameStates.playing:
+                break;
+                case gameStates.paused:
+                break;
+                case gameStates.cinematic:
+                break;
+                case gameStates.death:
                 break;
             }
         }
@@ -42,7 +60,9 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         paused = false;
         GM = this;
+        spawner = GetComponent<Spawner>();
         uIManager = GetComponent<UIManager>();
+        player = GameObject.Find("Player").GetComponent<Movement>();
 
         for(int i = 0; i < object_names.Length; i++)
         {
@@ -72,16 +92,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = originalTime;
     }
 
-    private void Start() {
-        player = GameObject.Find("Player").GetComponent<Movement>();
-    }
-
     public void CameraShake(int num)
     {
         StartCoroutine(uIManager.CameraShake(num));
     }
 
-    public void OnPlayerLifeChange(int n)
+    public void OnPlayerLifeChange(float n)
     {
         if(n < -1){return;}
         // uIManager.UpdateLifeBar(n1, n2);
@@ -160,38 +176,62 @@ public class GameManager : MonoBehaviour
         // StartCoroutine(SlowMotion());
         print("GameOvers");
         paused = true;
-        uIManager.SetSortingLayerInFront(false);
+        player.GetComponentInChildren<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("OverUI");
         uIManager.GameOver();
+        BossLifeBarIsActive(false);
     }
     public void RestartGame()
     {
         print("Restart");
-        uIManager.SetSortingLayerInFront(true);
+        spawner.PlayHorde();
         paused = false;
         player.Restart();
         uIManager.Restart();
-        foreach(GameObject en in GameObject.FindGameObjectsWithTag("Enemy")){
+        DisableGameElements();
+    }
+
+    private static void DisableGameElements()
+    {
+        // foreach (GameObject en in GameObject.FindGameObjectsWithTag("Enemy"))
+        // {
+        //     en.SetActive(false);
+        //     Spawner.sp.enemyCount--;
+        // }
+        foreach (GameObject en in GameObject.FindGameObjectsWithTag("ball"))
+        {
             en.SetActive(false);
-            Spawner.sp.enemyCount--;
         }
-        foreach(GameObject en in GameObject.FindGameObjectsWithTag("ball")){
-            en.SetActive(false);
-        }
-        Spawner.sp.PlayHorde();
+    }
+
+    public void SetStage(Stage stage)
+    {
+        if(currentStage != null) currentStage.gameObject.SetActive(false);
+        currentStage = stage;
+        currentStage.gameObject.SetActive(true);
     }
 
     public void SetScenario(int n)
     {
         for(int i = 0; i < backGrounds.childCount; i++)
         {
+            backGrounds.GetChild(i).gameObject.SetActive(false);
             if(i == n)
             {
-                backGrounds.GetChild(n).gameObject.SetActive(true);
+                break;
             }
-            backGrounds.GetChild(n).gameObject.SetActive(false);
         }
+        backGrounds.GetChild(n).gameObject.SetActive(true);
     }
 
+    public void UpdateBossLifeBar(float value, float maxValue)
+    {
+        uIManager.UpdateBossLifeBar(value, maxValue);
+    }
+
+    public void BossLifeBarIsActive(bool enabled)
+    {
+        uIManager.BossLifeBarIsActive(enabled);
+    }
     public void SetGameState(gameStates state)
     {
         stateOfGame = state;
@@ -220,13 +260,12 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
-        player.Restart();
-        Spawner.sp.spawnLevel++;
+        // DisableGameElements();
+        // player.Restart();
         uIManager.PlayAn("Transition", 0, 0.7f);
-        foreach (Collider2D col in GameObject.FindGameObjectWithTag("wall").GetComponents<Collider2D>())
-        {
-            col.isTrigger = false;
-        }
+        player.EnterZone();
+        GameObject.FindGameObjectWithTag("wall").GetComponent<Collider2D>().isTrigger = false;
+
     }
 
     public void BallExplosion(Vector2 pos, float vel, bool hit, int min_balls, int max_balls, int ball_type)

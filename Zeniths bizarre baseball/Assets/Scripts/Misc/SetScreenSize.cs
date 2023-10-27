@@ -5,6 +5,6 @@ using UnityEngine;
 public class SetScreenSize : MonoBehaviour
 {
     private void Awake() {
-        Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+        Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow);
     }
 }

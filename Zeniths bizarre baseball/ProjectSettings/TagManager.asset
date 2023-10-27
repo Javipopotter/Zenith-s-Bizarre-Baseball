@@ -16,7 +16,7 @@ TagManager:
   - inmune
   - Water
   - UI
-  - 
+  - StaticElement
   - 
   - 
   - 
@@ -49,27 +49,18 @@ TagManager:
   - name: Shadow
     uniqueID: 3481466417
     locked: 0
-  - name: ScenaryElement(Under)
-    uniqueID: 4288063567
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Enemies
+  - name: Players
     uniqueID: 2943080191
     locked: 0
   - name: Objects
     uniqueID: 1937888227
     locked: 0
-  - name: GameUI(Behind)
-    uniqueID: 2190179507
-    locked: 0
-  - name: Player
-    uniqueID: 4148659775
-    locked: 0
-  - name: ScenaryElement(Over)
-    uniqueID: 673519341
-    locked: 0
   - name: GameUI(General)
     uniqueID: 2555988829
+    locked: 0
+  - name: OverUI
+    uniqueID: 1794588623
     locked: 0

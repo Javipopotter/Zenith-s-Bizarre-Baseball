@@ -9,11 +9,13 @@ public class AnimationOnTrigger : MonoBehaviour
     SpriteRenderer[] sr;
     private void Awake() {
         an = GetComponent<Animator>();
+        an.enabled = false;
         sr = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
         transform.rotation = new Quaternion(0, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        an.enabled = true;
         if(transform.tag != "bat")
         {
             an.SetTrigger("contact");
@@ -25,15 +27,17 @@ public class AnimationOnTrigger : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if(other.transform.CompareTag("Player")){
+        if(!other.transform.CompareTag("ball"))
+        {
             SetSortingLayer(other.transform);
         }
     }
 
     private void OnTriggerExit(Collider other) {
+        an.enabled = false;
         foreach(SpriteRenderer r in sr)
         {
-            r.sortingLayerID = SortingLayer.NameToID("ScenaryElement(Under)");
+            r.sortingOrder = -1;
         }
     }
 
@@ -43,11 +47,11 @@ public class AnimationOnTrigger : MonoBehaviour
         {
             if(r.transform.position.y < other.position.y)
             {
-                r.sortingLayerID = SortingLayer.NameToID("ScenaryElement(Over)");
+                r.sortingOrder = 1;
             }
             else
             {
-                r.sortingLayerID = SortingLayer.NameToID("ScenaryElement(Under)");
+                r.sortingOrder = -1;
             }
         }
     }

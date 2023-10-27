@@ -7,8 +7,7 @@ public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator an;
-    public float vel;
-    float originalVel;
+    Vector2 vel;
     [SerializeField]float rollCool = 0.5f;
     float attackCool = 1;
     [SerializeField] GameObject pointer;
@@ -16,24 +15,53 @@ public class Movement : MonoBehaviour
     public bool blockControls;
     LifesManager lifesMan;
     [SerializeField] bool rolling;
-    // Start is called before the first frame update
-    void Start()
-    {
-        originalVel = vel;
-        lifesMan = GetComponent<LifesManager>();
-        // DontDestroyOnLoad(transform.gameObject);
+    [SerializeField] SpriteRenderer sr;
+    [SerializeField] bool IsTest = false;
+    [SerializeField] Vector2 lastFacing;
+    Stats stats;
+    private void Awake() {
+        stats = GetComponent<statsReference>().stats;
         rb = GetComponent<Rigidbody2D>();
         an = GetComponent<Animator>();
-        an.Play("EnterZone");
+        lastFacing = Vector2.down;
+        lifesMan = GetComponent<LifesManager>();
+        // DontDestroyOnLoad(transform.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || blockControls || GameManager.paused){return;}
+        if(!IsTest)
+        {
+            if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || blockControls || GameManager.paused){return;}
+        }
         
-        rb.velocity = new Vector2(Input.GetAxisRaw("horizontal") * vel, Input.GetAxisRaw("vertical") * vel);
+        vel = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical")) * stats.speed * stats.speedModifier;
 
+        if(rolling){
+            if(Input.GetAxisRaw("horizontal") != 0 && Input.GetAxisRaw("vertical") != 0)
+            {
+                vel = vel * 4;
+            }
+            else
+            {
+                vel = lastFacing * vel.magnitude * 4;
+            }
+        }
+        else
+        {
+            if(Input.GetAxisRaw("horizontal") != 0 || Input.GetAxisRaw("vertical") != 0)
+            {
+                lastFacing = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical"));
+            }
+        }
+
+        if(Input.GetAxisRaw("vertical") != 0 && Input.GetAxisRaw("horizontal") != 0)
+        {
+            vel = vel * 0.707f ;
+        }
+        
+        rb.velocity = vel;
         
         if((Input.GetAxis("horizontal") != 0 || Input.GetAxis("vertical") != 0) && !atkTrigger){
             an.SetBool("moveDir", true);
@@ -52,22 +80,11 @@ public class Movement : MonoBehaviour
             an.SetBool("moveDir", false);
         }
 
-        if(Input.GetAxisRaw("vertical") != 0 && Input.GetAxis("horizontal") != 0)
-        {
-            vel = originalVel * 0.707f;
-        }
-        else
-        {
-            vel = originalVel;
-        }
 
 
         Roll();
         Attack();
 
-        if(rolling){
-            rb.velocity = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical")) * vel * 4;
-        }
     }
 
     void Roll()
@@ -105,34 +122,38 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Enemy")){
             if(!other.GetComponent<Enemy>().knocked){
-                GetComponent<LifesManager>().GetDmg();
+                GetComponent<LifesManager>().GetDmg(1);
             }
         }
 
         if(other.CompareTag("wall"))
         {
+            Spawner.sp.spawnLevel++;
             GameManager.GM.StartLevel();
         }
     }
 
     public void Restart()
     {
-        pointer.SetActive(true);
+        sr.sortingLayerID = SortingLayer.NameToID("Players");
+        lifesMan.Setlifes();
         rb.isKinematic = false;
         an.Play("init");
-        gameObject.SetActive(true);
-        lifesMan.Setlifes();
         transform.position = new Vector2(0, -23);
         an.Rebind();
+    }
+
+    public void EnterZone()
+    {
+        an.Rebind();
         an.Play("EnterZone");
-        gameObject.layer = LayerMask.NameToLayer("Default");
-        rolling = false;
+        transform.position = new Vector2(0, -23);
     }
 
     public void OnDeath()
     {
+        sr.sortingLayerID = SortingLayer.NameToID("OverUI");
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
-        pointer.SetActive(false);
     }
 }

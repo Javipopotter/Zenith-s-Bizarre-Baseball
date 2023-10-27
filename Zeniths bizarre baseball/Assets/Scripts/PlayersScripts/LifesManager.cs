@@ -8,13 +8,13 @@ using UnityEngine.UIElements.Experimental;
 
 public class LifesManager : MonoBehaviour
 {
-    [SerializeField] int _lifes;
-    int maxLife;
+    [SerializeField] float _lifes;
+    Stats stats;
     Animator an;
     public float poise;
     [SerializeField] UnityEvent DeathEvent;
 
-    public int lifes
+    public float lifes
     {
         get
         {
@@ -29,19 +29,25 @@ public class LifesManager : MonoBehaviour
                 GameManager.GM.OnPlayerLifeChange(_lifes - 1);
             }
 
+            if(transform.name == "Claus")
+            {
+                GameManager.GM.UpdateBossLifeBar(_lifes, stats.maxlifes);
+            }
+
             if(_lifes <= 0){an.SetTrigger("death");}
         }
     }
 
     private void Awake() {
+        stats = GetComponent<statsReference>().stats;
         an = GetComponent<Animator>();
-        maxLife = lifes;
+        stats.maxlifes = lifes;
     }
 
-    public void GetDmg(){
+    public void GetDmg(int dmg){
         if(GameManager.paused){return;}
         GameManager.GM.CameraShake(10);
-        lifes--;
+        lifes -= dmg;
         an.Play("getDmg");
     }
 
@@ -56,7 +62,7 @@ public class LifesManager : MonoBehaviour
 
     public void Setlifes () 
     {
-        lifes = maxLife;
+        lifes = stats.maxlifes;
     }
 
     public void TimeSet(float time)

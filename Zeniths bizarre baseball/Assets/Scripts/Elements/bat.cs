@@ -27,7 +27,7 @@ public class bat : MonoBehaviour
         if(other.transform.CompareTag(target))
         {
             hashit = true;
-            other.GetComponent<LifesManager>().GetDmg();
+            other.GetComponent<LifesManager>().GetDmg(1);
             rb.AddForce((other.transform.position - transform.parent.transform.position).normalized * 2000 * other.GetComponent<LifesManager>().poise);
             // rb.velocity = (other.transform.position - transform.parent.transform.position).normalized * 20 * other.GetComponent<LifesManager>().poise;
         }

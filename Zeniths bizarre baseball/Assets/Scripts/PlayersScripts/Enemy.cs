@@ -5,12 +5,13 @@ public class Enemy : MonoBehaviour
 {
     public bool getNear;
     public GameObject player;
-    [SerializeField] float vel;
     public bool knocked;
     Rigidbody2D rb;
     [SerializeField] UnityEvent OnPlayerHitEvent;
+    Stats stats;
 
     private void Awake() {
+        stats = GetComponent<statsReference>().stats;
         rb = GetComponent<Rigidbody2D>();
     }
     private void Start() {
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour
         if(DialoguesManager.dialoguesManager.cinematic || knocked || GameManager.paused){return;}
 
         if(getNear){
-            rb.velocity = GetPlayerDirection() * vel;
+            rb.velocity = GetPlayerDirection() * stats.speed;
         }else{
             rb.velocity = Vector2.zero;
         }

@@ -11,9 +11,29 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -518633166, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
+    - target: {fileID: 2172878735871661052, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921799105822165561, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3868103608156195851, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Name
       value: movable_daffodil Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6273868169606862464, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293162203771032975, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397130156277845357, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6784103468238659451, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_FlipX
@@ -73,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8037580597220546119, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Size.y
-      value: 2.3547173
+      value: 3.560789
       objectReference: {fileID: 0}
     - target: {fileID: 8037580597220546119, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Offset.x
@@ -81,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8037580597220546119, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Offset.y
-      value: 0.6539173
+      value: 0.050881386
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

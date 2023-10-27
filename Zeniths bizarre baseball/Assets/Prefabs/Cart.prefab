@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1351887105
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 665530253, guid: c77fd7a1b50da8e4d84fc254c61928a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,6 +100,8 @@ GameObject:
   - component: {fileID: 8648839458130299716}
   - component: {fileID: 129737393404354775}
   - component: {fileID: 7858700795874322626}
+  - component: {fileID: 1413309226697465168}
+  - component: {fileID: -4998536829825373136}
   m_Layer: 0
   m_Name: Cart
   m_TagString: Enemy
@@ -115,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7533763778974248708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.73, y: -1, z: 18.574772}
+  m_LocalPosition: {x: 17.73, y: 0, z: 18.574772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -138,7 +140,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   getNear: 1
   player: {fileID: 0}
-  vel: 12
   knocked: 0
   OnPlayerHitEvent:
     m_PersistentCalls:
@@ -146,11 +147,11 @@ MonoBehaviour:
       - m_Target: {fileID: 7533763778974248714}
         m_TargetAssemblyTypeName: LifesManager, Assembly-CSharp
         m_MethodName: GetDmg
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -228,7 +229,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8648839458130299716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.046795726}
+  m_Offset: {x: 0, y: 2.35}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -283,11 +284,50 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7533763778974248708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a190246076ede7544a06fc69b8b49cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1413309226697465168
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533763778974248708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02, y: 2.09}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.1010532, y: 3.9846754}
+  m_EdgeRadius: 0
+--- !u!114 &-4998536829825373136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533763778974248708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4979522d8c46a0c45b2de3418ff1ac49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: e02df146a7c7bd8428bf5d80edefda66, type: 2}
 --- !u!1001 &1473952633478786301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7022147469650950211, guid: e003c037577570349abecba84e163e23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.834733
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7022147469650950211, guid: e003c037577570349abecba84e163e23, type: 3}
       propertyPath: m_LocalPosition.z
