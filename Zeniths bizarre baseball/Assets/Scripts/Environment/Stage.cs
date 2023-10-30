@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage : MonoBehaviour
@@ -6,5 +7,35 @@ public class Stage : MonoBehaviour
         hordes, shop, boss
     }
 
-    public Stage[] connectedStages;
+    public type typeOfStage;
+    public Collider2D[] gates;
+    public List<Stage> connectedStages = new List<Stage>();
+    public GameObject spawners;
+    public PolygonCollider2D cameraLimit;
+    public StageSettings settings;
+    [SerializeField] GameObject altMaps;
+
+    private void Awake() {
+        for(int i = 0; i < altMaps.transform.childCount; i++)
+        {
+            float rand = Random.Range(0, 100);
+            if(rand > 50)
+            {
+                altMaps.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void SetStage(int stage)
+    {
+        GameManager.GM.SetStage(connectedStages[stage]);
+    }
+
+    public void OpenGates()
+    {
+        foreach(Collider2D col in gates)
+        {
+            col.isTrigger = true;
+        }
+    }
 }

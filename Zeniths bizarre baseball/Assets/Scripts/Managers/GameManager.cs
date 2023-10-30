@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]GameObject Menu;
     Movement player;
     [SerializeField] GameObject[] objects;
-    string[] object_names = {"pitcher", "man", "cart", "ball"};
+    string[] object_names = {"pitcher", "man", "cart", "ball", "coin"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
     public static bool paused = false;
     [SerializeField] bool serialized_pause;
@@ -19,7 +19,22 @@ public class GameManager : MonoBehaviour
     public Transform backGrounds;
     [SerializeField] GameObject gameElementsContainer;
     [SerializeField] Stats[] stats;
-    Stage currentStage;
+    StageSettings _currentStageSettings;
+    public StageSettings currentStageSettings{get{return _currentStageSettings;} private set{_currentStageSettings = value; spawner.CurrentSettings = value;}}
+    public Stage _currentStage;
+    public Stage currentStage{get{return _currentStage;} private set{_currentStage = value;}}
+    ScenesManager scenesManager;
+    [SerializeField] CinemachineVirtualCamera vcam;
+    [SerializeField] UpgradePackage upgrader;
+    int _money = 0;
+    public int money
+    {
+        get{return _money;}
+        set{
+            _money = value;
+            uIManager.UpdateMoney();
+        }
+    }
     public enum gameStates
     {
         playing, paused, cinematic, death
@@ -60,6 +75,7 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         paused = false;
         GM = this;
+        scenesManager = GetComponent<ScenesManager>();
         spawner = GetComponent<Spawner>();
         uIManager = GetComponent<UIManager>();
         player = GameObject.Find("Player").GetComponent<Movement>();
@@ -74,6 +90,7 @@ public class GameManager : MonoBehaviour
             for(int a = 0; a < object_names.Length; a++)
             {
                 var obj = Instantiate(objects[a], gameElementsContainer.transform);
+                obj.SetActive(false);
                 _typeOfObject[a].Add(obj);
             }
         }
@@ -81,6 +98,20 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < object_names.Length; i++)
         {
             objectDict.Add(object_names[i], _typeOfObject[i]);
+        }
+
+        ResetStats();
+    }
+
+    void ResetStats()
+    {
+        foreach(Stats stat in stats)
+        {
+            List<string> keys = new List<string>(stat.modifiers.Keys);
+            for(int i = 0; i < stat.modifiers.Count; i++)
+            {
+                stat.modifiers[keys[i]] = 1;
+            }
         }
     }
 
@@ -95,6 +126,12 @@ public class GameManager : MonoBehaviour
     public void CameraShake(int num)
     {
         StartCoroutine(uIManager.CameraShake(num));
+    }
+
+    public void SetUpgrader(Vector2 upgraderPos)
+    {
+        upgrader.gameObject.SetActive(true);
+        upgrader.transform.position = upgraderPos;
     }
 
     public void OnPlayerLifeChange(float n)
@@ -136,7 +173,7 @@ public class GameManager : MonoBehaviour
                 if(uIManager._skipText.activeInHierarchy)
                 {
                     uIManager.ShowSkipText(false);
-                    DialoguesManager.dialoguesManager.skip = true;
+                    DialoguesManager.dialoguesManager.skipDialog = true;
                 }
                 else
                 {
@@ -182,45 +219,57 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
-        print("Restart");
-        spawner.PlayHorde();
-        paused = false;
-        player.Restart();
-        uIManager.Restart();
-        DisableGameElements();
+        // print("Restart");
+        // spawner.PlayHorde();
+        // paused = false;
+        // player.Restart();
+        // uIManager.Restart();
+        // DisableGameElements();
+        Reload();
     }
 
-    private static void DisableGameElements()
+    public void Reload()
     {
-        // foreach (GameObject en in GameObject.FindGameObjectsWithTag("Enemy"))
-        // {
-        //     en.SetActive(false);
-        //     Spawner.sp.enemyCount--;
-        // }
+        scenesManager.Reload();
+    }
+
+    private void DisableGameElements()
+    {
+        foreach (GameObject en in GameObject.FindGameObjectsWithTag("coin"))
+        {
+            en.SetActive(false);
+            Spawner.sp.enemyCount--;
+        }
+
         foreach (GameObject en in GameObject.FindGameObjectsWithTag("ball"))
         {
             en.SetActive(false);
         }
+
+        upgrader.gameObject.SetActive(false); 
+    }
+
+    public void OnStageCleared()
+    {
+        NextStageText();
+        OpenGates();
+        SetUpgrader(transform.position);
     }
 
     public void SetStage(Stage stage)
     {
         if(currentStage != null) currentStage.gameObject.SetActive(false);
+        CinemachineConfiner2D confiner2D = vcam.GetComponent<CinemachineConfiner2D>();
         currentStage = stage;
+        confiner2D.m_BoundingShape2D = currentStage.cameraLimit;
+        currentStageSettings = currentStage.settings;
         currentStage.gameObject.SetActive(true);
+        StartLevel();
     }
 
-    public void SetScenario(int n)
+    public void OpenGates()
     {
-        for(int i = 0; i < backGrounds.childCount; i++)
-        {
-            backGrounds.GetChild(i).gameObject.SetActive(false);
-            if(i == n)
-            {
-                break;
-            }
-        }
-        backGrounds.GetChild(n).gameObject.SetActive(true);
+        currentStage.OpenGates();
     }
 
     public void UpdateBossLifeBar(float value, float maxValue)
@@ -260,12 +309,10 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
-        // DisableGameElements();
-        // player.Restart();
-        uIManager.PlayAn("Transition", 0, 0.7f);
+        DisableGameElements();
         player.EnterZone();
-        GameObject.FindGameObjectWithTag("wall").GetComponent<Collider2D>().isTrigger = false;
-
+        spawner.PlayHorde();
+        uIManager.PlayAn("Transition", 0, 0.7f);
     }
 
     public void BallExplosion(Vector2 pos, float vel, bool hit, int min_balls, int max_balls, int ball_type)

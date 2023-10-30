@@ -122,6 +122,7 @@ Zenith se pasaba los días aburrida en su habitación*
 [NAME]Zenith[NAME]*
 Joder, estoy aburrida en mi habitación*
 [IMG]1[IMG]*
+[NAME] [NAME]*
 Hasta que un día una bola de beisbol por su ventana entró y su Nintendo reventó*
 [NAME]Zenith[NAME]*
 ¡¡JODER MI PUTA NINTENDO!!*
@@ -141,5 +142,14 @@ Hasta que un día una bola de beisbol por su ventana entró y su Nintendo revent
 [NAME]Zenith[NAME]*
 Vamos a matar a ese hijo de perra*
 [IMG]none[IMG]*
+[GM]SpawnLevelUp[GM]*
 [GM]StartLevel[GM]*
+[END]
+___Tutorial//
+[NOCINE]*
+Usa las teclas W A S D para moverme <until>horizontal<until>*
+Muy bien broh <wait>2<wait>*
+Ahora usa el click izquierdo para atacar <until>attack<until>*
+Por último usa el espacio para esquivar <until>dodge<until>*
+Muy bien*
 [END]

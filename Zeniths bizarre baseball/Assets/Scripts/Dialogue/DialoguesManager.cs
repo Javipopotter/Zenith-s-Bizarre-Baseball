@@ -19,7 +19,7 @@ public class DialoguesManager : MonoBehaviour
     public string[] choices;
     public bool cinematic;
     [SerializeField] GameObject storyTeller;
-    public bool skip;
+    public bool skipDialog;
 
     private void Awake() {
         dialoguesManager = this;
@@ -41,6 +41,8 @@ public class DialoguesManager : MonoBehaviour
         if(key == ""){yield break;}
         dialogueUI.SetActive(true);
         text.text = "";
+        bool next = false;
+        bool skipText = false;
         foreach(string line in key.Split("*"))
         {
             cinematic = true;
@@ -67,6 +69,12 @@ public class DialoguesManager : MonoBehaviour
                 // while(!Input.GetKeyDown(KeyCode.Space)) yield return null;
                 SceneManager.LoadScene(line.Split("<Event>")[1], LoadSceneMode.Single);
                 break;
+            }
+
+            if(line.Contains("[NOCINE]"))
+            {
+                cinematic = false;
+                continue;
             }
 
             if(line.Contains("[END]"))
@@ -152,9 +160,13 @@ public class DialoguesManager : MonoBehaviour
             }
 
 
-            if(line.Contains("[Wait]") && !skip)
+            if(line.Contains("[Wait]"))
             {
-                yield return new WaitForSecondsRealtime(float.Parse(line.Split("[Wait]")[1]));
+                if(!skipDialog)
+                    yield return new WaitForSecondsRealtime(float.Parse(line.Split("[Wait]")[1]));
+                else
+                    yield return new WaitForSecondsRealtime(float.Parse(line.Split("[Wait]")[1]) / 10);
+
                 continue;
             }
 
@@ -164,33 +176,39 @@ public class DialoguesManager : MonoBehaviour
             {
                 if(character == "<"[0])
                 {
+                    next = true;
                     if(line.Contains("<until>"))
                     {
-                        while(!Input.GetKeyDown(line.Split("<until>")[1])) yield return null;
+                        while(!Input.GetButtonDown(line.Split("<until>")[1])) yield return null;
                         break;
                     }
-                    if(line.Contains("<Wait>"))
+                    if(line.Contains("<wait>"))
                     {
-                        yield return new WaitForSeconds(float.Parse(line.Split("<Wait>")[1]));
+                        yield return new WaitForSecondsRealtime(float.Parse(line.Split("<wait>")[1]));
                         break;
                     }
                 }
 
                 text.text = text.text + character;
-                if(!skip){
-                    if(Input.GetKey(KeyCode.Space)){yield return new WaitForSeconds(0.015f);}
-                    else if(Input.GetMouseButton(0)){}
-                    else{yield return new WaitForSeconds(0.05f);}
-                }
-                else
+                if(!skipDialog)
                 {
-                    yield return new WaitForSeconds(0.0015f);
+                    if(!skipText)
+                    {
+                        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)){skipText = true;}
+                        else{yield return new WaitForSecondsRealtime(0.05f);}
+                    }
+                    else
+                    {
+                        yield return new WaitForSecondsRealtime(0.000015f);
+                    }
                 }
             }
             UIpointer.SetActive(true);
-            while(!(Input.GetKeyDown(KeyCode.Space) || skip)) yield return null;
+            while(!(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || skipDialog || next)) {yield return null;}
+            skipText = false;
+            next = false;
         }
-        skip = false;
+        skipDialog = false;
     }
 
     public void ExecuteChoice(int num)

@@ -44,7 +44,7 @@ public class LifesManager : MonoBehaviour
         stats.maxlifes = lifes;
     }
 
-    public void GetDmg(int dmg){
+    public void GetDmg(float dmg){
         if(GameManager.paused){return;}
         GameManager.GM.CameraShake(10);
         lifes -= dmg;

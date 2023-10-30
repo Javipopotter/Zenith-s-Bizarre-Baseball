@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Shadowscript : MonoBehaviour
 {
     [SerializeField] SpriteRenderer imitate;
+    [SerializeField] bool imitateRot = true;
     SpriteRenderer sr;
     Vector2 _shadow_pos;
     Vector2 shadow_pos
@@ -26,6 +23,7 @@ public class Shadowscript : MonoBehaviour
         set
         {
             if(_shadow_rotation == value){return;}
+            if(imitateRot == false){return;}
             _shadow_rotation = value;
             transform.localRotation = value;
             transform.Rotate(new Vector3(40, 0, 0));

@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class UIManager : MonoBehaviour
     Canvas gameUICanvas;
     CinemachineBasicMultiChannelPerlin channelPerlin;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] TextMeshProUGUI moneyText;
     
     private void Awake() {
         an = GameObject.Find("GameUI").GetComponent<Animator>();
@@ -95,5 +97,10 @@ public class UIManager : MonoBehaviour
     public void ShowSkipText(bool show)
     {
         _skipText.SetActive(show);
+    }
+
+    public void UpdateMoney()
+    {
+        moneyText.text = GameManager.GM.money.ToString();
     }
 }

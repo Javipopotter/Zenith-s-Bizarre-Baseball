@@ -105,8 +105,8 @@ public class ClausBoss : MonoBehaviour
 
     public void Restart()
     {
-        transform.position = new Vector2 (-3.41f,4.66f);
-        lifesMan.Setlifes();
+        // transform.position = new Vector2 (-3.41f,4.66f);
+        // lifesMan.Setlifes();
     }
 
     public void SetReactionTime(float reactTime)

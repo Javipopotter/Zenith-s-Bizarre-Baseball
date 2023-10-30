@@ -19,6 +19,7 @@ public class Pitcher : MonoBehaviour
     void Update()
     {
         if(DialoguesManager.dialoguesManager.cinematic || me.knocked || GameManager.paused){return;}
+        
         coolDown -= Time.deltaTime;
         if(coolDown <= 0)
         {

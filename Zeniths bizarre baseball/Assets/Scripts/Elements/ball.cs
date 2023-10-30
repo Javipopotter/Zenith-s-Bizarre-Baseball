@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class ball : MonoBehaviour
 {
-    public bool hit;
+    bool _hit = false;
+    public bool hit
+    {
+        get{return _hit;}
+        set
+        {
+            _hit = value;
+            LookTowards(rb.velocity);
+        }
+    }
     public float lifeTime = 10;
     Rigidbody2D rb;
     public bool homing;
     public Sprite[] sprites;
-    SpriteRenderer sr;
+    [SerializeField] SpriteRenderer sr;
     GameObject player;
+    [SerializeField]Animator an;
     public float counterMod = 1;
     int bounciness = 2;
     [HideInInspector] public int ball_Type;
@@ -18,11 +28,6 @@ public class ball : MonoBehaviour
     private void Awake() {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponentInChildren<SpriteRenderer>();
-    }
-    private void Start() {
-        player = GameObject.FindGameObjectWithTag("Player");
-        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -32,6 +37,7 @@ public class ball : MonoBehaviour
         }
 
         if(other.transform.CompareTag("Enemy") && hit){
+            LookTowards(rb.velocity);
             if(bounciness > 0)
             {
                 bounciness--;
@@ -48,6 +54,7 @@ public class ball : MonoBehaviour
         }
 
         if(other.transform.CompareTag("ball") && hit){
+            LookTowards(rb.velocity);
             ball b = other.GetComponent<ball>();
             Rigidbody2D b_Rb = other.GetComponent<Rigidbody2D>();
             GameManager.GM.CameraShake(5);
@@ -59,6 +66,11 @@ public class ball : MonoBehaviour
         }
     }
 
+    void LookTowards(Vector2 dir)
+    {
+        sr.gameObject.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        if(hit){an.Play("deformation");}
+    }
     private void Update() {
         if(lifeTime <= 0){
             gameObject.SetActive(false);

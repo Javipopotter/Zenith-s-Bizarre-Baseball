@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Player
+  stats: {fileID: 11400000, guid: a61b2ffdaa30b464784d75a0dd6ea2cb, type: 2}
 --- !u!50 &1306543493167295808
 Rigidbody2D:
   serializedVersion: 4

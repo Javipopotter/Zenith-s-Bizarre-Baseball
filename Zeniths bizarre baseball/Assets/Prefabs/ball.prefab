@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7332080945844953041}
   - component: {fileID: 2606653397940424729}
   m_Layer: 0
-  m_Name: ClausSheet_4
+  m_Name: _sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 5895026427468047299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5155034, y: 1.5443192, z: 0}
-  m_LocalScale: {x: 0.90212655, y: 0.90212655, z: 0.90212655}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7332080945844953041}
@@ -155,13 +155,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3d3d3e50ed30a41978ea2f58a724d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: 0
   lifeTime: 10
   homing: 0
   sprites:
   - {fileID: -1766785824, guid: e51a746591eb3ea44a7e9ea4344e658c, type: 3}
   - {fileID: -987043204, guid: e51a746591eb3ea44a7e9ea4344e658c, type: 3}
   - {fileID: 728584677, guid: e51a746591eb3ea44a7e9ea4344e658c, type: 3}
+  sr: {fileID: 2606653397940424729}
+  an: {fileID: 4826121310789595387}
   counterMod: 1
   ball_Type: 0
 --- !u!58 &1872322022169908616
@@ -284,6 +285,10 @@ PrefabInstance:
       propertyPath: imitate
       value: 
       objectReference: {fileID: 2606653397940424729}
+    - target: {fileID: 7022147469650950237, guid: e003c037577570349abecba84e163e23, type: 3}
+      propertyPath: imitateRot
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e003c037577570349abecba84e163e23, type: 3}
 --- !u!4 &897745571687703823 stripped

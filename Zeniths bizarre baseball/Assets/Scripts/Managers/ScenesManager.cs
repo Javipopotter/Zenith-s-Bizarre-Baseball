@@ -14,4 +14,10 @@ public class ScenesManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Reload()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
+    }
 }

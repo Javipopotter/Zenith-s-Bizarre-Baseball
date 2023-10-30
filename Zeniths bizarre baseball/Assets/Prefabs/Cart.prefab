@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6784838313461964869}
   - component: {fileID: 862097925661712365}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: _sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 7858700795874322626}
   - component: {fileID: 1413309226697465168}
   - component: {fileID: -4998536829825373136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cart
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -147,12 +147,12 @@ MonoBehaviour:
       - m_Target: {fileID: 7533763778974248714}
         m_TargetAssemblyTypeName: LifesManager, Assembly-CSharp
         m_MethodName: GetDmg
-        m_Mode: 3
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
+          m_FloatArgument: 1.001
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -338,6 +338,10 @@ PrefabInstance:
     - target: {fileID: 7022147469650950210, guid: e003c037577570349abecba84e163e23, type: 3}
       propertyPath: m_Name
       value: ShadowCaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022147469650950210, guid: e003c037577570349abecba84e163e23, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7022147469650950211, guid: e003c037577570349abecba84e163e23, type: 3}
       propertyPath: m_RootOrder

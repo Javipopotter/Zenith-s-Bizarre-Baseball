@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2724471381333292359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2724471381333292377}
+  - component: {fileID: 2724471381333292376}
+  - component: {fileID: 2724471381333292378}
+  - component: {fileID: 2724471381333292381}
+  - component: {fileID: 2724471381333292380}
+  - component: {fileID: 2724471381333292379}
+  - component: {fileID: 2724471381333292382}
+  - component: {fileID: 2724471381333292383}
+  - component: {fileID: 2724471381333292368}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2724471381333292377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2724471381333292376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cffe8398a70aae4fb57aab106dbfcc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Menu: {fileID: 0}
+  objects:
+  - {fileID: 5986563650611415256, guid: 8e724857ba2748d468c3b7d5338ed6af, type: 3}
+  - {fileID: 3487506806726864513, guid: d96ac465615779f45ab6be04d5b33418, type: 3}
+  - {fileID: 7533763778974248708, guid: 2fe4a13e7fd113c479ac44563b13d6e7, type: 3}
+  - {fileID: 5895026427468047299, guid: 501378a9d40d3d94f9296d64840df9d2, type: 3}
+  - {fileID: 8550709766311974581, guid: fa53539589c09dd408c5d99f2180b2c4, type: 3}
+  serialized_pause: 0
+  backGrounds: {fileID: 0}
+  gameElementsContainer: {fileID: 0}
+  stats:
+  - {fileID: 11400000, guid: b9796295d64fc8543ae098eaaa145652, type: 2}
+  - {fileID: 11400000, guid: 0d30b82f18a2e6b4b8691fe4d10741f0, type: 2}
+  - {fileID: 11400000, guid: aef03fcb9b03c204ea42cbd3d8063de5, type: 2}
+  - {fileID: 11400000, guid: e02df146a7c7bd8428bf5d80edefda66, type: 2}
+  - {fileID: 11400000, guid: a61b2ffdaa30b464784d75a0dd6ea2cb, type: 2}
+  _currentStage: {fileID: 0}
+  vcam: {fileID: 0}
+  upgrader: {fileID: 0}
+--- !u!114 &2724471381333292378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc343812bf88eab41bb97c49827fa86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCount: 0
+  clausBoss: {fileID: 0}
+  EnemyCounter: {fileID: 0}
+  CurrentSettings: {fileID: 0}
+--- !u!114 &2724471381333292381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3ae52eade7755439f65fb2fb9f4176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueUI: {fileID: 0}
+  dialogueUiAn: {fileID: 0}
+  Name: {fileID: 0}
+  text: {fileID: 0}
+  choice1: {fileID: 0}
+  choice2: {fileID: 0}
+  img:
+  - {fileID: 0}
+  - {fileID: 0}
+  UIpointer: {fileID: 0}
+  choices: []
+  cinematic: 0
+  storyTeller: {fileID: 0}
+  skipDialog: 0
+--- !u!114 &2724471381333292380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa919df566f76294293bcd52f423cc10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textKeys: []
+  file: {fileID: 4900000, guid: 366478dff18a58b47961d10469465d2c, type: 3}
+--- !u!114 &2724471381333292379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a202c4ed93dcc4f90fa2eff94b2a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+--- !u!114 &2724471381333292382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a6585b42f85c7489c88b762a19bf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2724471381333292383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b5e110f43e00a4c991de5ed172da9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cineMachineCamera: {fileID: 0}
+  lifeBar: {fileID: 0}
+  _lifesContainer: {fileID: 0}
+  _skipText: {fileID: 0}
+  _heartSprites:
+  - {fileID: 479126305, guid: 75b48fe95f202144986d7ff0e4f64cf8, type: 3}
+  - {fileID: 748583900, guid: 75b48fe95f202144986d7ff0e4f64cf8, type: 3}
+  gameOverScreen: {fileID: 0}
+  moneyText: {fileID: 0}
+--- !u!114 &2724471381333292368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159ec37a14ce96942bfb8c725d42523c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stagesAssets:
+  - {fileID: 2276817944684896570, guid: 1cd4a1a09d45fb54ca68d90cc3d23c5d, type: 3}
+  - {fileID: 8678914729140332262, guid: c94cb90fe5efd5944a6ad03dd757f0b1, type: 3}
+  bossStage: {fileID: 27430595365522507, guid: e559ca0c59c32c141a89bee4d889bae4, type: 3}

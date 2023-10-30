@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     private void Start() {
         if(GameObject.FindWithTag("Player"))
             player = GameObject.FindGameObjectWithTag("Player");
-        gameObject.SetActive(false);
     }
 
     private void Update() {

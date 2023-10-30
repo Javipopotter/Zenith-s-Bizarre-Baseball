@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
             if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || blockControls || GameManager.paused){return;}
         }
         
-        vel = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical")) * stats.speed * stats.speedModifier;
+        vel = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical")) * stats.speed * stats.modifiers["speed"];
 
         if(rolling){
             if(Input.GetAxisRaw("horizontal") != 0 && Input.GetAxisRaw("vertical") != 0)
@@ -125,22 +125,16 @@ public class Movement : MonoBehaviour
                 GetComponent<LifesManager>().GetDmg(1);
             }
         }
-
-        if(other.CompareTag("wall"))
-        {
-            Spawner.sp.spawnLevel++;
-            GameManager.GM.StartLevel();
-        }
     }
 
     public void Restart()
     {
-        sr.sortingLayerID = SortingLayer.NameToID("Players");
-        lifesMan.Setlifes();
-        rb.isKinematic = false;
-        an.Play("init");
-        transform.position = new Vector2(0, -23);
-        an.Rebind();
+        // sr.sortingLayerID = SortingLayer.NameToID("Players");
+        // lifesMan.Setlifes();
+        // rb.isKinematic = false;
+        // an.Play("init");
+        // transform.position = new Vector2(0, -23);
+        // an.Rebind();
     }
 
     public void EnterZone()
@@ -153,6 +147,7 @@ public class Movement : MonoBehaviour
     public void OnDeath()
     {
         sr.sortingLayerID = SortingLayer.NameToID("OverUI");
+        pointer.SetActive(false);
         rb.isKinematic = true;
         rb.velocity = Vector2.zero;
     }

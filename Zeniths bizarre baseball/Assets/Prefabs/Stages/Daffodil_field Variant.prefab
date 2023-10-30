@@ -17677,6 +17677,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 67882426586713671, guid: 67b1e58f10138c546ab83e56bb3b5ec0, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: eb87a68e32e120042a301e72c6785fb7, type: 2}
+    - target: {fileID: 67882426586713671, guid: 67b1e58f10138c546ab83e56bb3b5ec0, type: 3}
+      propertyPath: typeOfStage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8366158916951242817, guid: 67b1e58f10138c546ab83e56bb3b5ec0, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 1040

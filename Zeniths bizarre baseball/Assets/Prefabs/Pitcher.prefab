@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2112405990540884527}
   - component: {fileID: 7455930917411712879}
   - component: {fileID: 1477241250307399817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,8 @@ GameObject:
   - component: {fileID: 2293634190722007560}
   - component: {fileID: 1760877621960635127}
   - component: {fileID: -6774022315204567664}
-  m_Layer: 0
+  - component: {fileID: 8445158189840447512}
+  m_Layer: 8
   m_Name: Pitcher
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -199,6 +200,18 @@ MonoBehaviour:
       - m_Target: {fileID: -16092773594996479}
         m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
         m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8445158189840447512}
+        m_TargetAssemblyTypeName: Dropper, Assembly-CSharp
+        m_MethodName: Drop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -319,6 +332,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 0d30b82f18a2e6b4b8691fe4d10741f0, type: 2}
+--- !u!114 &8445158189840447512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986563650611415256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995092abd10e13841bb062d13331b540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: coin
+  cuantity: 5
 --- !u!1001 &3629067023517145049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,6 +356,10 @@ PrefabInstance:
     - target: {fileID: 7022147469650950210, guid: e003c037577570349abecba84e163e23, type: 3}
       propertyPath: m_Name
       value: ShadowCaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022147469650950210, guid: e003c037577570349abecba84e163e23, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7022147469650950211, guid: e003c037577570349abecba84e163e23, type: 3}
       propertyPath: m_RootOrder

@@ -9,6 +9,7 @@ TagManager:
   - Knocked
   - bat
   - wall
+  - coin
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Water
   - UI
   - StaticElement
-  - 
-  - 
+  - flowers
+  - enemy
   - 
   - 
   - 
