@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -81,7 +78,6 @@ public class Movement : MonoBehaviour
         }
 
 
-
         Roll();
         Attack();
 
@@ -105,18 +101,35 @@ public class Movement : MonoBehaviour
            attackCool -= Time.deltaTime;
         }
 
-       if(Input.GetMouseButtonDown(0) && attackCool <= 0){
+        if(Input.GetMouseButtonDown(0) && attackCool <= 0)
+        {
             attackCool = 0.25f;
-           if(pointer.transform.rotation.eulerAngles.z > 225 && pointer.transform.rotation.eulerAngles.z < 315){
-              an.Play("attackRight");
-           }else if(pointer.transform.rotation.eulerAngles.z > 135 && pointer.transform.rotation.eulerAngles.z < 225){
-              an.Play("attackDown");
-           }else if(pointer.transform.rotation.eulerAngles.z > 45 && pointer.transform.rotation.eulerAngles.z < 135){
-              an.Play("attackLeft");
-           }else{
-              an.Play("attackUp");
-           }
-       }
+            LookToMouse("attackRight", "attackDown", "attackLeft", "attackUp");
+        }
+        else if(!an.GetBool("moveDir") && !atkTrigger && !rolling)
+        {
+            LookToMouse("idleRight", "Idle", "idleLeft", "idleUp");
+        }
+
+    }
+    void LookToMouse(string right, string down, string left, string up)
+    {
+        if (pointer.transform.rotation.eulerAngles.z > 225 && pointer.transform.rotation.eulerAngles.z < 315)
+        {
+            an.Play(right);
+        }
+        else if (pointer.transform.rotation.eulerAngles.z > 135 && pointer.transform.rotation.eulerAngles.z < 225)
+        {
+            an.Play(down);
+        }
+        else if (pointer.transform.rotation.eulerAngles.z > 45 && pointer.transform.rotation.eulerAngles.z < 135)
+        {
+            an.Play(left);
+        }
+        else
+        {
+            an.Play(up);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -141,7 +154,6 @@ public class Movement : MonoBehaviour
     {
         an.Rebind();
         an.Play("EnterZone");
-        transform.position = new Vector2(0, -23);
     }
 
     public void OnDeath()

@@ -70,6 +70,7 @@ MonoBehaviour:
   _currentStage: {fileID: 0}
   vcam: {fileID: 0}
   upgrader: {fileID: 0}
+  eventsMemory: {fileID: 11400000, guid: b0491ac4379ca7a4fb5b96747284883d, type: 2}
 --- !u!114 &2724471381333292378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,4 +188,5 @@ MonoBehaviour:
   stagesAssets:
   - {fileID: 2276817944684896570, guid: 1cd4a1a09d45fb54ca68d90cc3d23c5d, type: 3}
   - {fileID: 8678914729140332262, guid: c94cb90fe5efd5944a6ad03dd757f0b1, type: 3}
+  shopStage: {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
   bossStage: {fileID: 27430595365522507, guid: e559ca0c59c32c141a89bee4d889bae4, type: 3}

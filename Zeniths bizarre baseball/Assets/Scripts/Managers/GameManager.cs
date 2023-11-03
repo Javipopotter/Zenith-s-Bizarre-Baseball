@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     ScenesManager scenesManager;
     [SerializeField] CinemachineVirtualCamera vcam;
     [SerializeField] UpgradePackage upgrader;
+    [SerializeField] EventsMemory eventsMemory;
     int _money = 0;
     public int money
     {
@@ -115,12 +117,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SloMo()
+    {
+        StartCoroutine(SlowMotion());
+    }
     IEnumerator SlowMotion()
     {
-        float originalTime = Time.timeScale;
         Time.timeScale = 0.2f;
-        yield return new WaitForSecondsRealtime(2f);
-        Time.timeScale = originalTime;
+        yield return new WaitForSecondsRealtime(0.2f);
+        Time.timeScale = 1;
     }
 
     public void CameraShake(int num)
@@ -252,6 +257,7 @@ public class GameManager : MonoBehaviour
     public void OnStageCleared()
     {
         NextStageText();
+        currentStage.settings.LevelUp();
         OpenGates();
         SetUpgrader(transform.position);
     }
@@ -306,12 +312,12 @@ public class GameManager : MonoBehaviour
     {
         uIManager.PlayAn("NextStage");
     }
-
     public void StartLevel()
     {
         DisableGameElements();
         player.EnterZone();
         spawner.PlayHorde();
+        player.transform.position = currentStage.startPos.transform.position;
         uIManager.PlayAn("Transition", 0, 0.7f);
     }
 
@@ -333,4 +339,15 @@ public class GameManager : MonoBehaviour
             _ball.GetComponent<Rigidbody2D>().velocity = rand_dir * vel;
         }
     }
+
+    private void Start() {
+        if(!eventsMemory.InitialCutscene){DialoguesManager.dialoguesManager.ExecuteDialogViaKey("InitialCutscene");}
+        eventsMemory.InitialCutscene = true;
+    }
+
+    public void OnMainMenu()
+    {
+        eventsMemory.InitialCutscene = false;
+    }
+
 }

@@ -82,6 +82,10 @@ SpriteAtlas:
     - {fileID: 1858350807, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
     - {fileID: -1320321562, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
     - {fileID: 1833241746, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
+    - {fileID: 527808778, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+    - {fileID: 564528701, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+    - {fileID: -420849927, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+    - {fileID: 1347719507, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -125,6 +129,10 @@ SpriteAtlas:
   - {fileID: 102331830, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
   - {fileID: 1014208725, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
   - {fileID: 115996178, guid: 38933b965c5b10b46b51e5ef5c1a105a, type: 3}
+  - {fileID: 564528701, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+  - {fileID: -420849927, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+  - {fileID: 527808778, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+  - {fileID: 1347719507, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
   m_PackedSpriteNamesToIndex:
   - 32
   - 33
@@ -164,6 +172,10 @@ SpriteAtlas:
   - 2
   - 9
   - 8
+  - Shop_Door
+  - Shop_Sheet_4
+  - Shop_Sheet_3
+  - Shop_Sheet_0
   m_RenderDataMap: {}
   m_Tag: Tiles
   m_IsVariant: 0

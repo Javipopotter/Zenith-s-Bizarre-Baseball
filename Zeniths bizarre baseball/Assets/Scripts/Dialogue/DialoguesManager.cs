@@ -38,14 +38,17 @@ public class DialoguesManager : MonoBehaviour
 
     IEnumerator _ExecuteDialog(string key)
     {
-        if(key == ""){yield break;}
-        dialogueUI.SetActive(true);
         text.text = "";
+        if(key == "")
+        {
+            dialogueUI.SetActive(false);
+            yield break;
+        }
+        dialogueUI.SetActive(true);
         bool next = false;
         bool skipText = false;
         foreach(string line in key.Split("*"))
         {
-            cinematic = true;
             UIpointer.SetActive(false);
 
             if(line.Contains("-choice-"))

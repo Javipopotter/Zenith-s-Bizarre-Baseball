@@ -13,6 +13,7 @@ public class Stage : MonoBehaviour
     public GameObject spawners;
     public PolygonCollider2D cameraLimit;
     public StageSettings settings;
+    public GameObject startPos;
     [SerializeField] GameObject altMaps;
 
     private void Awake() {

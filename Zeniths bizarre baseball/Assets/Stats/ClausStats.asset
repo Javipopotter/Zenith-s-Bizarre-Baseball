@@ -15,5 +15,5 @@ MonoBehaviour:
   speed: 0
   damage: 1
   maxlifes: 0
-  speedModifier: 1
-  dmgModifier: 1
+  knockback: 1
+  poise: 1

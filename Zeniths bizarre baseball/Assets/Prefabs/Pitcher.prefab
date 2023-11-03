@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 1760877621960635127}
   - component: {fileID: -6774022315204567664}
   - component: {fileID: 8445158189840447512}
+  - component: {fileID: -5848336409806243465}
   m_Layer: 8
   m_Name: Pitcher
   m_TagString: Enemy
@@ -219,6 +220,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -5848336409806243465}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: enemy_death
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!95 &-4173724579433339367
@@ -346,6 +359,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drop: coin
   cuantity: 5
+--- !u!114 &-5848336409806243465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986563650611415256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610b83f285eeebc4299d0bda4bcb9c5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3629067023517145049
 PrefabInstance:
   m_ObjectHideFlags: 0

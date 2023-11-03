@@ -46,9 +46,9 @@ public class Pitcher : MonoBehaviour
 
     public void Throw()
     {
-        var vall = GameManager.GM.GetObject("ball");
-        vall.GetComponent<ball>().counterMod = 4;
-        vall.transform.position = transform.position;
-        vall.GetComponent<Rigidbody2D>().velocity = (player.transform.position - vall.transform.position).normalized * ballVel * Random.Range(1,1.6f);
+        GameObject b = GameManager.GM.GetObject("ball");
+        b.GetComponent<ball>().counterMod = 4;
+        b.transform.position = transform.position;
+        b.GetComponent<Rigidbody2D>().velocity = (player.transform.position - b.transform.position).normalized * ballVel * Random.Range(1,1.6f);
     }
 }

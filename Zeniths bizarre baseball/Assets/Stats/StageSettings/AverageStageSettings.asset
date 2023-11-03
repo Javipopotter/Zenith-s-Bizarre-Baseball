@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: AverageStageSettings
   m_EditorClassIdentifier: 
   restArea: 0
-  allowedEnemies:
-  - pitcher
+  enemiesInOrder:
   - man
   - cart
+  allowedEnemies:
+  - pitcher
   numberOfSpawns: 4
   hordes: 5
   maxEnLimit: 8

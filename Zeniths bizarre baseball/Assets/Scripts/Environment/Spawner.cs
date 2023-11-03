@@ -6,7 +6,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     static GameObject spawn;
-    string[] enemies = new string[] {"pitcher", "man", "cart"};
     float spCoolDown = 1;
     public int enemyCount = 0;
     public static Spawner sp;
@@ -39,6 +38,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CurrentSettings.restArea){return;}
         if(spCoolDown <= 0 && hordes > 0 && enemyCount < CurrentSettings.maxEnLimit && !DialoguesManager.dialoguesManager.cinematic)
         {
             hordes--;
@@ -46,7 +46,7 @@ public class Spawner : MonoBehaviour
             for(int i = 0; i < CurrentSettings.numberOfSpawns; i++)
             {
                 enemyCount++;
-                var en = GameManager.GM.GetObject(enemies[Random.Range(0, enemies.Length)]);
+                var en = GameManager.GM.GetObject(CurrentSettings.allowedEnemies[Random.Range(0, CurrentSettings.allowedEnemies.Count)]);
                 en.transform.position = spawn.transform.GetChild(Random.Range(0, spawn.transform.childCount)).transform.position;
             }
         }

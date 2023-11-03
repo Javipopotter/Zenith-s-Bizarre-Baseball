@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pointer : MonoBehaviour
 {
+    Animator an;
     private void Update() 
     {
         if(Time.timeScale == 0){return;}

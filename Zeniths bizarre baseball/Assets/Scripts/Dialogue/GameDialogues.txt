@@ -142,8 +142,11 @@ Hasta que un día una bola de beisbol por su ventana entró y su Nintendo revent
 [NAME]Zenith[NAME]*
 Vamos a matar a ese hijo de perra*
 [IMG]none[IMG]*
-[GM]SpawnLevelUp[GM]*
 [GM]StartLevel[GM]*
+[END]
+___Claus_GetsSurpriseAttack//
+[NOCINE]*
+Auch!! Acabaré contigo zorra!! <wait>1<wait>*
 [END]
 ___Tutorial//
 [NOCINE]*
@@ -152,4 +155,12 @@ Muy bien broh <wait>2<wait>*
 Ahora usa el click izquierdo para atacar <until>attack<until>*
 Por último usa el espacio para esquivar <until>dodge<until>*
 Muy bien*
+[END]
+___Sandwich//
+[NOCINE]*
+Un simple sandwich, seguro que te viene bien para recuperar tu vitalidad*
+[END]
+___Sandwich_Destroy//
+[NOCINE]*
+Oye, no te pongas a romperme los sandwiches que los he hecho con amor :(*
 [END]

@@ -57,7 +57,14 @@ public class ClausBoss : MonoBehaviour
 
         if(dangerTrigger)
         {
-            reactionTime -= Time.deltaTime;
+            if(dangerTrigger && an.GetCurrentAnimatorStateInfo(0).IsName("init"))
+            {
+                dangerTrigger = false;
+            }
+            else
+            {
+                reactionTime -= Time.deltaTime;
+            }
         }
 
         if(moveTrigger && !attackTrigger) 
@@ -117,5 +124,12 @@ public class ClausBoss : MonoBehaviour
     public void OnDeath()
     {
         an.Rebind();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.transform.CompareTag("bat") && an.GetCurrentAnimatorStateInfo(0).IsName("init"))
+        {
+            DialoguesManager.dialoguesManager.ExecuteDialogViaKey("Claus_GetsSurpriseAttack");
+        }
     }
 }

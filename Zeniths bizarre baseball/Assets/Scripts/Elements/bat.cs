@@ -15,12 +15,14 @@ public class bat : MonoBehaviour
             hashit = true;
             var rb = other.GetComponent<Rigidbody2D>();
 
-            if(other.gameObject.TryGetComponent(out ball vall)){
-                if(target == "Enemy" && !vall.hit){
+            if(other.gameObject.TryGetComponent(out ball b)){
+                AudioManager.instance.Play("hit_ball");  
+                if(target == "Enemy"){
+                    b.transform.position = transform.up * 0.5f + transform.position;
                     GameManager.GM.CameraShake(5);
-                    vall.SetProperties(1);
-                }else if(target == "Player" && vall.hit){
-                    vall.SetProperties(2);
+                    b.SetProperties(1);
+                }else if(target == "Player"){
+                    b.SetProperties(2);
                     GetComponentInParent<Animator>().Play("hitBack");
                 }
             }
@@ -28,12 +30,16 @@ public class bat : MonoBehaviour
             if(other.transform.CompareTag(target))
             {
                 other.GetComponent<LifesManager>().GetDmg(1 * stats.modifiers["damage"]);
-                rb.AddForce((other.transform.position - transform.parent.transform.position).normalized * 2000 * other.GetComponent<LifesManager>().poise);
+                rb.AddForce((other.transform.position - transform.parent.transform.position).normalized * 2000 * other.GetComponent<LifesManager>().poise * stats.knockback);
             }
         }
     }
 
     private void OnDisable() {
         hashit = false;
+    }
+
+    private void OnEnable() {
+        AudioManager.instance.Play("hit_bat");
     }
 }
