@@ -8,7 +8,7 @@ public class StagesSpawner : MonoBehaviour
     [SerializeField] Stage[] stagesAssets;
     [SerializeField] Stage shopStage;
     [SerializeField] Stage bossStage;
-    int stagesNumber = 1;
+    [SerializeField] int stagesNumber = 3;
     private void Start() {
         ResetStages();
         Stage boss = Instantiate(bossStage.gameObject).GetComponent<Stage>();

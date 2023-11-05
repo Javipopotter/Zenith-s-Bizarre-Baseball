@@ -58,23 +58,29 @@ public class Movement : MonoBehaviour
             vel = vel * 0.707f ;
         }
         
-        rb.velocity = vel;
-        
-        if((Input.GetAxis("horizontal") != 0 || Input.GetAxis("vertical") != 0) && !atkTrigger){
-            an.SetBool("moveDir", true);
-            if(Input.GetAxis("horizontal") > 0){
-                an.Play("moveRight");
-            }else if(Input.GetAxis("horizontal") < 0){
-                an.Play("moveLeft");
-            }else if(Input.GetAxis("vertical") > 0){
-                an.Play("moveUp");
-            }else if(Input.GetAxis("vertical") < 0){
-                an.Play("moveDown");
-            }
-        }
-        else
+        if(!atkTrigger)
         {
-            an.SetBool("moveDir", false);
+            rb.velocity = vel;
+            
+            if(!rolling)
+            {
+                if(Input.GetAxis("horizontal") != 0 || Input.GetAxis("vertical") != 0){
+                    an.SetBool("moveDir", true);
+                    if(Input.GetAxis("horizontal") > 0){
+                        an.Play("moveRight");
+                    }else if(Input.GetAxis("horizontal") < 0){
+                        an.Play("moveLeft");
+                    }else if(Input.GetAxis("vertical") > 0){
+                        an.Play("moveUp");
+                    }else if(Input.GetAxis("vertical") < 0){
+                        an.Play("moveDown");
+                    }
+                }
+                else
+                {
+                    an.SetBool("moveDir", false);
+                }
+            }
         }
 
 
@@ -85,7 +91,7 @@ public class Movement : MonoBehaviour
 
     void Roll()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && rollCool <= 0){
+        if (Input.GetButtonDown("dodge") && rollCool <= 0 && vel != Vector2.zero){
             an.Play("roll");
             rollCool = 0.5f;
         }
@@ -104,6 +110,8 @@ public class Movement : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && attackCool <= 0)
         {
             attackCool = 0.25f;
+            rb.velocity = Vector2.zero;
+            rb.velocity = AngleToVector2(pointer.transform.rotation.eulerAngles.z + 90) * stats.knockback * stats.modifiers["knockback"];
             LookToMouse("attackRight", "attackDown", "attackLeft", "attackUp");
         }
         else if(!an.GetBool("moveDir") && !atkTrigger && !rolling)
@@ -112,6 +120,13 @@ public class Movement : MonoBehaviour
         }
 
     }
+
+    Vector2 AngleToVector2(float angleInDegrees)
+    {
+        float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
+    }
+
     void LookToMouse(string right, string down, string left, string up)
     {
         if (pointer.transform.rotation.eulerAngles.z > 225 && pointer.transform.rotation.eulerAngles.z < 315)
@@ -135,7 +150,7 @@ public class Movement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Enemy")){
             if(!other.GetComponent<Enemy>().knocked){
-                GetComponent<LifesManager>().GetDmg(1);
+                GetComponent<LifesManager>().GetDmg(1, Vector2.zero);
             }
         }
     }

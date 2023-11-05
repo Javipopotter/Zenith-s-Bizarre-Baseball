@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2546abcd57cd7934aa2968787beefc52, type: 3}
   m_Name: Shop_Item
   m_EditorClassIdentifier: 
-  product_name: "Sandwich de Jam\xF3n"
+  product_name: Sandwich de chorizo
   description_key: Sandwich
   price: 0

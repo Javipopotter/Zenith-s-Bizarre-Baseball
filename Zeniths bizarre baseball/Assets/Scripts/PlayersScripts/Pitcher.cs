@@ -9,7 +9,6 @@ public class Pitcher : MonoBehaviour
     float ballVel = 8;
     GameObject player;
     Enemy me;
-    [SerializeField] GameObject ball;
     private void OnEnable() {
         me = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,22 +25,6 @@ public class Pitcher : MonoBehaviour
             coolDown = throwRate + Random.Range(-0.5f, 0.5f);
             GetComponent<Animator>().Play("ThrowBall");
         }
-        
-        // switch(me.level)
-        // {
-        //     case 0:
-        //     ballVel = 8;
-        //     throwRate = 2.5f;
-        //     break;
-        //     case 1:
-        //     ballVel = 10;
-        //     throwRate = 2f;
-        //     break;
-        //     case 2:
-        //     ballVel = 14;
-        //     throwRate = 1.75f;
-        //     break;
-        // }
     }
 
     public void Throw()

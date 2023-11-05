@@ -1,22 +1,54 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Enemy : MonoBehaviour
+public class Enemy : LifesManager
 {
-    public bool getNear;
-    public GameObject player;
-    public bool knocked;
-    Rigidbody2D rb;
-    [SerializeField] UnityEvent OnPlayerHitEvent;
-    Stats stats;
-
-    private void Awake() {
-        stats = GetComponent<statsReference>().stats;
-        rb = GetComponent<Rigidbody2D>();
+    bool _getNear;
+    public override float lifes { get => base.lifes; set => base.lifes = value; }
+    bool getNear
+    {
+        get{return _getNear;}
+        set
+        {
+            _getNear = value;
+            if(!value)
+            {
+                rb.velocity = Vector2.zero;
+            }
+        }
     }
+    public GameObject player;
+    bool _knocked;
+    public bool knocked
+    {
+        get{return _knocked;}
+        private set
+        {
+            _knocked = value;
+            if(!value)
+            {
+                rb.velocity = Vector2.zero;
+            }
+        }
+    }
+    [SerializeField] UnityEvent OnPlayerHitEvent;
+
     private void Start() {
         if(GameObject.FindWithTag("Player"))
             player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public override void GetDmg(float dmg, Vector2 knockbackDir)
+    {
+        knocked = true;
+        base.GetDmg(dmg, knockbackDir);
+    }
+
+    public override void Death()
+    {
+        base.Death();
+        OnDeath();
     }
 
     private void Update() {
@@ -24,8 +56,6 @@ public class Enemy : MonoBehaviour
 
         if(getNear){
             rb.velocity = GetPlayerDirection() * stats.speed;
-        }else{
-            rb.velocity = Vector2.zero;
         }
 
         if((player.transform.position.x - transform.position.x < 0 && transform.localScale.x > 0) || (player.transform.position.x - transform.position.x > 0 && transform.localScale.x < 0))
@@ -34,10 +64,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     if(!other.TryGetComponent(out Enemy en)){return;}
-    //     if(en.knocked){GetComponent<LifesManager>().GetDmg();}
-    // }
 
     Vector2 GetPlayerDirection()
     {
@@ -46,6 +72,7 @@ public class Enemy : MonoBehaviour
 
     public void OnDeath()
     {
+        AudioManager.instance.Play("enemy_death");
         Spawner.sp.KillCount++;
         Spawner.sp.enemyCount--;
         gameObject.SetActive(false);
@@ -66,5 +93,15 @@ public class Enemy : MonoBehaviour
         {
             OnPlayerHitEvent.Invoke();
         }
+    }
+
+    public void GetNear()
+    {
+        getNear = true;
+    }
+
+    public void GetAway()
+    {
+        getNear = false;
     }
 }

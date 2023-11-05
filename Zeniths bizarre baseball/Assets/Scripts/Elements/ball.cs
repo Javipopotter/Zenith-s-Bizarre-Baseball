@@ -32,7 +32,7 @@ public class ball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.CompareTag("Player") && !hit){
-            other.GetComponent<LifesManager>().GetDmg(1);
+            other.GetComponent<LifesManager>().GetDmg(1, rb.velocity.normalized * 5);
             gameObject.SetActive(false);
         }
 
@@ -50,7 +50,7 @@ public class ball : MonoBehaviour
                 gameObject.SetActive(false);
                 hit = false;
             }
-            other.GetComponent<LifesManager>().GetDmg(1);
+            other.GetComponent<LifesManager>().GetDmg(1, rb.velocity.normalized * 5);
         }
 
         if(other.transform.CompareTag("ball") && hit){

@@ -158,9 +158,7 @@ Muy bien*
 [END]
 ___Sandwich//
 [NOCINE]*
-Un simple sandwich, seguro que te viene bien para recuperar tu vitalidad*
-[END]
+Un simple sandwich, seguro que te viene bien para recuperar tu vitalidad, cuesta *
 ___Sandwich_Destroy//
 [NOCINE]*
 Oye, no te pongas a romperme los sandwiches que los he hecho con amor :(*
-[END]

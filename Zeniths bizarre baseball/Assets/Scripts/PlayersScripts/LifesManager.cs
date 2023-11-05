@@ -9,12 +9,13 @@ using UnityEngine.UIElements.Experimental;
 public class LifesManager : MonoBehaviour
 {
     [SerializeField] float _lifes;
-    Stats stats;
+    public Stats stats;
     Animator an;
+    public Rigidbody2D rb;
     public float poise;
     [SerializeField] UnityEvent DeathEvent;
 
-    public float lifes
+    public virtual float lifes
     {
         get
         {
@@ -42,16 +43,18 @@ public class LifesManager : MonoBehaviour
         stats = GetComponent<statsReference>().stats;
         an = GetComponent<Animator>();
         stats.maxlifes = lifes;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    public void GetDmg(float dmg){
+    public virtual void GetDmg(float dmg, Vector2 knockbackDir){
         if(GameManager.paused){return;}
         GameManager.GM.CameraShake(10);
         lifes -= dmg;
         an.Play("getDmg");
+        rb.AddForce(knockbackDir * stats.poise, ForceMode2D.Impulse);
     }
 
-    public void Death(){
+    public virtual void Death(){
         DeathEvent.Invoke();
     }
 
@@ -63,11 +66,6 @@ public class LifesManager : MonoBehaviour
     public void Setlifes () 
     {
         lifes = stats.maxlifes;
-    }
-
-    public void TimeSet(float time)
-    {
-        Time.timeScale = time;
     }
 
     private void OnEnable() {

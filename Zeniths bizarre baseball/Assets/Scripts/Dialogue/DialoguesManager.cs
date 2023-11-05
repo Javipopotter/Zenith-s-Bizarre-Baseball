@@ -1,9 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 public class DialoguesManager : MonoBehaviour
 {
@@ -15,25 +16,34 @@ public class DialoguesManager : MonoBehaviour
     public TextMeshProUGUI choice1;
     public TextMeshProUGUI choice2;
     public GameObject[] img;
+    [SerializeField] string[] img_sources_keys;
+    [SerializeField] Sprite[] img_sources;
+    Dictionary<string, Sprite> img_sources_dict = new Dictionary<string, Sprite>();
     public GameObject UIpointer;
     public string[] choices;
     public bool cinematic;
     [SerializeField] GameObject storyTeller;
     public bool skipDialog;
-
+    private Coroutine executeDialogCoroutine;
     private void Awake() {
         dialoguesManager = this;
         dialogueUiAn = dialogueUI.GetComponent<Animator>();
+        for(int i = 0; i < img_sources_keys.Length; i++)
+        {
+            img_sources_dict.Add(img_sources_keys[i], img_sources[i]);
+        }
     }
 
     public void ExecuteDialog(string dialog)
     {
-        StartCoroutine(_ExecuteDialog(dialog));
+        if(executeDialogCoroutine != null) StopCoroutine(executeDialogCoroutine);
+        executeDialogCoroutine = StartCoroutine(_ExecuteDialog(dialog));
     }
 
     public void ExecuteDialogViaKey(string key)
     {
-        StartCoroutine(_ExecuteDialog(Dialogues.dialogues.texts[key]));
+        if(executeDialogCoroutine != null) StopCoroutine(executeDialogCoroutine);
+        executeDialogCoroutine = StartCoroutine(_ExecuteDialog(Dialogues.dialogues.texts[key]));
     }
 
     IEnumerator _ExecuteDialog(string key)
@@ -140,7 +150,17 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[Img]"))
             {
-                img[int.Parse(line.Split(")")[0])].transform.GetComponentInChildren<Image>().sprite = Resources.Load("Sprites/" + line.Split("[Img]")[1]) as Sprite;
+                string sprite = line.Split("[Img]")[1];
+                Transform img_transform = img[int.Parse(line.Split(")")[0])].transform;
+                if(sprite != "")
+                {
+                    img_transform.gameObject.SetActive(false);
+                    img_transform.GetComponentInChildren<Image>().sprite = img_sources_dict[sprite];
+                }
+                else
+                {
+                    img_transform.gameObject.SetActive(false);
+                }
             }
 
             if(line.Contains("[NOTGAME]"))

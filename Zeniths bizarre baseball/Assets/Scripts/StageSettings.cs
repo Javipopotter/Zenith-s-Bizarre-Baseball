@@ -8,6 +8,7 @@ public class StageSettings : ScriptableObject
     public bool restArea = false;
     public List<string> enemiesInOrder = new List<string> {"man", "cart"};
     public List<string> allowedEnemies = new List<string>() {"pitcher"};
+    readonly List<string> enemies = new List<string>() {"pitcher", "man", "cart"};
     public int numberOfSpawns = 0;
     public int hordes = 0;
     public int maxEnLimit = 0;
@@ -22,9 +23,9 @@ public class StageSettings : ScriptableObject
 
     public void Reset()
     {
-        enemiesInOrder =  new List<string>(allowedEnemies);
+        enemiesInOrder =  new List<string>(enemies);
         enemiesInOrder.RemoveAt(0);
-        allowedEnemies = new List<string>() {"pitcher"};
+        allowedEnemies = new List<string>() {enemies[0]};
         for(int i = 0; i < mod.Count; i++)
         {
             List<string> keys = new List<string>(mod.Keys);

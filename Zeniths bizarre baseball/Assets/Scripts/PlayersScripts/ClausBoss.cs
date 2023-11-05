@@ -57,7 +57,7 @@ public class ClausBoss : MonoBehaviour
 
         if(dangerTrigger)
         {
-            if(dangerTrigger && an.GetCurrentAnimatorStateInfo(0).IsName("init"))
+            if(dangerTrigger && an.GetCurrentAnimatorStateInfo(0).IsName("unactive"))
             {
                 dangerTrigger = false;
             }
@@ -127,9 +127,10 @@ public class ClausBoss : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.transform.CompareTag("bat") && an.GetCurrentAnimatorStateInfo(0).IsName("init"))
+        if(other.transform.CompareTag("bat") && an.GetCurrentAnimatorStateInfo(0).IsName("unactive"))
         {
             DialoguesManager.dialoguesManager.ExecuteDialogViaKey("Claus_GetsSurpriseAttack");
+            an.Play("init");
         }
     }
 }

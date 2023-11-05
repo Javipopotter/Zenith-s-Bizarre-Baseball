@@ -5336,9 +5336,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3328628339041116463, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7330765290274702327, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
       propertyPath: m_LocalPosition.y
       value: -61.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330765290946711285, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
+      propertyPath: m_text
+      value: 'Enemies left: 5/40'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330765290946711285, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
+      propertyPath: m_fontSize
+      value: 44.7
       objectReference: {fileID: 0}
     - target: {fileID: 7330765291030611892, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
       propertyPath: m_RootOrder
@@ -5388,6 +5400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSetup
       objectReference: {fileID: 0}
+    - target: {fileID: 7330765291115891187, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7330765291693558962, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -5401,7 +5417,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
     - target: {fileID: 7330765291693558968, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330765291693558968, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
       propertyPath: _spawnLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330765291693558970, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7330765291693558970, guid: 8d2a87afc4a23ab4f9bcaa2458a7a10f, type: 3}

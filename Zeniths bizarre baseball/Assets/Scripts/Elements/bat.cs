@@ -29,8 +29,12 @@ public class bat : MonoBehaviour
 
             if(other.transform.CompareTag(target))
             {
-                other.GetComponent<LifesManager>().GetDmg(1 * stats.modifiers["damage"]);
-                rb.AddForce((other.transform.position - transform.parent.transform.position).normalized * 2000 * other.GetComponent<LifesManager>().poise * stats.knockback);
+                if(other.gameObject.TryGetComponent(out LifesManager lifesmanager))
+                {
+                    Vector2 knockbackDir = (other.transform.position - transform.parent.transform.position).normalized;
+                    knockbackDir = knockbackDir * stats.knockback * stats.modifiers["knockback"];	
+                    lifesmanager.GetDmg(stats.damage * stats.modifiers["damage"], knockbackDir);
+                }
             }
         }
     }

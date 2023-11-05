@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   damage: 1
-  maxlifes: 0
-  knockback: 1
+  maxlifes: 30
+  knockback: 20
   poise: 1

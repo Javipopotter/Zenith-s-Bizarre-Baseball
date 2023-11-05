@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour
         NextStageText();
         currentStage.settings.LevelUp();
         OpenGates();
-        SetUpgrader(transform.position);
+        // SetUpgrader(transform.position);
     }
 
     public void SetStage(Stage stage)

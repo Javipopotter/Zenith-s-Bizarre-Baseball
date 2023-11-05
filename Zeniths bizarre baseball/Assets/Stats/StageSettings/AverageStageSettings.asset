@@ -18,8 +18,8 @@ MonoBehaviour:
   - cart
   allowedEnemies:
   - pitcher
-  numberOfSpawns: 4
-  hordes: 5
-  maxEnLimit: 8
+  numberOfSpawns: 5
+  hordes: 2
+  maxEnLimit: 1
   spawnCoolDown: 2
   Boss: 
