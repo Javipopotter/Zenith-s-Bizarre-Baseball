@@ -9,7 +9,7 @@ using System.Linq;
 public class DialoguesManager : MonoBehaviour
 {
     public static DialoguesManager dialoguesManager;
-    [SerializeField]GameObject dialogueUI;
+    public GameObject dialogueUI;
     public Animator dialogueUiAn;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI text;

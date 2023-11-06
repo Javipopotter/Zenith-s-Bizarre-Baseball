@@ -16,7 +16,11 @@ public class Movement : MonoBehaviour
     [SerializeField] bool IsTest = false;
     [SerializeField] Vector2 lastFacing;
     Stats stats;
+    public bool Psychic = false;
+    PsychicBatManager psychicBat;
+
     private void Awake() {
+        psychicBat = GetComponent<PsychicBatManager>();
         stats = GetComponent<statsReference>().stats;
         rb = GetComponent<Rigidbody2D>();
         an = GetComponent<Animator>();
@@ -107,12 +111,13 @@ public class Movement : MonoBehaviour
            attackCool -= Time.deltaTime;
         }
 
-        if(Input.GetMouseButtonDown(0) && attackCool <= 0)
+        if(Input.GetButtonDown("attack") && attackCool <= 0)
         {
             attackCool = 0.25f;
             rb.velocity = Vector2.zero;
-            rb.velocity = AngleToVector2(pointer.transform.rotation.eulerAngles.z + 90) * stats.knockback * stats.modifiers["knockback"];
+            rb.velocity = AngleToVector2(pointer.transform.rotation.eulerAngles.z + 90) * stats.knockback * stats.modifiers["knockback"] * 0.75f;
             LookToMouse("attackRight", "attackDown", "attackLeft", "attackUp");
+            if(Psychic){psychicBat.Activate(pointer.transform.position + pointer.transform.up * 2, pointer.transform.rotation);}
         }
         else if(!an.GetBool("moveDir") && !atkTrigger && !rolling)
         {

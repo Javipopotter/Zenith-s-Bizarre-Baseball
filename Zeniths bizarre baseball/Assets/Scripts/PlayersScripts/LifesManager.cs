@@ -27,6 +27,7 @@ public class LifesManager : MonoBehaviour
 
             if(transform.CompareTag("Player"))
             {
+                if(value > stats.maxlifes){_lifes = stats.maxlifes;}
                 GameManager.GM.OnPlayerLifeChange(_lifes - 1);
             }
 

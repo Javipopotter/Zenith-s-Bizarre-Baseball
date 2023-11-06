@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 1132262194815903145}
   - component: {fileID: 2750988669577960735}
   - component: {fileID: -1052347787218109550}
+  - component: {fileID: 1157996606710269703}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -168,6 +169,7 @@ MonoBehaviour:
   sr: {fileID: 3103712300484352072}
   IsTest: 0
   lastFacing: {x: 0, y: 0}
+  Psychic: 0
 --- !u!95 &3962199619717618850
 Animator:
   serializedVersion: 5
@@ -202,6 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifes: 4
+  stats: {fileID: 0}
+  rb: {fileID: 0}
   poise: 1
   DeathEvent:
     m_PersistentCalls:
@@ -288,6 +292,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610b83f285eeebc4299d0bda4bcb9c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1157996606710269703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962199619717618860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3074bccacd1191445bf010568a8ab829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  psychicBat: {fileID: 2058027210636840292, guid: cf982d7e695631d42bac934b0bf2842d, type: 3}
 --- !u!1 &3962199620068469273
 GameObject:
   m_ObjectHideFlags: 0

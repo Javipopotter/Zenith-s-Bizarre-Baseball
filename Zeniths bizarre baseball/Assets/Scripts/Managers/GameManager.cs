@@ -133,17 +133,46 @@ public class GameManager : MonoBehaviour
         StartCoroutine(uIManager.CameraShake(num));
     }
 
-    public void SetUpgrader(Vector2 upgraderPos)
+
+
+    void SetUpgrader()
     {
-        upgrader.gameObject.SetActive(true);
-        upgrader.transform.position = upgraderPos;
+        uIManager.SetUpgrader(true);
+        Time.timeScale = 0;
     }
 
+    public void UpgradeStat(string modKey, float value)
+    {
+        stats[0].modifiers[modKey] += value;
+        uIManager.SetUpgrader(false);
+        Time.timeScale = 1;
+    }
+
+    public void UpgradeAbility(string abilityName)
+    {
+        Invoke(abilityName, 0);
+        uIManager.SetUpgrader(false);
+        Time.timeScale = 1;
+    }
+
+    #region AbilitiesUpgrade
+    void MaxLifesUpOnce() => MaxLifesUp(1);
+    void RecoverLife() => player.GetComponent<LifesManager>().lifes++;
+    void RecoverLifeTwice() => player.GetComponent<LifesManager>().lifes += 2;
+    void GetPsychic() => player.GetComponent<Movement>().Psychic = true;
+
+    #endregion
     public void OnPlayerLifeChange(float n)
     {
         if(n < -1){return;}
-        // uIManager.UpdateLifeBar(n1, n2);
         uIManager.UpdateLifes(n);
+    }
+
+    public void MaxLifesUp(int num)
+    {
+        stats[0].maxlifes += num;
+        uIManager.MaxLifesUp((int)stats[0].maxlifes - 1);
+        player.GetComponent<LifesManager>().lifes += 1;
     }
 
     public GameObject GetObject(string key)
@@ -169,9 +198,9 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(paused && Time.timeScale != 0){return;}
-            if(!DialoguesManager.dialoguesManager.cinematic)
+            if(!DialoguesManager.dialoguesManager.dialogueUI.activeInHierarchy)
             {
-                PauseSwitch();
+                PauseSwitch(Menu.activeInHierarchy ? false : true);
             }
             else
             {
@@ -194,18 +223,11 @@ public class GameManager : MonoBehaviour
         // }
     }
 
-    public void PauseSwitch()
+    public void PauseSwitch(bool active)
     {
-        Menu.SetActive(!Menu.activeInHierarchy);
-        if (Time.timeScale == 0)
-        {
-            SetTime(1);
-        }
-        else
-        {
-            SetTime(0);
-        }
-        paused = !paused;
+        paused = active;
+        Time.timeScale = active ? 0 : 1;
+        Menu.SetActive(active);
     }
 
     public void SetTime(float time)
@@ -259,7 +281,7 @@ public class GameManager : MonoBehaviour
         NextStageText();
         currentStage.settings.LevelUp();
         OpenGates();
-        // SetUpgrader(transform.position);
+        SetUpgrader();
     }
 
     public void SetStage(Stage stage)

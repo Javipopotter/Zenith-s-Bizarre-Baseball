@@ -1,4 +1,4 @@
-Fer//
+ManSplainner//
 Hola nena, deja que te enseñe a usar eso
 -choice-Déjame en paz gilipollas!!>>
 Veo que eres de la duras eh?
@@ -6,6 +6,43 @@ Veo que eres de la duras eh?
 No no, déjame enseñarte a hacerlo bien nena*
 [END]
 ___Claus//
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Tuuu!! vengo a tomar venganza*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+No tengo ni puta idea de que me estás hablando*
+pero parece que quieres un buen combate*
+
+-choice- Cásate conmigo>>
+[Name]Zenith[Name]*
+[An]talk1[An]*
+Quiero casarme contigo*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Inténtalo put... <wait>1<wait>*
+Espera, SE PUEDE SABER A QUÉ COJONES VIENE ESO?!*
+[Name]Zenith[Name]*
+[An]talk1[An]*
+Visto así es que eres preciosa, me gustas mucho*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+¿Cómo puedes decir eso?*
+Ni si quiera nos conocemos*
+Da igual, lucha contra mí*
+[AN]Claus,init[AN]*
+[END]*
+
+-choice- Acabaré contigo>>
+[Name]Zenith[Name]*
+[An]talk1[An]*
+Voy a acabar contigo*
+[NAME]Claus[NAME]*
+[An]talk2[An]*
+Inténtalo puta*
+[AN]Claus,init[AN]*
+[END]
+___Claus_Old//
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 Holaaaa, super encantada de conocerte*
@@ -162,3 +199,6 @@ Un simple sandwich, seguro que te viene bien para recuperar tu vitalidad, cuesta
 ___Sandwich_Destroy//
 [NOCINE]*
 Oye, no te pongas a romperme los sandwiches que los he hecho con amor :(*
+___ShopWelcome_Rain
+[NOCINE]*
+Hey Zenith ¿qué tal hermanita? ¿quieres comprar un bocata?

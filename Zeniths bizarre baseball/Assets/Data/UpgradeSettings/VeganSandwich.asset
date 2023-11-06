@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2546abcd57cd7934aa2968787beefc52, type: 3}
-  m_Name: Shop_Item
+  m_Script: {fileID: 11500000, guid: 20d771206dd754c479fe91411df0c042, type: 3}
+  m_Name: VeganSandwich
   m_EditorClassIdentifier: 
-  product_name: Sandwich de chorizo
-  description_key: Sandwich
-  price: 0
+  abilityName:
+  - GetPsychic
+  statName: []
+  value: []
+  description: Bocata de Chorizo Vegano

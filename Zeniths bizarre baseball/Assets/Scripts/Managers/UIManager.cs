@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     CinemachineBasicMultiChannelPerlin channelPerlin;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] GameObject UpgradePanel;
     
     private void Awake() {
         an = GameObject.Find("GameUI").GetComponent<Animator>();
@@ -66,22 +67,42 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLifes(float lifes)
     {
-        int i = (int)MathF.Round(lifes);
-        for(int a = 0; a <= i; a++)
+
+        int hp = (int)MathF.Round(lifes);
+
+        for(int i = 0; i < _lifesContainer.transform.childCount; i++)
         {
-            _lifesContainer.transform.GetChild(a).GetComponent<Image>().sprite = _heartSprites[0];
+            Transform heart = _lifesContainer.transform.GetChild(i);
+            if(i < hp)
+            {
+                heart.GetComponent<Image>().sprite = _heartSprites[0];
+                heart.GetComponent<Animator>().Play("stop");
+            }
+            else if(i > hp)
+            {
+                heart.GetComponent<Image>().sprite = _heartSprites[1];
+                heart.GetComponent<Animator>().Play("stop");
+            }
+            else
+            {
+                heart.gameObject.SetActive(true);
+                heart.GetComponent<Image>().sprite = _heartSprites[0];
+                heart.GetComponent<Animator>().Play("beat");
+            }
         }
+    }
 
-        if(i > -1)
-        { 
-            _lifesContainer.transform.GetChild(i).GetComponent<Animator>().Play("beat");
+    public void MaxLifesUp(int num)
+    {
+        for(int i = num; i > 0; i--)
+        {
+            _lifesContainer.transform.GetChild(i).gameObject.SetActive(true);
         }
+    }
 
-        if(i + 1 >= _lifesContainer.transform.childCount){return;}
-
-        Image sr = _lifesContainer.transform.GetChild(i + 1).GetComponent<Image>();
-        _lifesContainer.transform.GetChild(i + 1).GetComponent<Animator>().Play("stop");
-        sr.sprite = _heartSprites[1];
+    public void SetUpgrader(bool active)
+    {
+        UpgradePanel.SetActive(active);
     }
 
     public void UpdateBossLifeBar(float value, float maxValue)

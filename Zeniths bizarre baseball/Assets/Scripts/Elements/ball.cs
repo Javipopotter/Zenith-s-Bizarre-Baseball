@@ -42,8 +42,7 @@ public class ball : MonoBehaviour
             {
                 bounciness--;
                 homing = false;
-                float random = Random.Range(0f, 260f);
-                rb.velocity = new Vector2(Mathf.Cos(random), Mathf.Sin(random)) * rb.velocity.magnitude;
+                Rebound();
             }
             else
             {
@@ -55,15 +54,27 @@ public class ball : MonoBehaviour
 
         if(other.transform.CompareTag("ball") && hit){
             LookTowards(rb.velocity);
+            Rebound();
             ball b = other.GetComponent<ball>();
             Rigidbody2D b_Rb = other.GetComponent<Rigidbody2D>();
             GameManager.GM.CameraShake(5);
             b.hit = true;
             b.SetProperties(1);
-            float random = Random.Range(0f, 260f);
-            rb.velocity = new Vector2(Mathf.Cos(random), Mathf.Sin(random)) * rb.velocity.magnitude;
             b_Rb.velocity = -rb.velocity.normalized * rb.velocity.magnitude;
         }
+
+        if(other.transform.CompareTag("psychicBat"))
+        {
+            Rebound();
+            other.gameObject.SetActive(false);
+            GameManager.GM.CameraShake(5);
+        }
+    }
+
+    void Rebound()
+    {
+        float random = Random.Range(0f, 260f);
+        rb.velocity = new Vector2(Mathf.Cos(random), Mathf.Sin(random)) * rb.velocity.magnitude;
     }
 
     void LookTowards(Vector2 dir)
@@ -95,6 +106,7 @@ public class ball : MonoBehaviour
         lifeTime = 10;
         SetProperties(0);
         homing = false;
+        bounciness = 2;
     }
 
     public void SetProperties(int num)

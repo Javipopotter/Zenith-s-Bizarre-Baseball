@@ -10,6 +10,7 @@ TagManager:
   - bat
   - wall
   - coin
+  - psychicBat
   layers:
   - Default
   - TransparentFX

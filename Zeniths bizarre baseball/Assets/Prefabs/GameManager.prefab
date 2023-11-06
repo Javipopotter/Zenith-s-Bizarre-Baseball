@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2724471381333292382}
   - component: {fileID: 2724471381333292383}
   - component: {fileID: 2724471381333292368}
+  - component: {fileID: 218272645521292943}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -108,6 +109,9 @@ MonoBehaviour:
   img:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  img_sources_keys: []
+  img_sources: []
   UIpointer: {fileID: 0}
   choices: []
   cinematic: 0
@@ -173,6 +177,7 @@ MonoBehaviour:
   - {fileID: 748583900, guid: 75b48fe95f202144986d7ff0e4f64cf8, type: 3}
   gameOverScreen: {fileID: 0}
   moneyText: {fileID: 0}
+  UpgradePanel: {fileID: 0}
 --- !u!114 &2724471381333292368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +195,18 @@ MonoBehaviour:
   - {fileID: 8678914729140332262, guid: c94cb90fe5efd5944a6ad03dd757f0b1, type: 3}
   shopStage: {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
   bossStage: {fileID: 27430595365522507, guid: e559ca0c59c32c141a89bee4d889bae4, type: 3}
+  stagesNumber: 3
+--- !u!114 &218272645521292943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1085cab3032ae284185ed52da09d8392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: []
+  values: []
