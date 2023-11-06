@@ -15,11 +15,13 @@ MonoBehaviour:
   restArea: 0
   enemiesInOrder:
   - man
-  - cart
   allowedEnemies:
   - pitcher
+  - cart
   numberOfSpawns: 5
   hordes: 2
   maxEnLimit: 1
   spawnCoolDown: 2
   Boss: 
+  musicalTheme: 
+  cameraSize: 16.76

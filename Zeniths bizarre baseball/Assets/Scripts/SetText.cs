@@ -11,7 +11,7 @@ public class SetText : MonoBehaviour
         {
             GetComponentInChildren<TextMeshProUGUI>().text = upgradeSetting.description;
         }
-        else if(shopItemData != null)
+        if(shopItemData != null)
         {
             GetComponentInChildren<TextMeshProUGUI>().text = shopItemData.description;
         }

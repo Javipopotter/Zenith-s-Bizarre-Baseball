@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2724471381333292383}
   - component: {fileID: 2724471381333292368}
   - component: {fileID: 218272645521292943}
+  - component: {fileID: 7934558499650856608}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -110,8 +111,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  img_sources_keys: []
-  img_sources: []
+  img_sources_keys:
+  - Zenith
+  - Claus
+  - Rain
+  img_sources:
+  - {fileID: 21300000, guid: 0e6c0719845ddae439b3a58f639e34e0, type: 3}
+  - {fileID: 984930153, guid: 3ad22ebdafb36cd4bbebbfe3b33dd5ca, type: 3}
+  - {fileID: 21300000, guid: 75a3e980f7ab5df428c3fe252c266461, type: 3}
   UIpointer: {fileID: 0}
   choices: []
   cinematic: 0
@@ -193,7 +200,17 @@ MonoBehaviour:
   stagesAssets:
   - {fileID: 2276817944684896570, guid: 1cd4a1a09d45fb54ca68d90cc3d23c5d, type: 3}
   - {fileID: 8678914729140332262, guid: c94cb90fe5efd5944a6ad03dd757f0b1, type: 3}
-  shopStage: {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  shopStages:
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 2517646275644058663, guid: d5e87c088b2604947b21026170e3a340, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
+  - {fileID: 2517646275644058663, guid: d5e87c088b2604947b21026170e3a340, type: 3}
   bossStage: {fileID: 27430595365522507, guid: e559ca0c59c32c141a89bee4d889bae4, type: 3}
   stagesNumber: 3
 --- !u!114 &218272645521292943
@@ -210,3 +227,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keys: []
   values: []
+--- !u!114 &7934558499650856608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724471381333292359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7c02c80c1e6c6489870486d813b272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

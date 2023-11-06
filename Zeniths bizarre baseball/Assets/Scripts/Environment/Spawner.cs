@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
         set
         {
             _KillCount = value;
-            EnemyCounter.text = "Defeated Enemies " + KillCount + "/" + EnMax;
+            EnemyCounter.text = "Enemigos derrotados " + KillCount + "/" + EnMax;
             EnemyCounter.color = Color.Lerp(Color.white, Color.yellow, (float)_KillCount/(float)EnMax);
             GameManager.GM.EnemyCounterUpdate();
         }

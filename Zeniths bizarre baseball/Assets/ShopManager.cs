@@ -8,17 +8,20 @@ public class ShopManager : MonoBehaviour
     [SerializeField] Transform ItemsContainer;
     [SerializeField] GameObject interactText;
     [SerializeField] GameObject ShopMenu;
+    [SerializeField] string welcomeKey;
+    bool canInteract = false;
 
     private void OnEnable() {
         for(int i = 0; i < ItemsContainer.childCount; i++)
         {
-            if(ItemsContainer.GetChild(i).GetComponent<SetText>().shopItemData.price > GameManager.GM.money)
+            Transform child = ItemsContainer.GetChild(i);
+            if(child.GetComponent<SetText>().shopItemData.price > GameManager.GM.money)
             {
-                ItemsContainer.GetComponent<Button>().interactable = false;
+                child.GetComponent<Button>().interactable = false;
             }
             else
             {
-                ItemsContainer.GetComponent<Button>().interactable = true;
+                child.GetComponent<Button>().interactable = true;
             }
         }
     }
@@ -26,25 +29,35 @@ public class ShopManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.CompareTag("Player"))
         {
+            canInteract = true;
+            InputManager.input.enabled = false;
+        }
+    }
+
+    private void Update() {
+        if(canInteract)
+        {
             interactText.SetActive(true);
-            if(Input.GetButtonDown("dodge"))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
                 ShopMenu.SetActive(true);
-                DialoguesManager.dialoguesManager.ExecuteDialogViaKey("ShopWelcome_Rain");
+                DialoguesManager.dialoguesManager.ExecuteDialogViaKey(welcomeKey);
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.transform.CompareTag("Player"))
-        interactText.SetActive(false);
         {
+            canInteract = false;
+            interactText.SetActive(false);
             CloseShop();
         }
     }
 
     public void CloseShop()
     {
+        InputManager.input.enabled = true;
         ShopMenu.SetActive(false);
         DialoguesManager.dialoguesManager.ExecuteDialog("");
     }

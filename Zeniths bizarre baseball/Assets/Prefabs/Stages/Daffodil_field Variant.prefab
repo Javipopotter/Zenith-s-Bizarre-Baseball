@@ -17685,6 +17685,10 @@ PrefabInstance:
       propertyPath: typeOfStage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3714801806250709751, guid: 67b1e58f10138c546ab83e56bb3b5ec0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8366158916951242817, guid: 67b1e58f10138c546ab83e56bb3b5ec0, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 1040

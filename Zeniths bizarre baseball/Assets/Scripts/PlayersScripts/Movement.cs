@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
 
     void Roll()
     {
-        if (Input.GetButtonDown("dodge") && rollCool <= 0 && vel != Vector2.zero){
+        if (InputManager.input.DodgeButton() && rollCool <= 0 && vel != Vector2.zero){
             an.Play("roll");
             rollCool = 0.5f;
         }
@@ -111,7 +111,7 @@ public class Movement : MonoBehaviour
            attackCool -= Time.deltaTime;
         }
 
-        if(Input.GetButtonDown("attack") && attackCool <= 0)
+        if(InputManager.input.AttackButton() && attackCool <= 0)
         {
             attackCool = 0.25f;
             rb.velocity = Vector2.zero;

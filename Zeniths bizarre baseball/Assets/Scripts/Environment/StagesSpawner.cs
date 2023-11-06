@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class StagesSpawner : MonoBehaviour
 {
     List<List<Stage>> createdStages = new List<List<Stage>>();
     [SerializeField] Stage[] stagesAssets;
-    [SerializeField] Stage shopStage;
+    [SerializeField] Stage[] shopStages;
     [SerializeField] Stage bossStage;
-    [SerializeField] int stagesNumber = 5;
+    [SerializeField] int stagesNumber = 10;
     private void Start() {
         ResetStages();
         Stage boss = Instantiate(bossStage.gameObject).GetComponent<Stage>();
@@ -17,6 +16,7 @@ public class StagesSpawner : MonoBehaviour
         createdStages[0].Add(Instantiate(stagesAssets[Random.Range(0, stagesAssets.Length)], GameManager.GM.backGrounds));
         for(int i = 0; i < stagesNumber; i++)
         {
+            print(stagesNumber);
             createdStages.Add(new List<Stage>());
             for(int o = 0; o < createdStages[i].Count; o++)
             {
@@ -30,7 +30,7 @@ public class StagesSpawner : MonoBehaviour
                     }
                     else if(i % 3 == 0 && i != 0 && a == 0)
                     {
-                        CreateStage(i, current, shopStage);
+                        CreateStage(i, current, shopStages[Random.Range(0, shopStages.Length)]);
                     }
                     else
                     {
@@ -40,20 +40,21 @@ public class StagesSpawner : MonoBehaviour
             }
         }
         GameManager.GM.SetStage(createdStages[0][0]);
+    }
 
-        void CreateStage(int i, Stage current, Stage stage)
-        {
-            Stage newStage = Instantiate(stage);
-            current.connectedStages.Add(newStage);
-            createdStages[i + 1].Add(newStage);
-        }
+    void CreateStage(int i, Stage current, Stage stage)
+    {
+        Stage newStage = Instantiate(stage, GameManager.GM.backGrounds);
+        current.connectedStages.Add(newStage);
+        createdStages[i + 1].Add(newStage);
+    }
 
-        void ResetStages()
+    void ResetStages()
+    {
+        foreach(Stage stage in stagesAssets)
         {
-            foreach(Stage stage in stagesAssets)
-            {
-                stage.settings.Reset();
-            }
+            stage.settings.Reset();
         }
     }
+    
 }

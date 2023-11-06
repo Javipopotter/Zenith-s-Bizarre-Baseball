@@ -14,6 +14,8 @@ public class StageSettings : ScriptableObject
     public int maxEnLimit = 0;
     public int spawnCoolDown = 0;
     public string Boss;
+    public string musicalTheme;
+    public float cameraSize;
     public Dictionary<string, int> mod = new Dictionary<string, int>()
     {
         {"numOfSpawns", 1},

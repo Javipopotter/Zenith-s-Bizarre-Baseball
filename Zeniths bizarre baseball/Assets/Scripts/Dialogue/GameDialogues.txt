@@ -1,4 +1,4 @@
-ManSplainner//
+Fer//
 Hola nena, deja que te enseñe a usar eso
 -choice-Déjame en paz gilipollas!!>>
 Veo que eres de la duras eh?
@@ -6,6 +6,8 @@ Veo que eres de la duras eh?
 No no, déjame enseñarte a hacerlo bien nena*
 [END]
 ___Claus//
+0)[Img]Zenith[Img]*
+1)[Img]Claus[Img]*
 [NAME]Zenith[NAME]*
 [An]talk1[An]*
 Tuuu!! vengo a tomar venganza*
@@ -15,14 +17,14 @@ No tengo ni puta idea de que me estás hablando*
 pero parece que quieres un buen combate*
 
 -choice- Cásate conmigo>>
-[Name]Zenith[Name]*
+[NAME]Zenith[NAME]*
 [An]talk1[An]*
 Quiero casarme contigo*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 Inténtalo put... <wait>1<wait>*
 Espera, SE PUEDE SABER A QUÉ COJONES VIENE ESO?!*
-[Name]Zenith[Name]*
+[NAME]Zenith[NAME]*
 [An]talk1[An]*
 Visto así es que eres preciosa, me gustas mucho*
 [NAME]Claus[NAME]*
@@ -34,7 +36,7 @@ Da igual, lucha contra mí*
 [END]*
 
 -choice- Acabaré contigo>>
-[Name]Zenith[Name]*
+[NAME]Zenith[NAME]*
 [An]talk1[An]*
 Voy a acabar contigo*
 [NAME]Claus[NAME]*
@@ -43,6 +45,8 @@ Inténtalo puta*
 [AN]Claus,init[AN]*
 [END]
 ___Claus_Old//
+0)[Img]Zenith[Img]*
+1)[Img]Claus[Img]*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 Holaaaa, super encantada de conocerte*
@@ -113,6 +117,8 @@ Eres de lo peor, voy a acabar contigo*
 [AN]Claus,init[AN]*
 [END]
 ___ClausDefeat//
+0)[Img]Zenith[Img]
+1)[Img]Claus[Img]
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 Me has derrotado*
@@ -195,10 +201,17 @@ Muy bien*
 [END]
 ___Sandwich//
 [NOCINE]*
-Un simple sandwich, seguro que te viene bien para recuperar tu vitalidad, cuesta *
+Un simple sandwich, seguro que te viene bien para recuperar tu vitalidad, cuesta
 ___Sandwich_Destroy//
 [NOCINE]*
-Oye, no te pongas a romperme los sandwiches que los he hecho con amor :(*
-___ShopWelcome_Rain
+Oye, no te pongas a romperme los sandwiches que los he hecho con amor :(
+___ShopWelcome_Rain//
 [NOCINE]*
+[ClImg]*
+[NAME]Rain[NAME]*
 Hey Zenith ¿qué tal hermanita? ¿quieres comprar un bocata?
+___ShopWelcome_Rein//
+[NOCINE]*
+[ClImg]*
+[NAME]rEIN[NAME]*
+KIERE VOKATA?!?*

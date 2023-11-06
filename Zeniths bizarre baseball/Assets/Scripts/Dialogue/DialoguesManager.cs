@@ -148,19 +148,29 @@ public class DialoguesManager : MonoBehaviour
                 continue;
             }
 
+            if(line.Contains("ClImg"))
+            {
+                foreach(GameObject img in img)
+                {
+                    img.SetActive(false);
+                }
+                continue;
+            }
+
             if(line.Contains("[Img]"))
             {
                 string sprite = line.Split("[Img]")[1];
                 Transform img_transform = img[int.Parse(line.Split(")")[0])].transform;
                 if(sprite != "")
                 {
-                    img_transform.gameObject.SetActive(false);
+                    img_transform.gameObject.SetActive(true);
                     img_transform.GetComponentInChildren<Image>().sprite = img_sources_dict[sprite];
                 }
                 else
                 {
                     img_transform.gameObject.SetActive(false);
                 }
+                continue;
             }
 
             if(line.Contains("[NOTGAME]"))

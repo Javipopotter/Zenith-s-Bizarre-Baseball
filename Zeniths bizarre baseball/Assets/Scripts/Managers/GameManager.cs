@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameElementsContainer;
     [SerializeField] Stats[] stats;
     StageSettings _currentStageSettings;
-    public StageSettings currentStageSettings{get{return _currentStageSettings;} private set{_currentStageSettings = value; spawner.CurrentSettings = value;}}
     public Stage _currentStage;
     public Stage currentStage{get{return _currentStage;} private set{_currentStage = value;}}
     ScenesManager scenesManager;
@@ -286,13 +285,26 @@ public class GameManager : MonoBehaviour
 
     public void SetStage(Stage stage)
     {
-        if(currentStage != null) currentStage.gameObject.SetActive(false);
-        CinemachineConfiner2D confiner2D = vcam.GetComponent<CinemachineConfiner2D>();
+        if(currentStage != null)
+        { 
+            currentStage.gameObject.SetActive(false);
+            AudioManager.instance.Stop(currentStage.settings.musicalTheme);
+        }
         currentStage = stage;
-        confiner2D.m_BoundingShape2D = currentStage.cameraLimit;
-        currentStageSettings = currentStage.settings;
+        spawner.CurrentSettings = currentStage.settings;
+        AudioManager.instance.Play(currentStage.settings.musicalTheme);
+
+        vcam.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = currentStage.cameraLimit;
+        vcam.m_Lens.OrthographicSize = currentStage.settings.cameraSize;
+
         currentStage.gameObject.SetActive(true);
         StartLevel();
+    }
+
+    void SetCameraSize(int OrthographicSize)
+    {
+        vcam.m_Lens.OrthographicSize = OrthographicSize;
+        // Camera.main.GetComponent<pixelper>
     }
 
     public void OpenGates()

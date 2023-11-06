@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: ClausStageSettings
   m_EditorClassIdentifier: 
   restArea: 0
+  enemiesInOrder: []
   allowedEnemies: []
   numberOfSpawns: 0
   hordes: 0
   maxEnLimit: 0
   spawnCoolDown: 0
   Boss: Claus
+  musicalTheme: 
+  cameraSize: 16.76

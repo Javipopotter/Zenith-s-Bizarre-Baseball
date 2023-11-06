@@ -1839,6 +1839,7 @@ GameObject:
   - component: {fileID: 7330765291428989754}
   - component: {fileID: 7330765291428989733}
   - component: {fileID: 7330765291428989755}
+  - component: {fileID: 1121331141565003331}
   m_Layer: 0
   m_Name: CmCamera
   m_TagString: Untagged
@@ -1915,6 +1916,18 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_Damping: 0.5
   m_MaxWindowSize: -1
+--- !u!114 &1121331141565003331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330765291428989732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7330765291432993590
 GameObject:
   m_ObjectHideFlags: 0

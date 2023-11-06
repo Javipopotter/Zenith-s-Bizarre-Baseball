@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UpgradeLifes
   m_EditorClassIdentifier: 
   abilityName:
-  - MaxLifeUpOnce
+  - MaxLifesUpOnce
   statName: []
   value: []
   description: Get one extra heart
