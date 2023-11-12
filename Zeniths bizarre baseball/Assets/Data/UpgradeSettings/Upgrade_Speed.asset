@@ -17,4 +17,5 @@ MonoBehaviour:
   - speed
   value:
   - 0.2
-  description: Gota go fast brrr. Move a 20% faster
+  icon: {fileID: 1079985357, guid: 846679211d4d8a8438bc6ca620440442, type: 3}
+  description: "Corre un 20% m\xE1s r\xE1pido"

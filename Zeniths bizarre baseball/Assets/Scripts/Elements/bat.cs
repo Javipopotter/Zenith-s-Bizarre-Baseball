@@ -21,6 +21,7 @@ public class bat : MonoBehaviour
                     b.transform.position = transform.up * 0.5f + transform.position;
                     GameManager.GM.CameraShake(5);
                     b.SetProperties(1);
+                    b.SetVelocity(transform.up);
                 }else if(target == "Player"){
                     b.SetProperties(2);
                     GetComponentInParent<Animator>().Play("hitBack");
@@ -29,6 +30,7 @@ public class bat : MonoBehaviour
 
             if(other.transform.CompareTag(target))
             {
+                Vector2 vector = (other.transform.position - transform.position).normalized;
                 if(other.gameObject.TryGetComponent(out LifesManager lifesmanager))
                 {
                     Vector2 knockbackDir = (other.transform.position - transform.parent.transform.position).normalized;

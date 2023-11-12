@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: AverageStageSettings
   m_EditorClassIdentifier: 
   restArea: 0
-  enemiesInOrder:
-  - man
+  enemiesInOrder: []
   allowedEnemies:
   - pitcher
+  - man
   - cart
-  numberOfSpawns: 5
+  numberOfSpawns: 3
   hordes: 2
   maxEnLimit: 1
   spawnCoolDown: 2
   Boss: 
-  musicalTheme: 
+  musicalTheme: Main_theme
   cameraSize: 16.76

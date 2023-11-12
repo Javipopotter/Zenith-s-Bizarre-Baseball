@@ -16,4 +16,5 @@ MonoBehaviour:
   - MaxLifesUpOnce
   statName: []
   value: []
-  description: Get one extra heart
+  icon: {fileID: -1776786543, guid: 846679211d4d8a8438bc6ca620440442, type: 3}
+  description: "Aumenta la vida m\xE1xima en 1"

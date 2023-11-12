@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ClausSheet_0
+      name: Claus_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -162,7 +162,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_1
+      name: Claus_Idle_1
       rect:
         serializedVersion: 2
         x: 0
@@ -183,7 +183,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_2
+      name: Claus_MoveHorizontal_0
       rect:
         serializedVersion: 2
         x: 0
@@ -204,7 +204,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_3
+      name: Claus_MoveHorizontal_1
       rect:
         serializedVersion: 2
         x: 0
@@ -393,7 +393,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_12
+      name: Claus_GetDamage
       rect:
         serializedVersion: 2
         x: 35
@@ -414,12 +414,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_13
+      name: Claus_AttackUp_1
       rect:
         serializedVersion: 2
         x: 35
         y: 88
-        width: 47
+        width: 48
         height: 57
       alignment: 9
       pivot: {x: 0.24, y: 0}
@@ -435,7 +435,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_14
+      name: Claus_AttackDown_1
       rect:
         serializedVersion: 2
         x: 32
@@ -456,7 +456,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_15
+      name: Claus_Attack_1
       rect:
         serializedVersion: 2
         x: 30
@@ -477,7 +477,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_16
+      name: Claus_Attack_0
       rect:
         serializedVersion: 2
         x: 82
@@ -498,12 +498,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_17
+      name: Claus_AttackDown_0
       rect:
         serializedVersion: 2
         x: 79
         y: 145
-        width: 32
+        width: 33
         height: 57
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -519,10 +519,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ClausSheet_18
+      name: Claus_AttackUp_0
       rect:
         serializedVersion: 2
-        x: 82
+        x: 83
         y: 86
         width: 37
         height: 59
@@ -550,25 +550,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ClausSheet_0: -1759855074
-      ClausSheet_1: -849197178
       ClausSheet_10: 628401025
       ClausSheet_11: -445310717
-      ClausSheet_12: -1432970523
-      ClausSheet_13: -2113437412
-      ClausSheet_14: -148846932
-      ClausSheet_15: 192605004
-      ClausSheet_16: -677660781
-      ClausSheet_17: -1525500015
-      ClausSheet_18: -833750289
-      ClausSheet_2: -668630258
-      ClausSheet_3: 1174918716
       ClausSheet_4: -1766785824
       ClausSheet_5: 728584677
       ClausSheet_6: 408769765
       ClausSheet_7: -987043204
       ClausSheet_8: -532454653
       ClausSheet_9: 800662119
+      Claus_AttackDown_0: -1525500015
+      Claus_AttackDown_1: -148846932
+      Claus_AttackUp_0: -833750289
+      Claus_AttackUp_1: -2113437412
+      Claus_Attack_0: -677660781
+      Claus_Attack_1: 192605004
+      Claus_GetDamage: -1432970523
+      Claus_Idle_0: -1759855074
+      Claus_Idle_1: -849197178
+      Claus_MoveHorizontal_0: -668630258
+      Claus_MoveHorizontal_1: 1174918716
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

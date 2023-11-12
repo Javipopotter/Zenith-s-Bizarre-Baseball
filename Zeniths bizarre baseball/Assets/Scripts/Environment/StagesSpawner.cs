@@ -7,13 +7,14 @@ public class StagesSpawner : MonoBehaviour
     [SerializeField] Stage[] stagesAssets;
     [SerializeField] Stage[] shopStages;
     [SerializeField] Stage bossStage;
-    [SerializeField] int stagesNumber = 10;
+    public int stagesNumber = 10;
     private void Start() {
         ResetStages();
         Stage boss = Instantiate(bossStage.gameObject).GetComponent<Stage>();
         boss.gameObject.SetActive(false);
         createdStages.Add(new List<Stage>());
         createdStages[0].Add(Instantiate(stagesAssets[Random.Range(0, stagesAssets.Length)], GameManager.GM.backGrounds));
+        // createdStages[0].Add(Instantiate(shopStages[0], GameManager.GM.backGrounds));
         for(int i = 0; i < stagesNumber; i++)
         {
             print(stagesNumber);
@@ -26,11 +27,12 @@ public class StagesSpawner : MonoBehaviour
                 {
                     if(i == stagesNumber - 1)
                     {
-                        current.connectedStages.Add(boss);
+                        CreateStage(i, current, boss);
                     }
-                    else if(i % 3 == 0 && i != 0 && a == 0)
+                    else if(i % 2 == 0 && i != 0 && a == 0)
                     {
-                        CreateStage(i, current, shopStages[Random.Range(0, shopStages.Length)]);
+                        var rnd = shopStages[Random.Range(0, shopStages.Length)];
+                        CreateStage(i, current, rnd);
                     }
                     else
                     {
@@ -40,6 +42,14 @@ public class StagesSpawner : MonoBehaviour
             }
         }
         GameManager.GM.SetStage(createdStages[0][0]);
+
+        for(int i = 0; i < createdStages.Count; i++)
+        {
+            for(int o = 0; o < createdStages[i].Count; o++)
+            {
+                createdStages[i][o].stageNum = i;
+            }
+        }
     }
 
     void CreateStage(int i, Stage current, Stage stage)

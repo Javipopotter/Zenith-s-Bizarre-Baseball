@@ -65,7 +65,8 @@ public class ball : MonoBehaviour
 
         if(other.transform.CompareTag("psychicBat"))
         {
-            Rebound();
+            SetProperties(1);
+            SetVelocity((transform.position - other.transform.position).normalized);
             other.gameObject.SetActive(false);
             GameManager.GM.CameraShake(5);
         }
@@ -101,7 +102,7 @@ public class ball : MonoBehaviour
         // if(homingDelay > 0){homingDelay -= Time.deltaTime;}
     }
 
-    private void OnDisable() {
+    private void OnEnable() {
         hit = false;
         lifeTime = 10;
         SetProperties(0);
@@ -120,20 +121,24 @@ public class ball : MonoBehaviour
             case 0:
             hit = false;
             homing = false;
+            SetVelocity((player.transform.position - transform.position).normalized);
             break;
 
             case 1:
             hit = true;
-            dir = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
             break;
 
             case 2:
+            SetVelocity(transform.up);
             hit = false;
             homing = true;
-            dir = (player.transform.position - transform.position).normalized;
             break;
         }
+    }
 
+    public void SetVelocity(Vector2 dir)
+    {
         rb.velocity = dir * rb.velocity.magnitude * counterMod;
+        if(rb.velocity.magnitude > 50){rb.velocity = rb.velocity.normalized * 50;}
     }
 }

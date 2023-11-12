@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     Animator an;
     [SerializeField] CinemachineVirtualCamera cineMachineCamera;
     [SerializeField] Slider lifeBar;
+    [SerializeField] Slider progressBar;    
     [SerializeField] GameObject _lifesContainer;
     public GameObject _skipText;
     [SerializeField] Sprite[] _heartSprites;
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
     CinemachineBasicMultiChannelPerlin channelPerlin;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] TextMeshProUGUI moneyText;
-    [SerializeField] GameObject UpgradePanel;
+    public GameObject upgradePanel;
     
     private void Awake() {
         an = GameObject.Find("GameUI").GetComponent<Animator>();
@@ -42,6 +43,16 @@ public class UIManager : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         an.Play("GameOver");
+    }
+
+    public void UpdateProgressBar(float value, float maxValue)
+    {
+        progressBar.value = value/maxValue;
+    }
+
+    public void SetProgressBar(bool active)
+    {
+        progressBar.gameObject.SetActive(active);
     }
 
     public void Restart()
@@ -102,7 +113,7 @@ public class UIManager : MonoBehaviour
 
     public void SetUpgrader(bool active)
     {
-        UpgradePanel.SetActive(active);
+        upgradePanel.SetActive(active);
     }
 
     public void UpdateBossLifeBar(float value, float maxValue)

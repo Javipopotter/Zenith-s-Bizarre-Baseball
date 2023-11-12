@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -29,54 +31,40 @@ public class Movement : MonoBehaviour
         // DontDestroyOnLoad(transform.gameObject);
     }
 
+    public void SetSpeed(Vector2 velocity)
+    {
+        vel = velocity * stats.speed * stats.modifiers["speed"];
+    }
+
     // Update is called once per frame
     void Update()
     {
         if(!IsTest)
         {
-            if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || blockControls || GameManager.paused){return;}
-        }
-        
-        vel = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical")) * stats.speed * stats.modifiers["speed"];
-
-        if(rolling){
-            if(Input.GetAxisRaw("horizontal") != 0 && Input.GetAxisRaw("vertical") != 0)
-            {
-                vel = vel * 4;
-            }
-            else
-            {
-                vel = lastFacing * vel.magnitude * 4;
-            }
-        }
-        else
-        {
-            if(Input.GetAxisRaw("horizontal") != 0 || Input.GetAxisRaw("vertical") != 0)
-            {
-                lastFacing = new Vector2(Input.GetAxisRaw("horizontal"), Input.GetAxisRaw("vertical"));
-            }
-        }
-
-        if(Input.GetAxisRaw("vertical") != 0 && Input.GetAxisRaw("horizontal") != 0)
-        {
-            vel = vel * 0.707f ;
+            if(Time.timeScale == 0 || blockControls || GameManager.GM.paused){return;}
         }
         
         if(!atkTrigger)
         {
-            rb.velocity = vel;
+            if(rolling){
+                rb.velocity = vel * 4;
+            }
+            else{
+                rb.velocity = vel;
+            }
+                
             
             if(!rolling)
             {
-                if(Input.GetAxis("horizontal") != 0 || Input.GetAxis("vertical") != 0){
+                if(vel != Vector2.zero){
                     an.SetBool("moveDir", true);
-                    if(Input.GetAxis("horizontal") > 0){
+                    if(vel.x > 0){
                         an.Play("moveRight");
-                    }else if(Input.GetAxis("horizontal") < 0){
+                    }else if(vel.x < 0){
                         an.Play("moveLeft");
-                    }else if(Input.GetAxis("vertical") > 0){
+                    }else if(vel.y > 0){
                         an.Play("moveUp");
-                    }else if(Input.GetAxis("vertical") < 0){
+                    }else if(vel.y < 0){
                         an.Play("moveDown");
                     }
                 }
@@ -87,43 +75,45 @@ public class Movement : MonoBehaviour
             }
         }
 
-
-        Roll();
-        Attack();
-
-    }
-
-    void Roll()
-    {
-        if (InputManager.input.DodgeButton() && rollCool <= 0 && vel != Vector2.zero){
-            an.Play("roll");
-            rollCool = 0.5f;
-        }
-
         if (rollCool >= 0){
            rollCool -= Time.deltaTime;
         }
-    }
 
-    void Attack()
-    {
         if (attackCool >= 0){
            attackCool -= Time.deltaTime;
         }
 
-        if(InputManager.input.AttackButton() && attackCool <= 0)
+    }
+
+    public void Dash()
+    {
+        if (rollCool <= 0 && vel != Vector2.zero){
+            an.Play("roll");
+            rollCool = 0.5f;
+        }
+    }
+
+    public void Attack()
+    {
+        if(attackCool <= 0)
         {
-            attackCool = 0.25f;
-            rb.velocity = Vector2.zero;
-            rb.velocity = AngleToVector2(pointer.transform.rotation.eulerAngles.z + 90) * stats.knockback * stats.modifiers["knockback"] * 0.75f;
+            attackCool = 0.175f;
             LookToMouse("attackRight", "attackDown", "attackLeft", "attackUp");
             if(Psychic){psychicBat.Activate(pointer.transform.position + pointer.transform.up * 2, pointer.transform.rotation);}
         }
-        else if(!an.GetBool("moveDir") && !atkTrigger && !rolling)
-        {
-            LookToMouse("idleRight", "Idle", "idleLeft", "idleUp");
-        }
+    }
 
+    public void SetPointer(Vector2 vector)
+    {
+        if(!atkTrigger)
+        {
+            pointer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg - 90);
+            
+            if(!an.GetBool("moveDir") && !rolling)
+            {
+                LookToMouse("idleRight", "Idle", "idleLeft", "idleUp");
+            }
+        }
     }
 
     Vector2 AngleToVector2(float angleInDegrees)

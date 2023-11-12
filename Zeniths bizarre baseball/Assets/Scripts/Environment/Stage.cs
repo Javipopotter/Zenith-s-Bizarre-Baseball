@@ -15,6 +15,7 @@ public class Stage : MonoBehaviour
     public StageSettings settings;
     public GameObject startPos;
     [SerializeField] GameObject altMaps;
+    public int stageNum;
 
     private void Awake() {
         for(int i = 0; i < altMaps.transform.childCount; i++)

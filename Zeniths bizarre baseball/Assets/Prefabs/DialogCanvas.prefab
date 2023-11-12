@@ -191,7 +191,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 339d930f1e428e045b5ab00fa8397b0d, type: 3}
   - {fileID: 21300000, guid: be5e60887b4ba484db3d3ab64b075aa9, type: 3}
   - {fileID: 21300000, guid: 2fe09b624f7c346468cc7230846f409f, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 2c7cb706ef95fe04d9be146c5673d698, type: 3}
+  - {fileID: 21300000, guid: d161a7390bdeb79489c9b0607af8975f, type: 3}
+  - {fileID: 21300000, guid: 3ed36695ea98db14189302ea12a8a3fb, type: 3}
   img: {fileID: 2098362911359046177}
   num: 0
 --- !u!1 &2098362910392396919

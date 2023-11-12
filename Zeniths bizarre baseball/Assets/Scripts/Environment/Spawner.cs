@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
         set
         {
             _KillCount = value;
-            EnemyCounter.text = "Enemigos derrotados " + KillCount + "/" + EnMax;
+            EnemyCounter.text = KillCount + " / " + EnMax;
             EnemyCounter.color = Color.Lerp(Color.white, Color.yellow, (float)_KillCount/(float)EnMax);
             GameManager.GM.EnemyCounterUpdate();
         }
@@ -38,15 +38,15 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(CurrentSettings.restArea){return;}
-        if(spCoolDown <= 0 && hordes > 0 && enemyCount < CurrentSettings.maxEnLimit && !DialoguesManager.dialoguesManager.cinematic)
+        if(CurrentSettings.restArea || !GameManager.GM.gameElementsContainer.activeInHierarchy){return;}
+        if(spCoolDown <= 0 && hordes > 0 && enemyCount < CurrentSettings.maxEnLimit)
         {
             hordes--;
             spCoolDown = CurrentSettings.spawnCoolDown;
             for(int i = 0; i < CurrentSettings.numberOfSpawns; i++)
             {
                 enemyCount++;
-                var en = GameManager.GM.GetObject(CurrentSettings.allowedEnemies[Random.Range(0, CurrentSettings.allowedEnemies.Count)]);
+                GameObject en = GameManager.GM.GetObject(CurrentSettings.allowedEnemies[Random.Range(0, CurrentSettings.allowedEnemies.Count)]);
                 en.transform.position = spawn.transform.GetChild(Random.Range(0, spawn.transform.childCount)).transform.position;
             }
         }
@@ -72,6 +72,7 @@ public class Spawner : MonoBehaviour
         if(CurrentSettings.Boss != "")
         {
             GameManager.GM.BossLifeBarIsActive(true);
+            GameManager.GM.SetProgressBar(false);
                 if(!clausBoss.appeared)
                 {
                     clausBoss.appeared = true;
@@ -82,8 +83,8 @@ public class Spawner : MonoBehaviour
                 {
                     cine.dialog = "";
                 }
-                clausBoss.GetComponent<ClausBoss>().Restart();
         }
+        enemyCount = 0;
         KillCount = 0;
         EnMax = CurrentSettings.numberOfSpawns * CurrentSettings.hordes;
     }

@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite Sheet_0
+      name: Zenith_Attack_0
       rect:
         serializedVersion: 2
         x: 10
@@ -162,7 +162,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_1
+      name: Zenith_MoveDown_0
       rect:
         serializedVersion: 2
         x: 53
@@ -183,7 +183,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_2
+      name: Zenith_HorizontalMove_0
       rect:
         serializedVersion: 2
         x: 97
@@ -204,7 +204,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_3
+      name: Zenith_Idle_1
       rect:
         serializedVersion: 2
         x: 146
@@ -225,7 +225,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_4
+      name: Zenith_MoveUp_0
       rect:
         serializedVersion: 2
         x: 177
@@ -246,7 +246,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_5
+      name: Zenith_AttackUp
       rect:
         serializedVersion: 2
         x: 0
@@ -267,7 +267,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_6
+      name: Zenith_MoveDown_1
       rect:
         serializedVersion: 2
         x: 53
@@ -288,7 +288,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_7
+      name: Zenith_HorizontalMove_1
       rect:
         serializedVersion: 2
         x: 97
@@ -309,7 +309,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_8
+      name: Zenith_MoveUp_1
       rect:
         serializedVersion: 2
         x: 177
@@ -330,7 +330,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_9
+      name: Zenith_AttackDown_0
       rect:
         serializedVersion: 2
         x: 221
@@ -351,7 +351,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_10
+      name: Zenith_Idle_0
       rect:
         serializedVersion: 2
         x: 146
@@ -372,7 +372,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_11
+      name: Zenith_Attack_1
       rect:
         serializedVersion: 2
         x: 221
@@ -393,7 +393,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_12
+      name: Zenit_GetDmg
       rect:
         serializedVersion: 2
         x: 263
@@ -414,7 +414,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_13
+      name: Zenit_LookHorizontal_0
       rect:
         serializedVersion: 2
         x: 307
@@ -435,7 +435,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_14
+      name: Zenith_LookHorizontal_1
       rect:
         serializedVersion: 2
         x: 339
@@ -456,7 +456,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_15
+      name: Zenit_LookUp_0
       rect:
         serializedVersion: 2
         x: 308
@@ -477,7 +477,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_16
+      name: Zenit_LookUp_1
       rect:
         serializedVersion: 2
         x: 339
@@ -498,11 +498,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_17
+      name: Zenith_SitDown
       rect:
         serializedVersion: 2
-        x: 374
-        y: 74
+        x: 375
+        y: 73
         width: 31
         height: 46
       alignment: 0
@@ -519,7 +519,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite Sheet_18
+      name: Zenith_Dodge
       rect:
         serializedVersion: 2
         x: 406
@@ -550,25 +550,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite Sheet_0: -451499656
-      Sprite Sheet_1: 1368308062
-      Sprite Sheet_10: 1096460624
-      Sprite Sheet_11: -1407392182
-      Sprite Sheet_12: -1826684985
-      Sprite Sheet_13: 161210570
-      Sprite Sheet_14: -1799921350
-      Sprite Sheet_15: -207365847
-      Sprite Sheet_16: 1792813520
-      Sprite Sheet_17: -1065571626
-      Sprite Sheet_18: 1890966494
-      Sprite Sheet_2: -800383745
-      Sprite Sheet_3: -945145725
-      Sprite Sheet_4: 445142459
-      Sprite Sheet_5: 791319146
-      Sprite Sheet_6: 1631104684
-      Sprite Sheet_7: -1850845950
-      Sprite Sheet_8: 926149947
-      Sprite Sheet_9: -1196557418
+      Zenit_GetDmg: -1826684985
+      Zenit_LookHorizontal_0: 161210570
+      Zenit_LookUp_0: -207365847
+      Zenit_LookUp_1: 1792813520
+      Zenith_AttackDown_0: -1196557418
+      Zenith_AttackUp: 791319146
+      Zenith_Attack_0: -451499656
+      Zenith_Attack_1: -1407392182
+      Zenith_Dodge: 1890966494
+      Zenith_HorizontalMove_0: -800383745
+      Zenith_HorizontalMove_1: -1850845950
+      Zenith_Idle_0: 1096460624
+      Zenith_Idle_1: -945145725
+      Zenith_LookHorizontal_1: -1799921350
+      Zenith_MoveDown_0: 1368308062
+      Zenith_MoveDown_1: 1631104684
+      Zenith_MoveUp_0: 445142459
+      Zenith_MoveUp_1: 926149947
+      Zenith_SitDown: -1065571626
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

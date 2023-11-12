@@ -14,7 +14,7 @@ Tuuu!! vengo a tomar venganza*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 No tengo ni puta idea de que me estás hablando*
-pero parece que quieres un buen combate*
+Pero parece que buscas pelea*
 
 -choice- Cásate conmigo>>
 [NAME]Zenith[NAME]*
@@ -22,8 +22,8 @@ pero parece que quieres un buen combate*
 Quiero casarme contigo*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
-Inténtalo put... <wait>1<wait>*
-Espera, SE PUEDE SABER A QUÉ COJONES VIENE ESO?!*
+Inténtalo put.......*
+Espera, ME ESTÁS VACILANDO?!*
 [NAME]Zenith[NAME]*
 [An]talk1[An]*
 Visto así es que eres preciosa, me gustas mucho*
@@ -32,7 +32,7 @@ Visto así es que eres preciosa, me gustas mucho*
 ¿Cómo puedes decir eso?*
 Ni si quiera nos conocemos*
 Da igual, lucha contra mí*
-[AN]Claus,init[AN]*
+[AN]Claus,start[AN]*
 [END]*
 
 -choice- Acabaré contigo>>
@@ -42,7 +42,7 @@ Voy a acabar contigo*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 Inténtalo puta*
-[AN]Claus,init[AN]*
+[AN]Claus,start[AN]*
 [END]
 ___Claus_Old//
 0)[Img]Zenith[Img]*
@@ -129,10 +129,10 @@ Haré lo que me pidas, maestra*
 Cásate conmigo por favor :3*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
-OTRA VEZ CON ESO?!*
-Bueno si tanto insistes...*
+ME LO ESTÁS DICIENDO ENSERIO?!*
+Bueno, si eso es lo que quieres...*
 ACEPTO!!*
-<Event>MainMenu<Event>*
+[TXT]WeddingScene[TXT]*
 -choice- Déjame en paz>>
 [NAME]Zenith[NAME]*
 [An]talk1[An]*
@@ -156,7 +156,7 @@ Entonces te voy a pedir 2 millones de bayas, que la hipoteca no se paga sola*
 [NAME]Claus[NAME]*
 [An]talk2[An]*
 Jolín, está bien TUT*
-<Event>MainMenu<Event>*
+[TXT]DebtEnding[TXT]*
 ___InitialCutscene//
 [NOTGAME]*
 [NAME] [NAME]*
@@ -187,6 +187,60 @@ Vamos a matar a ese hijo de perra*
 [IMG]none[IMG]*
 [GM]StartLevel[GM]*
 [END]
+___WeddingScene//
+[NOTGAME]*
+[IMG]7[IMG]*
+[NAME]Zenith[NAME]*
+Yo Zenith, te recibo a ti Claus para ser mi esposa*
+para tenerte y protegerte de hoy en adelante*
+para bien y para mal*
+en la riqueza y en la pobreza*
+en salud y en enfermedad*
+para amarte y cuidarte hasta que la muerte nos separe*
+[NAME]Claus[NAME]*
+Yo Claus, te recibo a ti Zenith para ser mi esposa*
+para tenerte y protegerte de hoy en adelante*
+para bien y para mal*
+en la riqueza y en la pobreza*
+en salud y en enfermedad, para amarte y cuidarte hasta que la muerte nos
+separe.
+[NAME] [NAME]*
+A veces la vida nos lleva a casarnos con aquellos con los que en su día nos metimos de batazos*
+Definitivamente una bizarra moraleja para esta historia...*
+[IMG]8[IMG]*
+[NAME]Zenith[NAME]*
+LO HAS OÍDO?!*
+LO HA DICHO, HA DICHO LA COSA!!!*
+[NAME]Claus[NAME]*
+SISISI, DEFINITIVAMENTE HA DICHO LA COSA!!*
+ES ALUCINANTE*
+[NAME] [NAME]*
+Qué cojones? desde cuándo me podeís oír?*
+Venga no me jodas*
+FIN*
+<Event>MainMenu<Event>*
+___DebtEnding//
+[NOTGAME]*
+[IMG]9[IMG]*
+[NAME]Claus[NAME]*
+Esto no es justooo TuT*
+[NAME]Zenith[NAME]*
+Habértelo pensado mejor antes de cargarte mi Nintendo jejejejs*
+[NAME]Claus[NAME]*
+Ni si quiera lo hice a propósito*
+Por cierto, ¿cómo es que tienes una Nintendo ahora mismo?*
+[NAME]Zenith[NAME]*
+Es la de mi hermana, se la he pedido prestada*
+[NAME]Claus[NAME]*
+Ah, ¿y entonces por qué esa sed de venganza?*
+[NAME]Zenith[NAME]*
+Nah, era una performance, solo era una excusa para salir un rato*
+un placer conocerte por cierto :D*
+[NAME]Claus[NAME]*
+Igualmente :)*
+[NAME] [NAME]*
+FIN*
+<Event>MainMenu<Event>*
 ___Claus_GetsSurpriseAttack//
 [NOCINE]*
 Auch!! Acabaré contigo zorra!! <wait>1<wait>*

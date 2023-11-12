@@ -21,8 +21,22 @@ public class ClausBoss : MonoBehaviour
         lifesMan = GetComponent<LifesManager>();
     }
 
+    private void OnEnable() {
+        GameManager.GM.OnGameOver.AddListener(OnGameOver);
+    }
+
+    private void OnDisable() {
+        GameManager.GM.OnGameOver.RemoveListener(OnGameOver);
+    }
+
+    void OnGameOver()
+    {
+        an.Play("unactive");
+        enabled = false;
+    }
+
     private void Update() {
-        if(Time.timeScale == 0 || DialoguesManager.dialoguesManager.cinematic || GameManager.paused){return;}
+        if(Time.timeScale == 0 || GameManager.GM.paused){return;}
 
         if(hitCount > 5)
         {
@@ -82,12 +96,12 @@ public class ClausBoss : MonoBehaviour
         {
             an.SetBool("moveDir", false);
         }
-
     }
 
     public void hitBall()
     {
         var ball = GameManager.GM.GetObject("ball");
+        hitCount = 0;
         ball.GetComponent<ball>().counterMod = 1.2f;
         Vector2 dir = (transform.position - player.transform.position).normalized;
         ball.transform.position = new Vector2(transform.position.x + dir.x * 2, transform.position.y + dir.y * 2);
@@ -110,12 +124,6 @@ public class ClausBoss : MonoBehaviour
         transform.position = player.transform.position + ((player.transform.position - transform.position).normalized * 4);
     }
 
-    public void Restart()
-    {
-        // transform.position = new Vector2 (-3.41f,4.66f);
-        // lifesMan.Setlifes();
-    }
-
     public void SetReactionTime(float reactTime)
     {
         reactionTime = reactTime;
@@ -124,6 +132,7 @@ public class ClausBoss : MonoBehaviour
     public void OnDeath()
     {
         an.Rebind();
+        AudioManager.instance.Stop("Boss_theme");
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

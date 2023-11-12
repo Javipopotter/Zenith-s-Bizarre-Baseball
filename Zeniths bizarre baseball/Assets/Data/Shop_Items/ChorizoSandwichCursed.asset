@@ -15,4 +15,5 @@ MonoBehaviour:
   product_name: Vokata of Xoriso
   description: Vokata of Xoriso
   description_key: Sandwich_Cursed
-  price: 0
+  price: 10
+  icon: {fileID: -257165991, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}

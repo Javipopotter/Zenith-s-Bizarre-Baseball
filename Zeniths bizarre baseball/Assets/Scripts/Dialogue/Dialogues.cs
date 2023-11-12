@@ -25,7 +25,6 @@ public  class Dialogues : MonoBehaviour
         foreach(string a in texts.Keys)
         {
             textKeys.Add(a);
-            print(a);
         }
     }
 }

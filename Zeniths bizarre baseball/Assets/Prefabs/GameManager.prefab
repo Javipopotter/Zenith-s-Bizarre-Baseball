@@ -73,6 +73,7 @@ MonoBehaviour:
   vcam: {fileID: 0}
   upgrader: {fileID: 0}
   eventsMemory: {fileID: 11400000, guid: b0491ac4379ca7a4fb5b96747284883d, type: 2}
+  _money: 0
 --- !u!114 &2724471381333292378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +125,7 @@ MonoBehaviour:
   cinematic: 0
   storyTeller: {fileID: 0}
   skipDialog: 0
+  pass: {fileID: 5666754665630808695, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
 --- !u!114 &2724471381333292380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cineMachineCamera: {fileID: 0}
   lifeBar: {fileID: 0}
+  progressBar: {fileID: 0}
   _lifesContainer: {fileID: 0}
   _skipText: {fileID: 0}
   _heartSprites:
@@ -184,7 +187,7 @@ MonoBehaviour:
   - {fileID: 748583900, guid: 75b48fe95f202144986d7ff0e4f64cf8, type: 3}
   gameOverScreen: {fileID: 0}
   moneyText: {fileID: 0}
-  UpgradePanel: {fileID: 0}
+  upgradePanel: {fileID: 0}
 --- !u!114 &2724471381333292368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,11 +204,6 @@ MonoBehaviour:
   - {fileID: 2276817944684896570, guid: 1cd4a1a09d45fb54ca68d90cc3d23c5d, type: 3}
   - {fileID: 8678914729140332262, guid: c94cb90fe5efd5944a6ad03dd757f0b1, type: 3}
   shopStages:
-  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
-  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
-  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
-  - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
-  - {fileID: 2517646275644058663, guid: d5e87c088b2604947b21026170e3a340, type: 3}
   - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
   - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
   - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
@@ -239,3 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7c02c80c1e6c6489870486d813b272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topDownMovementAction: {fileID: -881373617570905828, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
+  AttackAction: {fileID: -171466467749384043, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
+  dashAction: {fileID: -5629858420924193927, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
+  pointerAction: {fileID: 0}
+  pauseAction: {fileID: -3335954077309150459, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
+  movement: {fileID: 0}

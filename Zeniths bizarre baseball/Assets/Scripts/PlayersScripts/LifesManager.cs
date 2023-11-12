@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,10 +49,12 @@ public class LifesManager : MonoBehaviour
     }
 
     public virtual void GetDmg(float dmg, Vector2 knockbackDir){
-        if(GameManager.paused){return;}
+        if(GameManager.GM.paused){return;}
+        AudioManager.instance.PlayOneShot("get_bat_hit");
         GameManager.GM.CameraShake(10);
         lifes -= dmg;
         an.Play("getDmg");
+        partyclesManager.FX.PlayText(transform.position, Math.Round(dmg * 10).ToString());
         rb.AddForce(knockbackDir * stats.poise, ForceMode2D.Impulse);
     }
 

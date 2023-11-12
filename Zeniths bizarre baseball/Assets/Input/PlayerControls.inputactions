@@ -1,0 +1,345 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "a4818384-023b-44b7-9fb5-ed683f0cffeb",
+            "actions": [
+                {
+                    "name": "TopDownMovement",
+                    "type": "Value",
+                    "id": "55c955b8-e37c-47ce-89ff-148400370c05",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "557cd225-2661-4a31-9448-55e9c7c2a8bf",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.9),NormalizeVector2",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4fcfd1c-334e-4a3c-afad-8e3037684ba5",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WASD",
+                    "id": "83d47e3e-4919-475e-8792-d1eaa55d2ab0",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "068e7590-4e96-458b-8bf1-7ebc7b0c1391",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "7db647d2-3df1-4611-bc0f-92201aaaf4c6",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "87d2165d-b890-4863-8b1f-124b8ac9b72e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "d6af1be5-d17c-404e-9513-dabc536ceffb",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TopDownMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Attacking",
+            "id": "ec839297-4075-4f0b-8361-bffe96d8f1a1",
+            "actions": [
+                {
+                    "name": "Bat Attack",
+                    "type": "Button",
+                    "id": "03eee130-78d7-4ce4-88ec-3b790ac1e874",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0cdf02a7-0184-41f1-af8a-c1f8f37b7d93",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bat Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f42711dc-f72d-4b32-b11e-d15ad18025a9",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bat Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dash",
+            "id": "9a181b5a-8912-49fc-9030-a1860f90c072",
+            "actions": [
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "f5345e81-82c3-4fbf-b2bc-9bd47bf84fbf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a1592f30-7d99-435c-b1f8-abf985ae0850",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a0e7f15-5436-43dc-9364-1f75e8cf07fc",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c95c206-e0f0-455a-b84e-a31689b1eec8",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MovePointer",
+            "id": "527c0606-2e6a-45c0-908a-495c354fbc62",
+            "actions": [
+                {
+                    "name": "SetPointer",
+                    "type": "Value",
+                    "id": "c49e4a16-7312-4207-8244-481e827710ee",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4b88d39e-3c16-450c-b8cd-adf9f75d2fc4",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.75)",
+                    "groups": "",
+                    "action": "SetPointer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Interact",
+            "id": "1f1e1d8d-1f06-4793-abf9-b2cc2af598f6",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "d43b713b-1543-42ba-b8a0-3f0600f58f91",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d9c0a881-08e0-47d2-add6-c5d4fbe16d28",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "031ad155-f923-421c-b4c6-81e7f20c6064",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PauseGame",
+            "id": "5353ae06-93db-4d30-9df5-1a1b7a6e5376",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "fe3ce134-aac4-4982-96ea-8d9d47459e44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bfdd3f50-e9f3-4166-9279-6a27ab34f62d",
+                    "path": "<Gamepad>/start",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0bdda008-a9c4-480c-8d70-0c909aa7c82b",
+                    "path": "<Gamepad>/select",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8527d23-d3a8-4e77-9f51-8de4457ad6b3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Pass",
+            "id": "f4936e8e-3592-43e3-a9ac-e00c77c37de8",
+            "actions": [
+                {
+                    "name": "Pass",
+                    "type": "Button",
+                    "id": "4db27f8d-582b-4730-8a5e-5bc6dc8383ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "43fedbc1-5e08-4137-9499-69623a5910ed",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b090634a-6865-47f5-b4b6-8f97a3a994a7",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pass",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

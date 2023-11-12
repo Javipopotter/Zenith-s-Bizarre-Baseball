@@ -947,7 +947,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1008,7 +1008,11 @@ TextureImporter:
       7: -221383969
       8: 115996178
       9: 1014208725
+      __TileSprites_0: 1705964462
+      __TileSprites_1: 31164913
       __TileSprites_2: 115996178
+      __TileSprites_3: -1189870030
+      __TileSprites_4: 611836902
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

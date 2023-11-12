@@ -15,4 +15,5 @@ MonoBehaviour:
   product_name: Vokata begano
   description: Vokata de xorizo begano
   description_key: VeganSandwich_Cursed
-  price: 0
+  price: 15
+  icon: {fileID: -1665876503, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}

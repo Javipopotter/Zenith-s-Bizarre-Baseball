@@ -17,4 +17,5 @@ MonoBehaviour:
   - damage
   value:
   - 0.5
-  description: Make a 50% more damage when using your bat
+  icon: {fileID: -961560397, guid: 846679211d4d8a8438bc6ca620440442, type: 3}
+  description: "Haz un 50% m\xE1s de da\xF1o base con el bate"

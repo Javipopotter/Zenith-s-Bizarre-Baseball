@@ -43,6 +43,8 @@ public class Enemy : LifesManager
     {
         knocked = true;
         base.GetDmg(dmg, knockbackDir);
+        partyclesManager.FX.PlayEffect("bat_hit", transform.position + transform.up * 3, knockbackDir);
+        AudioManager.instance.Play("get_bat_hit");
     }
 
     public override void Death()
@@ -52,7 +54,7 @@ public class Enemy : LifesManager
     }
 
     private void Update() {
-        if(DialoguesManager.dialoguesManager.cinematic || knocked || GameManager.paused){return;}
+        if(knocked || GameManager.GM.paused){return;}
 
         if(getNear){
             rb.velocity = GetPlayerDirection() * stats.speed;
@@ -72,6 +74,7 @@ public class Enemy : LifesManager
 
     public void OnDeath()
     {
+        Setlifes();
         AudioManager.instance.Play("enemy_death");
         Spawner.sp.KillCount++;
         Spawner.sp.enemyCount--;
@@ -103,5 +106,18 @@ public class Enemy : LifesManager
     public void GetAway()
     {
         getNear = false;
+    }
+
+    private void OnEnable() {
+        GameManager.GM.OnGameOver.AddListener(OnGameOver);
+    }
+
+    private void OnDisable() {
+        GameManager.GM.OnGameOver.RemoveListener(OnGameOver);
+    }
+
+    void OnGameOver()
+    {
+        GetComponent<Animator>().enabled = false;
     }
 }

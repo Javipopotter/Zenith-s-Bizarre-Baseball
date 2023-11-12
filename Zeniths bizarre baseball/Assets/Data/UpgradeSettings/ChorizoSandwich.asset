@@ -16,4 +16,5 @@ MonoBehaviour:
   - RecoverLife
   statName: []
   value: []
+  icon: {fileID: -257165991, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
   description: Bocata de Chorizo

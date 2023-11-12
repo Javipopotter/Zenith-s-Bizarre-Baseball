@@ -9,6 +9,7 @@ public class UpgradeSetting : ScriptableObject
     [SerializeField] string[] abilityName;
     [SerializeField] string[] statName;
     [SerializeField] float[] value;
+    public Sprite icon;
     public string description;
 
     public void Upgrade()

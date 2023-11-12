@@ -21,4 +21,4 @@ MonoBehaviour:
   spawnCoolDown: 0
   Boss: 
   musicalTheme: ShopTheme_Cursed
-  cameraSize: 8
+  cameraSize: 12

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class MoneyValue : MonoBehaviour
 {
-    [SerializeField]int _value = 1;
+    [SerializeField] int _value = 1;
     public int value{get{return _value;} set{_value = value;}}
-    float _timeToVanish = 10;
-    float _maxTimeToVanish = 10;
+    float _timeToVanish = 20;
+    float _maxTimeToVanish = 20;
     SpriteRenderer sr;
     [SerializeField]float alpha = 1;
     int dir = 1;
@@ -18,6 +18,7 @@ public class MoneyValue : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.CompareTag("Player") || other.transform.CompareTag("bat"))
         {
+            AudioManager.instance.PlayOneShot("collect_coin");
             GameManager.GM.money += value;
             gameObject.SetActive(false);
         }

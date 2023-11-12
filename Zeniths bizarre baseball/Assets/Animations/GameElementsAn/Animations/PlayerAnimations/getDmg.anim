@@ -232,13 +232,6 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1826684985, guid: f46c1a69c06bc914896e1fe73cd197e3, type: 3}
-    attribute: m_Sprite
-    path: Sprite/Sprite Sheet_10
-    classID: 212
-    script: {fileID: 0}
-  - curve:
-    - time: 0
       value: {fileID: 2100000, guid: 7057c4a2b67bdb444be90b3346aebcc8, type: 2}
     - time: 0.06666667
       value: {fileID: 2100000, guid: d3835607bfe9e194eaae30649e0f53e5, type: 2}
@@ -286,13 +279,6 @@ AnimationClip:
       attribute: 0
       script: {fileID: 0}
       typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-    - serializedVersion: 2
-      path: 1585903272
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
       customType: 21
       isPPtrCurve: 1
     - serializedVersion: 2
@@ -303,7 +289,6 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: -1826684985, guid: f46c1a69c06bc914896e1fe73cd197e3, type: 3}
     - {fileID: 2100000, guid: 7057c4a2b67bdb444be90b3346aebcc8, type: 2}
     - {fileID: 2100000, guid: d3835607bfe9e194eaae30649e0f53e5, type: 2}
   m_AnimationClipSettings:
@@ -549,4 +534,11 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: Swap
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 12
     messageOptions: 0

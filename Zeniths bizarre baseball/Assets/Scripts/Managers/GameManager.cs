@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
-using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,11 +14,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] objects;
     string[] object_names = {"pitcher", "man", "cart", "ball", "coin"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
-    public static bool paused = false;
+    bool _paused = false;
+    public bool paused
+    {
+        get{return _paused;}
+        set{
+            _paused = value;
+            inputManager.enabled = value ? false : true;
+            Time.timeScale = value ? 0 : 1;
+        }
+    }
     [SerializeField] bool serialized_pause;
     Spawner spawner;
     public Transform backGrounds;
-    [SerializeField] GameObject gameElementsContainer;
+    public GameObject gameElementsContainer;
     [SerializeField] Stats[] stats;
     StageSettings _currentStageSettings;
     public Stage _currentStage;
@@ -27,7 +36,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam;
     [SerializeField] UpgradePackage upgrader;
     [SerializeField] EventsMemory eventsMemory;
-    int _money = 0;
+    StagesSpawner stagesSpawner;
+    InputManager inputManager;
+    [SerializeField] int _money = 0;
     public int money
     {
         get{return _money;}
@@ -72,10 +83,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    [HideInInspector] public UnityEvent OnGameOver;
     private void Awake() {
-        paused = false;
         GM = this;
+        inputManager = GetComponent<InputManager>();
+        stagesSpawner = GetComponent<StagesSpawner>();
         scenesManager = GetComponent<ScenesManager>();
         spawner = GetComponent<Spawner>();
         uIManager = GetComponent<UIManager>();
@@ -132,26 +144,28 @@ public class GameManager : MonoBehaviour
         StartCoroutine(uIManager.CameraShake(num));
     }
 
-
-
-    void SetUpgrader()
+    public void SetUpgrader(bool value)
     {
-        uIManager.SetUpgrader(true);
-        Time.timeScale = 0;
+        uIManager.SetUpgrader(value);
+        inputManager.enabled = !value;
+        DisableGameElements();
+    }
+
+    public void SetProgressBar(bool value)
+    {
+        uIManager.SetProgressBar(value);
     }
 
     public void UpgradeStat(string modKey, float value)
     {
         stats[0].modifiers[modKey] += value;
         uIManager.SetUpgrader(false);
-        Time.timeScale = 1;
     }
 
     public void UpgradeAbility(string abilityName)
     {
         Invoke(abilityName, 0);
         uIManager.SetUpgrader(false);
-        Time.timeScale = 1;
     }
 
     #region AbilitiesUpgrade
@@ -186,17 +200,17 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
-
     public void GameElementsAreActive(bool n)
     {
         gameElementsContainer.SetActive(n);
     }
 
-    private void Update() {
-        serialized_pause = paused;
-        if(Input.GetKeyDown(KeyCode.Escape))
+    public void PauseGame()
+    {
+        if(paused && Time.timeScale != 0){return;}
+
+        if(!uIManager.upgradePanel.activeInHierarchy)
         {
-            if(paused && Time.timeScale != 0){return;}
             if(!DialoguesManager.dialoguesManager.dialogueUI.activeInHierarchy)
             {
                 PauseSwitch(Menu.activeInHierarchy ? false : true);
@@ -214,6 +228,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Update() {
+        serialized_pause = paused;
 
         // if(Input.GetMouseButtonDown(1))
         // {
@@ -225,7 +243,6 @@ public class GameManager : MonoBehaviour
     public void PauseSwitch(bool active)
     {
         paused = active;
-        Time.timeScale = active ? 0 : 1;
         Menu.SetActive(active);
     }
 
@@ -236,10 +253,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // StartCoroutine(SlowMotion());
+        OnGameOver.Invoke();
+        DisableGameElements();
+        foreach(GameObject en in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            en.GetComponent<Animator>().enabled = false;
+        }
+        AudioManager.instance.Stop(currentStage.settings.musicalTheme);
+        AudioManager.instance.Play("Death_theme");
         print("GameOvers");
-        paused = true;
         player.GetComponentInChildren<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("OverUI");
+        inputManager.enabled = false;
         uIManager.GameOver();
         BossLifeBarIsActive(false);
     }
@@ -264,15 +288,13 @@ public class GameManager : MonoBehaviour
         foreach (GameObject en in GameObject.FindGameObjectsWithTag("coin"))
         {
             en.SetActive(false);
-            Spawner.sp.enemyCount--;
         }
 
         foreach (GameObject en in GameObject.FindGameObjectsWithTag("ball"))
         {
             en.SetActive(false);
         }
-
-        upgrader.gameObject.SetActive(false); 
+        // upgrader.gameObject.SetActive(false); 
     }
 
     public void OnStageCleared()
@@ -280,7 +302,7 @@ public class GameManager : MonoBehaviour
         NextStageText();
         currentStage.settings.LevelUp();
         OpenGates();
-        SetUpgrader();
+        SetUpgrader(true);
     }
 
     public void SetStage(Stage stage)
@@ -288,23 +310,28 @@ public class GameManager : MonoBehaviour
         if(currentStage != null)
         { 
             currentStage.gameObject.SetActive(false);
-            AudioManager.instance.Stop(currentStage.settings.musicalTheme);
+
+            if(stage.settings.musicalTheme != currentStage.settings.musicalTheme)
+            {
+                AudioManager.instance.Stop(currentStage.settings.musicalTheme);
+                AudioManager.instance.Play(stage.settings.musicalTheme);
+            }
         }
+        else
+        {
+            AudioManager.instance.Play(stage.settings.musicalTheme);
+        }
+
         currentStage = stage;
         spawner.CurrentSettings = currentStage.settings;
-        AudioManager.instance.Play(currentStage.settings.musicalTheme);
 
         vcam.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = currentStage.cameraLimit;
         vcam.m_Lens.OrthographicSize = currentStage.settings.cameraSize;
 
+        uIManager.UpdateProgressBar(currentStage.stageNum, stagesSpawner.stagesNumber);
+
         currentStage.gameObject.SetActive(true);
         StartLevel();
-    }
-
-    void SetCameraSize(int OrthographicSize)
-    {
-        vcam.m_Lens.OrthographicSize = OrthographicSize;
-        // Camera.main.GetComponent<pixelper>
     }
 
     public void OpenGates()
@@ -348,6 +375,8 @@ public class GameManager : MonoBehaviour
     }
     public void StartLevel()
     {
+        print("StartLevel");
+        RecoverLife();
         DisableGameElements();
         player.EnterZone();
         spawner.PlayHorde();

@@ -18,10 +18,10 @@ public class Sound : MonoBehaviour
 
     [HideInInspector]
     public AudioSource source;
-    public bool isPlaying;
+    public bool nowPlaying;
 
     public void OnPlay() {
-        isPlaying = true;
+        nowPlaying = true;
 
         if(range != Vector2.zero)
         {
@@ -36,12 +36,12 @@ public class Sound : MonoBehaviour
 
     public void OnStop()
     {
-        isPlaying = false;
+        nowPlaying = false;
     }
 
     IEnumerator DynamicPitch()
     {
-        while(isPlaying)
+        while(nowPlaying)
         {
             source.pitch = Random.Range(range.x, range.y);
             yield return new WaitForSeconds(0.1f);

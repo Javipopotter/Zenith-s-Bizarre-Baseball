@@ -20,5 +20,5 @@ MonoBehaviour:
   maxEnLimit: 0
   spawnCoolDown: 0
   Boss: Claus
-  musicalTheme: 
+  musicalTheme: Boss_theme
   cameraSize: 16.76

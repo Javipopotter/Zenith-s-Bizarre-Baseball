@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class DialoguesManager : MonoBehaviour
 {
@@ -23,15 +24,40 @@ public class DialoguesManager : MonoBehaviour
     public string[] choices;
     public bool cinematic;
     [SerializeField] GameObject storyTeller;
+    bool next;
     public bool skipDialog;
+    bool skipText;
     private Coroutine executeDialogCoroutine;
+    public InputActionReference pass;
     private void Awake() {
         dialoguesManager = this;
+        pass.action.performed += OnPassActionPerformed;
         dialogueUiAn = dialogueUI.GetComponent<Animator>();
         for(int i = 0; i < img_sources_keys.Length; i++)
         {
             img_sources_dict.Add(img_sources_keys[i], img_sources[i]);
         }
+    }
+
+    private void OnEnable() {
+        pass.action.Enable();
+    }
+
+    private void OnDisable() {
+        pass.action.Disable();
+    }
+
+    private void OnDestroy() {
+        pass.action.performed -= OnPassActionPerformed;
+    }
+
+    void OnPassActionPerformed(InputAction.CallbackContext context)
+    {
+        if(next)
+        {
+            skipText = true;
+        }
+        next = true;
     }
 
     public void ExecuteDialog(string dialog)
@@ -49,16 +75,18 @@ public class DialoguesManager : MonoBehaviour
     IEnumerator _ExecuteDialog(string key)
     {
         text.text = "";
+        InputManager.input.enabled =  false;
+        pass.action.Enable();
         if(key == "")
         {
             dialogueUI.SetActive(false);
             yield break;
         }
         dialogueUI.SetActive(true);
-        bool next = false;
-        bool skipText = false;
         foreach(string line in key.Split("*"))
         {
+            next = false;
+            skipText = false;
             UIpointer.SetActive(false);
 
             if(line.Contains("-choice-"))
@@ -92,6 +120,7 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[END]"))
             {
+                InputManager.input.enabled =  true;
                 GameManager.GM.GameElementsAreActive(true);
                 cinematic = false;
                 dialogueUI.SetActive(false);
@@ -112,7 +141,8 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[AN]"))
             {
-                GameObject.Find(line.Split("[AN]")[1].Split(",")[0]).GetComponent<Animator>().Play(line.Split("[AN]")[1].Split(",")[1]);
+                GameObject.Find(line.Split("[AN]")[1].Split(",")[0]).GetComponent<Animator>().SetTrigger(line.Split("[AN]")[1].Split(",")[1]);
+                print(GameObject.Find(line.Split("[AN]")[1].Split(",")[0]).name);
                 continue;
             }
 
@@ -132,6 +162,7 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[GM]"))
             {
+                GameManager.GM.GameElementsAreActive(true);
                 GameManager.GM.Invoke(line.Split("[GM]")[1], 0);
                 continue;
             }
@@ -203,6 +234,12 @@ public class DialoguesManager : MonoBehaviour
                 continue;
             }
 
+            if(line.Contains("[MUSIC]"))
+            {
+                AudioManager.instance.Play(line.Split("[MUSIC]")[1]);
+                continue;
+            }
+
             text.text = "";
 
             foreach(char character in line)
@@ -223,23 +260,20 @@ public class DialoguesManager : MonoBehaviour
                 }
 
                 text.text = text.text + character;
+                AudioManager.instance.PlayOneShot("text_beep");
+
                 if(!skipDialog)
                 {
                     if(!skipText)
                     {
-                        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)){skipText = true;}
-                        else{yield return new WaitForSecondsRealtime(0.05f);}
-                    }
-                    else
-                    {
-                        yield return new WaitForSecondsRealtime(0.000015f);
+                        yield return new WaitForSecondsRealtime(0.015f);
                     }
                 }
             }
             UIpointer.SetActive(true);
-            while(!(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || skipDialog || next)) {yield return null;}
-            skipText = false;
             next = false;
+            skipText = false;
+            while(!(skipDialog || next)) {yield return null;}
         }
         skipDialog = false;
     }
