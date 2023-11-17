@@ -75,7 +75,8 @@ public class DialoguesManager : MonoBehaviour
     IEnumerator _ExecuteDialog(string key)
     {
         text.text = "";
-        InputManager.input.enabled =  false;
+        // InputManager.input.enabled =  false;
+        GameManager.GM.SetAllPLayerInputs(false);
         pass.action.Enable();
         if(key == "")
         {
@@ -120,7 +121,8 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[END]"))
             {
-                InputManager.input.enabled =  true;
+                // InputManager.input.enabled =  true;
+                GameManager.GM.SetAllPLayerInputs(true);
                 GameManager.GM.GameElementsAreActive(true);
                 cinematic = false;
                 dialogueUI.SetActive(false);

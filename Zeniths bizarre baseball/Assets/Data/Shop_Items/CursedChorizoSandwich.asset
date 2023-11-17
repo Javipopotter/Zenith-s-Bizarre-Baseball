@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2546abcd57cd7934aa2968787beefc52, type: 3}
+  m_Name: CursedChorizoSandwich
+  m_EditorClassIdentifier: 
+  product_name: Vokata of Xoriso
+  description: Vokata of Xoriso
+  description_key: Sandwich_Cursed
+  price: 10
+  icon: {fileID: -257165991, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}

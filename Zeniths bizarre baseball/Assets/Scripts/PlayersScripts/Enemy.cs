@@ -18,6 +18,7 @@ public class Enemy : LifesManager
             }
         }
     }
+    public GameObject[] players;
     public GameObject player;
     bool _knocked;
     public bool knocked
@@ -34,9 +35,10 @@ public class Enemy : LifesManager
     }
     [SerializeField] UnityEvent OnPlayerHitEvent;
 
-    private void Start() {
-        if(GameObject.FindWithTag("Player"))
-            player = GameObject.FindGameObjectWithTag("Player");
+    public override void Awake() {
+        base.Awake();
+        players = GameObject.FindGameObjectsWithTag("Player");
+        player = GetRandomPlayer();
     }
 
     public override void GetDmg(float dmg, Vector2 knockbackDir)
@@ -110,6 +112,7 @@ public class Enemy : LifesManager
 
     private void OnEnable() {
         GameManager.GM.OnGameOver.AddListener(OnGameOver);
+        player = GetRandomPlayer();
     }
 
     private void OnDisable() {
@@ -119,5 +122,10 @@ public class Enemy : LifesManager
     void OnGameOver()
     {
         GetComponent<Animator>().enabled = false;
+    }
+
+    GameObject GetRandomPlayer()
+    {
+        return players[UnityEngine.Random.Range(0, players.Length)];
     }
 }

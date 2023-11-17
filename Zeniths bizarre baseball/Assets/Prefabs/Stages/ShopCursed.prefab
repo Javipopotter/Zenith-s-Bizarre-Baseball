@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 631149448640173320, guid: d159abedc54da244c991640b84041052, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: bd3a0330a73571246a31f8dc9951983a, type: 2}
+      objectReference: {fileID: 11400000, guid: 36d07bf9dae53e44491f18ccf2781581, type: 2}
     - target: {fileID: 631149448640173320, guid: d159abedc54da244c991640b84041052, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Upgrade
@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 1512512509476652417, guid: d159abedc54da244c991640b84041052, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: b95e95844979abb4c999872345b76a1e, type: 2}
+      objectReference: {fileID: 11400000, guid: 36d07bf9dae53e44491f18ccf2781581, type: 2}
     - target: {fileID: 1512512509476652417, guid: d159abedc54da244c991640b84041052, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Upgrade
@@ -43,8 +43,16 @@ PrefabInstance:
       propertyPath: shopItemData
       value: 
       objectReference: {fileID: 11400000, guid: 8f9e10458984ca24c9fee3225b2aeafb, type: 2}
+    - target: {fileID: 4539852530695160926, guid: d159abedc54da244c991640b84041052, type: 3}
+      propertyPath: upgradeSetting
+      value: 
+      objectReference: {fileID: 11400000, guid: 36d07bf9dae53e44491f18ccf2781581, type: 2}
     - target: {fileID: 4850678328692295503, guid: d159abedc54da244c991640b84041052, type: 3}
       propertyPath: shopItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 36d07bf9dae53e44491f18ccf2781581, type: 2}
+    - target: {fileID: 4850678328692295503, guid: d159abedc54da244c991640b84041052, type: 3}
+      propertyPath: upgradeSetting
       value: 
       objectReference: {fileID: 11400000, guid: 36d07bf9dae53e44491f18ccf2781581, type: 2}
     - target: {fileID: 6422926518598164354, guid: d159abedc54da244c991640b84041052, type: 3}

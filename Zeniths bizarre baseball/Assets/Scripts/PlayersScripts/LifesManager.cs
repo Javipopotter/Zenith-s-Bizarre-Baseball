@@ -41,7 +41,7 @@ public class LifesManager : MonoBehaviour
         }
     }
 
-    private void Awake() {
+    public virtual void Awake() {
         stats = GetComponent<statsReference>().stats;
         an = GetComponent<Animator>();
         stats.maxlifes = lifes;

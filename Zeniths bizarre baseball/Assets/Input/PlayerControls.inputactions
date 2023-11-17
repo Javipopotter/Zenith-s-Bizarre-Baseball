@@ -2,13 +2,40 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Playing",
             "id": "a4818384-023b-44b7-9fb5-ed683f0cffeb",
             "actions": [
                 {
                     "name": "TopDownMovement",
                     "type": "Value",
                     "id": "55c955b8-e37c-47ce-89ff-148400370c05",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Bat Attack",
+                    "type": "Button",
+                    "id": "e4ade778-d7cf-4562-9ae8-274cdb20a408",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "733fad08-ccfc-46d9-8d69-3494e9641e8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SetPointer",
+                    "type": "Value",
+                    "id": "97e6f613-0814-4d79-9b36-d8e8e5be48d8",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -22,7 +49,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "StickDeadzone(min=0.9),NormalizeVector2",
-                    "groups": "",
+                    "groups": "Gamepad Scheme",
                     "action": "TopDownMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -33,7 +60,7 @@
                     "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad Scheme",
                     "action": "TopDownMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -55,7 +82,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoardScheme",
                     "action": "TopDownMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -66,7 +93,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoardScheme",
                     "action": "TopDownMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -77,7 +104,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoardScheme",
                     "action": "TopDownMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -88,124 +115,84 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoardScheme",
                     "action": "TopDownMovement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "Attacking",
-            "id": "ec839297-4075-4f0b-8361-bffe96d8f1a1",
-            "actions": [
-                {
-                    "name": "Bat Attack",
-                    "type": "Button",
-                    "id": "03eee130-78d7-4ce4-88ec-3b790ac1e874",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "0cdf02a7-0184-41f1-af8a-c1f8f37b7d93",
+                    "id": "de43ff2a-3f4e-4b61-8290-d5f32179e8a8",
                     "path": "<Mouse>/leftButton",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoardScheme",
                     "action": "Bat Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "f42711dc-f72d-4b32-b11e-d15ad18025a9",
+                    "id": "f2cb5829-ca67-48b6-b793-ff2a88b70bf2",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad Scheme",
                     "action": "Bat Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Dash",
-            "id": "9a181b5a-8912-49fc-9030-a1860f90c072",
-            "actions": [
-                {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "f5345e81-82c3-4fbf-b2bc-9bd47bf84fbf",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "a1592f30-7d99-435c-b1f8-abf985ae0850",
+                    "id": "074b2616-f891-4e86-8ebc-01fac8c603fb",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad Scheme",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "2a0e7f15-5436-43dc-9364-1f75e8cf07fc",
+                    "id": "8364fee4-5e48-4fdf-8a66-db41eb372d25",
                     "path": "<Keyboard>/space",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyBoardScheme",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3c95c206-e0f0-455a-b84e-a31689b1eec8",
+                    "id": "4367762a-1b33-4aa1-8cf2-2d04388cfe32",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad Scheme",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "MovePointer",
-            "id": "527c0606-2e6a-45c0-908a-495c354fbc62",
-            "actions": [
-                {
-                    "name": "SetPointer",
-                    "type": "Value",
-                    "id": "c49e4a16-7312-4207-8244-481e827710ee",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "4b88d39e-3c16-450c-b8cd-adf9f75d2fc4",
+                    "id": "1ba3e57d-3f0d-4b1d-8990-2f46dc7cb723",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "StickDeadzone(min=0.75)",
-                    "groups": "",
+                    "groups": "Gamepad Scheme",
+                    "action": "SetPointer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b31f41f-4c1b-4753-aff7-e4dae75b0d50",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoardScheme",
                     "action": "SetPointer",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -341,5 +328,33 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Gamepad Scheme",
+            "bindingGroup": "Gamepad Scheme",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "KeyBoardScheme",
+            "bindingGroup": "KeyBoardScheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

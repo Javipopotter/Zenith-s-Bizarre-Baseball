@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class PathLevelManager : MonoBehaviour
+{
+    private GameManager gameManager;
+    [[SerializeField] PathLevels pathLevels;
+    
+    private void OnEnable()
+    {
+        gameManager.GM.OnMoneyChange.AddListener(OnMoneyChange);
+    }
+
+    private void OnDisable()
+    {
+        gameManager.GM.OnMoneyChange.RemoveListener(OnMoneyChange);
+    }
+    
+    private void OnMoneyChange(int newMoney)
+    {
+        pathLevels.isIndebted = newMoney < 0;
+    }
+}
+

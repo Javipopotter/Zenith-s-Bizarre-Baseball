@@ -365,21 +365,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: bd3a0330a73571246a31f8dc9951983a, type: 2}
-        m_TargetAssemblyTypeName: UpgradeSetting, Assembly-CSharp
-        m_MethodName: Upgrade
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 671145e151ab37e498cd560a386b2f6a, type: 2}
         m_TargetAssemblyTypeName: Shop_Item_Data, Assembly-CSharp
-        m_MethodName: PayPrice
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -401,9 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f3a0cd47fb7f340b7f4cd7607f72fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSetting: {fileID: 0}
+  upgradeSetting: {fileID: 11400000, guid: 671145e151ab37e498cd560a386b2f6a, type: 2}
   icon: {fileID: 3574031200881615394}
-  shopItemData: {fileID: 11400000, guid: 671145e151ab37e498cd560a386b2f6a, type: 2}
 --- !u!95 &293911889473568393
 Animator:
   serializedVersion: 5
@@ -1824,21 +1811,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: b95e95844979abb4c999872345b76a1e, type: 2}
-        m_TargetAssemblyTypeName: UpgradeSetting, Assembly-CSharp
-        m_MethodName: Upgrade
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 494ca6b6496d2e444a13b8b72d38ad23, type: 2}
         m_TargetAssemblyTypeName: Shop_Item_Data, Assembly-CSharp
-        m_MethodName: PayPrice
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1860,9 +1835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f3a0cd47fb7f340b7f4cd7607f72fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeSetting: {fileID: 0}
+  upgradeSetting: {fileID: 11400000, guid: 494ca6b6496d2e444a13b8b72d38ad23, type: 2}
   icon: {fileID: 7368299131717273935}
-  shopItemData: {fileID: 11400000, guid: 494ca6b6496d2e444a13b8b72d38ad23, type: 2}
 --- !u!95 &6766254626402644872
 Animator:
   serializedVersion: 5

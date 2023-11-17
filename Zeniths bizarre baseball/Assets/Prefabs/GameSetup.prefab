@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeSetting: {fileID: 11400000, guid: 281205de159afbf48aca4290dd0e69db, type: 2}
+  icon: {fileID: 0}
   shopItemData: {fileID: 0}
 --- !u!1 &1051370632182761091
 GameObject:
@@ -844,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeSetting: {fileID: 11400000, guid: c704591240af1ac4ca15f0e644e64cbf, type: 2}
+  icon: {fileID: 0}
   shopItemData: {fileID: 0}
 --- !u!1 &4598177314923143354
 GameObject:
@@ -10342,6 +10344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeSetting: {fileID: 11400000, guid: 2d63d426930c4f34d825dd607f7521d2, type: 2}
+  icon: {fileID: 0}
   shopItemData: {fileID: 0}
 --- !u!1 &7764858338070738041
 GameObject:

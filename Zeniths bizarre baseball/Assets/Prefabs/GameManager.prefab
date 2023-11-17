@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2724471381333292383}
   - component: {fileID: 2724471381333292368}
   - component: {fileID: 218272645521292943}
-  - component: {fileID: 7934558499650856608}
+  - component: {fileID: 2011081514565949773}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -74,6 +74,9 @@ MonoBehaviour:
   upgrader: {fileID: 0}
   eventsMemory: {fileID: 11400000, guid: b0491ac4379ca7a4fb5b96747284883d, type: 2}
   _money: 0
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2724471381333292378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +228,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keys: []
   values: []
---- !u!114 &7934558499650856608
+  text: {fileID: 0}
+--- !u!114 &2011081514565949773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,12 +238,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 2724471381333292359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7c02c80c1e6c6489870486d813b272, type: 3}
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topDownMovementAction: {fileID: -881373617570905828, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
-  AttackAction: {fileID: -171466467749384043, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
-  dashAction: {fileID: -5629858420924193927, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
-  pointerAction: {fileID: 0}
-  pauseAction: {fileID: -3335954077309150459, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
-  movement: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_MaxPlayerCount: 2
+  m_AllowJoining: 1
+  m_JoinBehavior: 0
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PlayerPrefab: {fileID: 0}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1

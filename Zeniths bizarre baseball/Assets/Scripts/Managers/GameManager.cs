@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,17 +11,19 @@ public class GameManager : MonoBehaviour
     UIManager uIManager;
     Dictionary<string, List<GameObject>> objectDict = new Dictionary<string, List<GameObject>>();
     [SerializeField]GameObject Menu;
-    Movement player;
+    Movement[] players;
     [SerializeField] GameObject[] objects;
     string[] object_names = {"pitcher", "man", "cart", "ball", "coin"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
+    InputManager[] playerInputs;
     bool _paused = false;
     public bool paused
     {
         get{return _paused;}
         set{
             _paused = value;
-            inputManager.enabled = value ? false : true;
+            bool enabled = value ? false : true;
+            SetAllPLayerInputs(enabled);
             Time.timeScale = value ? 0 : 1;
         }
     }
@@ -37,16 +40,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] UpgradePackage upgrader;
     [SerializeField] EventsMemory eventsMemory;
     StagesSpawner stagesSpawner;
-    InputManager inputManager;
     [SerializeField] int _money = 0;
     public int money
     {
         get{return _money;}
         set{
+            OnMoneyChange.Invoke();
             _money = value;
             uIManager.UpdateMoney();
         }
     }
+    public UnityEvent OnMoneyChange;
     public enum gameStates
     {
         playing, paused, cinematic, death
@@ -86,12 +90,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public UnityEvent OnGameOver;
     private void Awake() {
         GM = this;
-        inputManager = GetComponent<InputManager>();
+        SearchForPlayers();
         stagesSpawner = GetComponent<StagesSpawner>();
         scenesManager = GetComponent<ScenesManager>();
         spawner = GetComponent<Spawner>();
         uIManager = GetComponent<UIManager>();
-        player = GameObject.Find("Player").GetComponent<Movement>();
 
         for(int i = 0; i < object_names.Length; i++)
         {
@@ -114,6 +117,51 @@ public class GameManager : MonoBehaviour
         }
 
         ResetStats();
+    }
+
+    public void SearchForPlayers()
+    {
+        playerInputs = FindObjectsOfType<InputManager>();
+        List<Movement> listOfPlayers = new List<Movement>();
+        foreach(InputManager input in playerInputs)
+        {
+            listOfPlayers.Add(input.GetComponent<Movement>());
+        }
+        players = listOfPlayers.FindAll(x => x != null).ToArray();
+    }
+
+    void SetAllPlayersLayers(string layerName)
+    {
+        foreach(Movement player in players)
+        {
+            player.GetComponentInChildren<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID(layerName);
+        }
+    }
+
+    void RecoverAllPLayersLifes()
+    {
+        for(int i = 0; i < players.Length; i++)
+        {
+            RecoverLife(i);
+        }
+    }
+
+    void AllPlayersEnterZone()
+    {
+        for(int i = 0; i < players.Length; i++)
+        {
+            Vector2 pos = new Vector2(currentStage.startPos.transform.position.x + i * 6, currentStage.startPos.transform.position.y);
+            players[i].EnterZone();
+            players[i].transform.position = pos;
+        }
+    }
+    
+    public void SetAllPLayerInputs(bool value)
+    {
+        foreach(InputManager input in playerInputs)
+        {
+            input.InputSetEnabled(value);
+        }
     }
 
     void ResetStats()
@@ -147,7 +195,7 @@ public class GameManager : MonoBehaviour
     public void SetUpgrader(bool value)
     {
         uIManager.SetUpgrader(value);
-        inputManager.enabled = !value;
+        SetAllPLayerInputs(!value);
         DisableGameElements();
     }
 
@@ -170,10 +218,11 @@ public class GameManager : MonoBehaviour
 
     #region AbilitiesUpgrade
     void MaxLifesUpOnce() => MaxLifesUp(1);
-    void RecoverLife() => player.GetComponent<LifesManager>().lifes++;
-    void RecoverLifeTwice() => player.GetComponent<LifesManager>().lifes += 2;
-    void GetPsychic() => player.GetComponent<Movement>().Psychic = true;
-
+    void RecoverLife(int index) => players[index].GetComponent<LifesManager>().lifes++;
+    void RecoverLifeTwice(int index) => players[index].GetComponent<LifesManager>().lifes += 2;
+    public void GoVegan(int index) => players[index].GetComponent<Movement>().veganism = true;
+    public void GoHunter(int index) => players[index].GetComponent<Movement>().hunter = true;
+    public void GetIndebted(int index, bool value) => players[index].GetComponent<Movement>().indebted = value;
     #endregion
     public void OnPlayerLifeChange(float n)
     {
@@ -185,7 +234,8 @@ public class GameManager : MonoBehaviour
     {
         stats[0].maxlifes += num;
         uIManager.MaxLifesUp((int)stats[0].maxlifes - 1);
-        player.GetComponent<LifesManager>().lifes += 1;
+        players[0].GetComponent<LifesManager>().lifes += 1;
+        players[1].GetComponent<LifesManager>().lifes += 1;
     }
 
     public GameObject GetObject(string key)
@@ -262,8 +312,8 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.Stop(currentStage.settings.musicalTheme);
         AudioManager.instance.Play("Death_theme");
         print("GameOvers");
-        player.GetComponentInChildren<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("OverUI");
-        inputManager.enabled = false;
+        SetAllPlayersLayers("OverUI");
+        SetAllPLayerInputs(false);
         uIManager.GameOver();
         BossLifeBarIsActive(false);
     }
@@ -375,12 +425,9 @@ public class GameManager : MonoBehaviour
     }
     public void StartLevel()
     {
-        print("StartLevel");
-        RecoverLife();
         DisableGameElements();
-        player.EnterZone();
+        AllPlayersEnterZone();
         spawner.PlayHorde();
-        player.transform.position = currentStage.startPos.transform.position;
         uIManager.PlayAn("Transition", 0, 0.7f);
     }
 

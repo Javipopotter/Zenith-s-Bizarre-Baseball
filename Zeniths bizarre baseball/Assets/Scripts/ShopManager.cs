@@ -43,18 +43,6 @@ public class ShopManager : MonoBehaviour
 
     private void OnEnable() {
         interactAction.action.performed += OnInteractActionPerformed;
-        foreach(SetText set in ItemsContainer.GetComponentsInChildren<SetText>())
-        {
-            if(set.shopItemData.price > GameManager.GM.money)
-            {
-                set.GetComponent<Animator>().SetTrigger("Pressed");
-                set.GetComponent<Button>().interactable = false;
-            }
-            else
-            {
-                set.GetComponent<Button>().interactable = true;
-            }
-        }
     }
 
     private void OnDisable() {
@@ -65,7 +53,6 @@ public class ShopManager : MonoBehaviour
         if(other.transform.CompareTag("Player"))
         {
             canInteract = true;
-            InputManager.input.BlockActions();
         }
     }
 
@@ -84,8 +71,6 @@ public class ShopManager : MonoBehaviour
 
         DialoguesManager.dialoguesManager.pass.action.Enable();
         DialoguesManager.dialoguesManager.ExecuteDialog("");
-        InputManager.input.UnblockActions();
-        InputManager.input.enabled = true;
     }
 
     void OpenShop()

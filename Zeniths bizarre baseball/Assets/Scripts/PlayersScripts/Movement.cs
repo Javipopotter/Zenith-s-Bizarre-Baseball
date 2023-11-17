@@ -18,7 +18,30 @@ public class Movement : MonoBehaviour
     [SerializeField] bool IsTest = false;
     [SerializeField] Vector2 lastFacing;
     Stats stats;
-    public bool Psychic = false;
+
+    public bool veganism = false;
+    public bool hunter = false;
+
+    bool _indebted;
+    public bool indebted
+    {
+        get{return _indebted;}
+        set
+        {
+            _indebted = value;
+
+            if(value)
+            {
+                rollType = "roll";
+            }
+            else
+            {
+                rollType = "dash";
+            }
+        }
+    }
+
+    string rollType = "dash";
     PsychicBatManager psychicBat;
 
     private void Awake() {
@@ -88,7 +111,7 @@ public class Movement : MonoBehaviour
     public void Dash()
     {
         if (rollCool <= 0 && vel != Vector2.zero){
-            an.Play("roll");
+            an.Play(rollType);
             rollCool = 0.5f;
         }
     }
@@ -97,9 +120,9 @@ public class Movement : MonoBehaviour
     {
         if(attackCool <= 0)
         {
-            attackCool = 0.175f;
+            attackCool = 0.25f;
             LookToMouse("attackRight", "attackDown", "attackLeft", "attackUp");
-            if(Psychic){psychicBat.Activate(pointer.transform.position + pointer.transform.up * 2, pointer.transform.rotation);}
+            if(veganism){psychicBat.Activate(pointer.transform.position + pointer.transform.up * 2, pointer.transform.rotation);}
         }
     }
 
@@ -163,6 +186,7 @@ public class Movement : MonoBehaviour
     public void EnterZone()
     {
         an.Rebind();
+        if(hunter){lifesMan.lifes++;}
         an.Play("EnterZone");
     }
 

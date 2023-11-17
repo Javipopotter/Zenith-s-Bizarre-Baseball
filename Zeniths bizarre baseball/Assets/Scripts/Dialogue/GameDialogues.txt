@@ -157,6 +157,8 @@ Entonces te voy a pedir 2 millones de bayas, que la hipoteca no se paga sola*
 [An]talk2[An]*
 Jolín, está bien TUT*
 [TXT]DebtEnding[TXT]*
+
+
 ___InitialCutscene//
 [NOTGAME]*
 [NAME] [NAME]*
@@ -165,6 +167,7 @@ Zenith se pasaba los días aburrida en su habitación*
 [NAME]Zenith[NAME]*
 Joder, estoy aburrida en mi habitación*
 [IMG]1[IMG]*
+[MUSIC]get_bat_hit[MUSIC]*
 [NAME] [NAME]*
 Hasta que un día una bola de beisbol por su ventana entró y su Nintendo reventó*
 [NAME]Zenith[NAME]*
