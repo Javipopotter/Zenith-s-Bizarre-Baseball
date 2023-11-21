@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Interactions;
 
 [CreateAssetMenu(fileName = "UpgradeSettings", menuName = "UpgradeSettings")]
 public class UpgradeSetting : ScriptableObject
@@ -14,7 +15,6 @@ public class UpgradeSetting : ScriptableObject
     public Sprite icon;
     public string description;
     public UnityEvent OnUpgrade;
-    public bool canBeSelected = true;
 
     public virtual void Upgrade()
     {

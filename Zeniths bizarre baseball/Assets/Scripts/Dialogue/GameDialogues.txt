@@ -44,6 +44,130 @@ Voy a acabar contigo*
 Inténtalo puta*
 [AN]Claus,start[AN]*
 [END]
+
+___GymBoss//
+0)[Img]Zenith[Img]*
+1)[Img]GymBoss[Img]*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Hola? Necesito pasar al otro lado para coger el metro, me dejas pasar porfa?*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+¿¿Cómo?? ¿Quién eres tú?, eres una mujer?!*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Ehm... Sí eso creo, por?*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+¿CÓMO SE ATREVE UNA ASQUEROSA FEMINA A ENTRAR EN MI GIMNASIO?*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Hey! que las feminas también tenemos sentimientos :(*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+MENTIRA!! las únicas mujeres que respeto son a mi hermana y mi madre, el resto son solo una carga para la sociedad*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+¿Eso significa que puedo pasar?*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+Depende, ¿inviertes en cryptomonedas?*
+
+-choice- Sí>>
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Sí, las cryptomonedas son el futuro!!*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+Veo que eres una mujer de cultura*
+Aunque sigues siendo una mujer después de todo*
+Te echaré de mi gimnasio a la fuerza*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Joder que tío tan pesado*
+
+[AN]GymBoss,start[AN]*
+[END]
+
+-choice- No>>
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+¿Qué? claro que no, ¿Qué cojones tiene que ver eso con que me dejes pasar?*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+MUJER INCULTA, LAS CRYPTOMONEDAS SON EL FUTURO!!*
+Yo empecé con 15 euros que le cogí prestado a mi madre en 2015 y ahora tengo 20!!*
+Mi crypto favorita CryptoWolf debido a su exponencial subida de capitalización de mercado <wait>1<wait>*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Cállate ya la puta boca pesado*
+Uff, da igual, parece que tendré que hacerme paso a la fuerza*
+
+[AN]GymBoss,start[AN]*
+[END]
+
+___GymBossDefeat//
+0)[Img]Zenith[Img]*
+1)[Img]GymBoss[Img]*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+NO ME LO PUEDO CREER!!*
+CÓMO HE PODIDO SER DERROTADO POR UNA MUJER!!?*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Tío no te ralles, literalmente llevo un bate*
+¿Me dejas pasar ya o qué?*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+MALDITAS MUJERES Y MARICONES, OS ODIO!!*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+¿Te molestas porque otro coma pinga?*
+Amigo eso no es odio, es envidia*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+¿En-envidia?*
+¿A qúe te refieres?*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+¿No te has planteado que a lo mejor eres homosexual?*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+¿Homosexual? ¿yo? la verdad es que nunca lo había pensado*
+Aunque cada vez que veo ese póster de Mike Tyson en mi habitación me siento raro...*
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Definitivamente eres homosexual, acéptalo y deja de lado tu odio y comienza a amar*
+
+[NAME]GymBoss[NAME]*
+[An]talk2[An]*
+Tienes razón!! Soy homosexual!!*
+Muchas gracias extraña mujer*
+Adelante, puedes pasar, y estás bienvenida a mi gimnasio siempre que quieras :3*
+[END]
+
 ___Claus_Old//
 0)[Img]Zenith[Img]*
 1)[Img]Claus[Img]*

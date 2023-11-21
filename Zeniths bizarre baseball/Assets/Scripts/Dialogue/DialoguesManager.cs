@@ -144,7 +144,6 @@ public class DialoguesManager : MonoBehaviour
             if(line.Contains("[AN]"))
             {
                 GameObject.Find(line.Split("[AN]")[1].Split(",")[0]).GetComponent<Animator>().SetTrigger(line.Split("[AN]")[1].Split(",")[1]);
-                print(GameObject.Find(line.Split("[AN]")[1].Split(",")[0]).name);
                 continue;
             }
 

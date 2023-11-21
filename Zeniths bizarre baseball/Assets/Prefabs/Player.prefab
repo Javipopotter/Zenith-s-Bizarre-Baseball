@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 7952382698644461578}
   - component: {fileID: 7589414081852818100}
   - component: {fileID: 3906970264486375744}
+  - component: {fileID: 2893821814391209365}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -172,7 +173,8 @@ MonoBehaviour:
   sr: {fileID: 3103712300484352072}
   IsTest: 0
   lastFacing: {x: 0, y: 0}
-  Psychic: 0
+  veganism: 0
+  hunter: 0
 --- !u!95 &3962199619717618850
 Animator:
   serializedVersion: 5
@@ -441,6 +443,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 3962199619717618863}
+  pauseAction: {fileID: -3335954077309150459, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
+--- !u!114 &2893821814391209365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962199619717618860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6788c23bf1e76d46a4b458c8c7eaa3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: 0
+  _veganLevel: 0
+  _hunterLevel: 0
+  _isIndebted: 0
 --- !u!1 &3962199620068469273
 GameObject:
   m_ObjectHideFlags: 0

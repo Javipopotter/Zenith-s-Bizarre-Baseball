@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -10,7 +11,6 @@ public class Spawner : MonoBehaviour
     public int enemyCount = 0;
     public static Spawner sp;
     CinematicPlayerController cine;
-    [SerializeField] ClausBoss clausBoss;
     [SerializeField]TextMeshProUGUI EnemyCounter;
     public StageSettings CurrentSettings;
     int EnMax = 1;
@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
             spCoolDown -= Time.deltaTime;
         }
 
-        if (KillCount >= EnMax && EnMax != 0 && stageTrigger)
+        if(KillCount >= EnMax && EnMax != 0 && stageTrigger)
         {
             stageTrigger = false;
             GameManager.GM.OnStageCleared();
@@ -69,23 +69,14 @@ public class Spawner : MonoBehaviour
         hordes = CurrentSettings.hordes;
         spawn = GameManager.GM.currentStage.spawners;
         GameManager.GM.BossLifeBarIsActive(false);
-        if(CurrentSettings.Boss != "")
-        {
-            GameManager.GM.BossLifeBarIsActive(true);
-            GameManager.GM.SetProgressBar(false);
-                if(!clausBoss.appeared)
-                {
-                    clausBoss.appeared = true;
-                    cine.dialog = "Claus";
-                    clausBoss.gameObject.SetActive(true);
-                }
-                else
-                {
-                    cine.dialog = "";
-                }
-        }
+
         enemyCount = 0;
         KillCount = 0;
         EnMax = CurrentSettings.numberOfSpawns * CurrentSettings.hordes;
+
+        //Boss Setup
+        cine.dialog = CurrentSettings.Boss;
+        GameManager.GM.SetProgressBar(CurrentSettings.Boss == "");
+        GameManager.GM.BossLifeBarIsActive(CurrentSettings.Boss != "");
     }
 }

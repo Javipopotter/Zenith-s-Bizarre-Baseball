@@ -60,7 +60,14 @@ MonoBehaviour:
   - {fileID: 7533763778974248708, guid: 2fe4a13e7fd113c479ac44563b13d6e7, type: 3}
   - {fileID: 5895026427468047299, guid: 501378a9d40d3d94f9296d64840df9d2, type: 3}
   - {fileID: 8550709766311974581, guid: fa53539589c09dd408c5d99f2180b2c4, type: 3}
-  serialized_pause: 0
+  - {fileID: 8418105324000729978, guid: 7bd62b9ec094a1f498968c10896db08f, type: 3}
+  object_names:
+  - pitcher
+  - man
+  - cart
+  - ball
+  - coin
+  - skater
   backGrounds: {fileID: 0}
   gameElementsContainer: {fileID: 0}
   stats:
@@ -70,10 +77,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e02df146a7c7bd8428bf5d80edefda66, type: 2}
   - {fileID: 11400000, guid: a61b2ffdaa30b464784d75a0dd6ea2cb, type: 2}
   _currentStage: {fileID: 0}
+  combatStageSettings: {fileID: 0}
   vcam: {fileID: 0}
-  upgrader: {fileID: 0}
   eventsMemory: {fileID: 11400000, guid: b0491ac4379ca7a4fb5b96747284883d, type: 2}
   _money: 0
+  notificationSet: {fileID: 0}
   OnGameOver:
     m_PersistentCalls:
       m_Calls: []
@@ -90,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  clausBoss: {fileID: 0}
   EnemyCounter: {fileID: 0}
   CurrentSettings: {fileID: 0}
 --- !u!114 &2724471381333292381
@@ -189,6 +196,7 @@ MonoBehaviour:
   - {fileID: 479126305, guid: 75b48fe95f202144986d7ff0e4f64cf8, type: 3}
   - {fileID: 748583900, guid: 75b48fe95f202144986d7ff0e4f64cf8, type: 3}
   gameOverScreen: {fileID: 0}
+  notification: {fileID: 0}
   moneyText: {fileID: 0}
   upgradePanel: {fileID: 0}
 --- !u!114 &2724471381333292368
@@ -212,7 +220,8 @@ MonoBehaviour:
   - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
   - {fileID: 3299284904240689244, guid: d159abedc54da244c991640b84041052, type: 3}
   - {fileID: 2517646275644058663, guid: d5e87c088b2604947b21026170e3a340, type: 3}
-  bossStage: {fileID: 27430595365522507, guid: e559ca0c59c32c141a89bee4d889bae4, type: 3}
+  bossStages: []
+  shopUnFrequency: 4
   stagesNumber: 3
 --- !u!114 &218272645521292943
 MonoBehaviour:

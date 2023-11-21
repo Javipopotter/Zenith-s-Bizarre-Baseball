@@ -7,14 +7,25 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] Movement movement;
     PlayerInput thisPlayerInput;
+    [SerializeField] InputActionReference pauseAction;
 
     private void Awake() {
         thisPlayerInput = GetComponent<PlayerInput>();
         movement = GetComponent<Movement>();
+        pauseAction.action.performed += OnPauseActionPerformed;
     }
 
     private void OnDisable() {
         movement.SetSpeed(Vector2.zero);
+        pauseAction.action.Disable();
+    }
+
+    private void OnEnable() {
+        pauseAction.action.Enable();
+    }
+
+    private void OnDestroy() {
+        pauseAction.action.performed -= OnPauseActionPerformed;
     }
 
     public void OnPauseActionPerformed(InputAction.CallbackContext context)
@@ -29,20 +40,23 @@ public class InputManager : MonoBehaviour
 
     public void OnAttackActionPerformed(InputAction.CallbackContext context)
     {
-        movement.Attack();
+        if(context.performed) {
+            movement.Attack();
+        }
     }
 
     public void OnDashActionPerformed(InputAction.CallbackContext context)
     {
-        movement.Dash();
+        if(context.performed) movement.Dash();
     }
 
     public void OnPointerActionPerformed(InputAction.CallbackContext context)
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if(context.control.device == InputSystem.GetDevice<Mouse>())
         {
             Vector2 mousePos = context.ReadValue<Vector2>() - (Vector2)Camera.main.WorldToScreenPoint(transform.position);
-            print(mousePos);
             movement.SetPointer(mousePos);
         }
         if(context.ReadValue<Vector2>() != Vector2.zero)

@@ -55,7 +55,7 @@ public class Enemy : LifesManager
         OnDeath();
     }
 
-    private void Update() {
+    public virtual void Update() {
         if(knocked || GameManager.GM.paused){return;}
 
         if(getNear){
@@ -69,12 +69,12 @@ public class Enemy : LifesManager
     }
 
 
-    Vector2 GetPlayerDirection()
+    public Vector2 GetPlayerDirection()
     {
         return (player.transform.position - transform.position).normalized;
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
         Setlifes();
         AudioManager.instance.Play("enemy_death");

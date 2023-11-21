@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2546abcd57cd7934aa2968787beefc52, type: 3}
   m_Name: VeganSandwich
   m_EditorClassIdentifier: 
-  abilityName: []
+  abilityName:
+  - AddVeganLevel
   statName: []
   value: []
   price: 15
-  icon: {fileID: 0}
+  icon: {fileID: -1665876503, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
   description: Bocata de chorizo vegano
   OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
-  canBeSelected: 1
   product_name: Bocata Vegano
   description_key: VeganSandwich
-  amount: 1

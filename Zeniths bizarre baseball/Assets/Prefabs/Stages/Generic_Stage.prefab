@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 4026263442117653784}
   m_Layer: 7
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1420,6 +1420,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 46bc78380e308474d836f19863bb73ae, type: 2}
   startPos: {fileID: 3518440967202681419}
   altMaps: {fileID: 3459884198514700997}
+  stageNum: 0
 --- !u!1 &8366158918118115710
 GameObject:
   m_ObjectHideFlags: 0

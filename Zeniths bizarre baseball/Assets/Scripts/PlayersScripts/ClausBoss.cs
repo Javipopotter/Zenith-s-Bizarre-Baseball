@@ -5,7 +5,6 @@ public class ClausBoss : MonoBehaviour
     public bool dangerTrigger;
     public bool moveTrigger;
     public bool attackTrigger;
-    public bool appeared;
     Animator an;
     GameObject player;
     float reactionTime;
@@ -132,7 +131,9 @@ public class ClausBoss : MonoBehaviour
     public void OnDeath()
     {
         an.Rebind();
+        DialoguesManager.dialoguesManager.ExecuteDialogViaKey("ClausDefeat");
         AudioManager.instance.Stop("Boss_theme");
+        GameManager.GM.OpenGates();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

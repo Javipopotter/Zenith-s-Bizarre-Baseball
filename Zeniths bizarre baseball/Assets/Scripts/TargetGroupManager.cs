@@ -13,6 +13,10 @@ public class TargetGroupManager : MonoBehaviour
     private void Awake() {
         vcam = FindObjectOfType<CinemachineVirtualCamera>();
         targets = GameObject.FindGameObjectsWithTag("Player");
+        if(targets.Length < 2){ 
+            vcam.Follow = targets[0].transform;
+            enabled = false; 
+        }
     }
 
     private void Update() {

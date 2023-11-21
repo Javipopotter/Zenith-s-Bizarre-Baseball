@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     Canvas gameUICanvas;
     CinemachineBasicMultiChannelPerlin channelPerlin;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject notification;
     [SerializeField] TextMeshProUGUI moneyText;
     public GameObject upgradePanel;
     
@@ -53,6 +54,11 @@ public class UIManager : MonoBehaviour
     public void SetProgressBar(bool active)
     {
         progressBar.gameObject.SetActive(active);
+    }
+
+    public void SetNotification()
+    {
+        notification.SetActive(true);
     }
 
     public void Restart()

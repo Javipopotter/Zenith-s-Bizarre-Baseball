@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2546abcd57cd7934aa2968787beefc52, type: 3}
   m_Name: ChorizoSandwich
   m_EditorClassIdentifier: 
-  abilityName: []
+  abilityName:
+  - AddHunterLevel
+  - RecoverAllPLayersLifes
   statName: []
   value: []
   price: 10
@@ -21,7 +23,5 @@ MonoBehaviour:
   OnUpgrade:
     m_PersistentCalls:
       m_Calls: []
-  canBeSelected: 1
   product_name: Bocata de chorizo
   description_key: Sandwich
-  amount: 1

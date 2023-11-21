@@ -11,10 +11,22 @@ public class LifesManager : MonoBehaviour
 {
     [SerializeField] float _lifes;
     public Stats stats;
-    Animator an;
+    public Animator an;
     public Rigidbody2D rb;
     public float poise;
     [SerializeField] UnityEvent DeathEvent;
+    UnityEvent _OnGetDmg;
+    public UnityEvent OnGetDmg
+    {
+        get
+        {
+            return _OnGetDmg;
+        }
+        private set
+        {
+            _OnGetDmg = value;
+        }
+    }
 
     public virtual float lifes
     {
@@ -50,6 +62,7 @@ public class LifesManager : MonoBehaviour
 
     public virtual void GetDmg(float dmg, Vector2 knockbackDir){
         if(GameManager.GM.paused){return;}
+        OnGetDmg?.Invoke();
         AudioManager.instance.PlayOneShot("get_bat_hit");
         GameManager.GM.CameraShake(10);
         lifes -= dmg;

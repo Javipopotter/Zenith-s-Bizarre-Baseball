@@ -71,13 +71,14 @@ public class ShopManager : MonoBehaviour
 
         DialoguesManager.dialoguesManager.pass.action.Enable();
         DialoguesManager.dialoguesManager.ExecuteDialog("");
+        GameManager.GM.SetAllPLayerInputs(true);
     }
 
     void OpenShop()
     {
         shopMenu.SetActive(true);
         canInteract = false;
-        print("interacted");
+
         DialoguesManager.dialoguesManager.pass.action.Disable();
         DialoguesManager.dialoguesManager.ExecuteDialogViaKey(welcomeKey);
     }

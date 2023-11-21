@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2546abcd57cd7934aa2968787beefc52, type: 3}
   m_Name: CursedChorizoSandwich
   m_EditorClassIdentifier: 
-  product_name: Vokata of Xoriso
-  description: Vokata of Xoriso
-  description_key: Sandwich_Cursed
+  abilityName:
+  - AddHunterLevel
+  - RecoverAllPLayersLifes
+  statName: []
+  value: []
   price: 10
   icon: {fileID: -257165991, guid: bc6abf692c2916c44bbf03d0d60f2c5f, type: 3}
+  description: Vokata of Xoriso
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  canBeSelected: 1
+  product_name: Vokata of Xoriso
+  description_key: Sandwich_Cursed
+  amount: 0

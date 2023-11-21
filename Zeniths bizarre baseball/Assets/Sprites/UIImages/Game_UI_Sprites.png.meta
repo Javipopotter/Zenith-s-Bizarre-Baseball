@@ -249,9 +249,9 @@ TextureImporter:
       name: Game_UI_Sprites_5
       rect:
         serializedVersion: 2
-        x: 109
+        x: 108
         y: 20
-        width: 18
+        width: 20
         height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

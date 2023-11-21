@@ -31,6 +31,6 @@ public class Pitcher : MonoBehaviour
         GameObject b = GameManager.GM.GetObject("ball");
         b.GetComponent<ball>().counterMod = 4;
         b.transform.position = transform.position;
-        b.GetComponent<Rigidbody2D>().velocity = (me.player.transform.position - b.transform.position).normalized * ballVel * Random.Range(1,1.6f);
+        b.GetComponent<Rigidbody2D>().velocity = me.GetPlayerDirection() * ballVel * Random.Range(1,1.6f);
     }
 }

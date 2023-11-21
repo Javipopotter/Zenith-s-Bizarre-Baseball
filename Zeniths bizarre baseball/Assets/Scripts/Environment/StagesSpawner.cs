@@ -6,18 +6,15 @@ public class StagesSpawner : MonoBehaviour
     List<List<Stage>> createdStages = new List<List<Stage>>();
     [SerializeField] Stage[] stagesAssets;
     [SerializeField] Stage[] shopStages;
-    [SerializeField] Stage bossStage;
-    public int stagesNumber = 10;
+    [SerializeField] Stage[] bossStages;
+    [SerializeField] int shopUnFrequency = 4;
+    public int stagesNumber = 36;
     private void Start() {
-        ResetStages();
-        Stage boss = Instantiate(bossStage.gameObject).GetComponent<Stage>();
-        boss.gameObject.SetActive(false);
         createdStages.Add(new List<Stage>());
         createdStages[0].Add(Instantiate(stagesAssets[Random.Range(0, stagesAssets.Length)], GameManager.GM.backGrounds));
         // createdStages[0].Add(Instantiate(shopStages[0], GameManager.GM.backGrounds));
         for(int i = 0; i < stagesNumber; i++)
         {
-            print(stagesNumber);
             createdStages.Add(new List<Stage>());
             for(int o = 0; o < createdStages[i].Count; o++)
             {
@@ -25,11 +22,11 @@ public class StagesSpawner : MonoBehaviour
                 current.gameObject.SetActive(false);
                 for(int a = 0; a < current.gates.Length; a++)
                 {
-                    if(i == stagesNumber - 1)
+                    if((i % (stagesNumber/3)) == 0 && i != 0)
                     {
-                        CreateStage(i, current, boss);
+                        CreateStage(i, current, bossStages[ i / (stagesNumber/3) ]);
                     }
-                    else if(i % 2 == 0 && i != 0 && a == 0)
+                    else if(i % shopUnFrequency == 0 && i != 0 && a == 0)
                     {
                         var rnd = shopStages[Random.Range(0, shopStages.Length)];
                         CreateStage(i, current, rnd);
@@ -41,6 +38,7 @@ public class StagesSpawner : MonoBehaviour
                 }
             }
         }
+
         GameManager.GM.SetStage(createdStages[0][0]);
 
         for(int i = 0; i < createdStages.Count; i++)
@@ -58,13 +56,4 @@ public class StagesSpawner : MonoBehaviour
         current.connectedStages.Add(newStage);
         createdStages[i + 1].Add(newStage);
     }
-
-    void ResetStages()
-    {
-        foreach(Stage stage in stagesAssets)
-        {
-            stage.settings.Reset();
-        }
-    }
-    
 }

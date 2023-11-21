@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]GameObject Menu;
     Movement[] players;
     [SerializeField] GameObject[] objects;
-    string[] object_names = {"pitcher", "man", "cart", "ball", "coin"};
+    [SerializeField] string[] object_names = {"pitcher", "man", "cart", "ball", "coin"};
     List<List<GameObject>> _typeOfObject = new List<List<GameObject>>();
     InputManager[] playerInputs;
     bool _paused = false;
@@ -27,30 +27,32 @@ public class GameManager : MonoBehaviour
             Time.timeScale = value ? 0 : 1;
         }
     }
-    [SerializeField] bool serialized_pause;
     Spawner spawner;
     public Transform backGrounds;
     public GameObject gameElementsContainer;
     [SerializeField] Stats[] stats;
-    StageSettings _currentStageSettings;
     public Stage _currentStage;
+    [SerializeField] StageSettings combatStageSettings;
     public Stage currentStage{get{return _currentStage;} private set{_currentStage = value;}}
     ScenesManager scenesManager;
     [SerializeField] CinemachineVirtualCamera vcam;
-    [SerializeField] UpgradePackage upgrader;
     [SerializeField] EventsMemory eventsMemory;
     StagesSpawner stagesSpawner;
     [SerializeField] int _money = 0;
+    [SerializeField] NotificationSet notificationSet;
     public int money
     {
         get{return _money;}
         set{
-            OnMoneyChange.Invoke();
             _money = value;
             uIManager.UpdateMoney();
+
+            //Check if IndebtionMustBeAdded
+            if(value < 0 != players[0].GetComponent<Movement>().indebted){
+                GetIndebted(0, value < 0);
+            }
         }
     }
-    public UnityEvent OnMoneyChange;
     public enum gameStates
     {
         playing, paused, cinematic, death
@@ -88,13 +90,17 @@ public class GameManager : MonoBehaviour
         }
     }
     [HideInInspector] public UnityEvent OnGameOver;
+
     private void Awake() {
         GM = this;
+        combatStageSettings.Reset();
         SearchForPlayers();
         stagesSpawner = GetComponent<StagesSpawner>();
         scenesManager = GetComponent<ScenesManager>();
         spawner = GetComponent<Spawner>();
         uIManager = GetComponent<UIManager>();
+
+        combatStageSettings.OnStart();
 
         for(int i = 0; i < object_names.Length; i++)
         {
@@ -217,13 +223,43 @@ public class GameManager : MonoBehaviour
     }
 
     #region AbilitiesUpgrade
-    void MaxLifesUpOnce() => MaxLifesUp(1);
-    void RecoverLife(int index) => players[index].GetComponent<LifesManager>().lifes++;
-    void RecoverLifeTwice(int index) => players[index].GetComponent<LifesManager>().lifes += 2;
-    public void GoVegan(int index) => players[index].GetComponent<Movement>().veganism = true;
-    public void GoHunter(int index) => players[index].GetComponent<Movement>().hunter = true;
-    public void GetIndebted(int index, bool value) => players[index].GetComponent<Movement>().indebted = value;
+
+        void MaxLifesUpOnce() => MaxLifesUp(1);
+        void RecoverLife(int index) => players[index].GetComponent<LifesManager>().lifes++;
+        void RecoverLifeTwice(int index) => players[index].GetComponent<LifesManager>().lifes += 2;
+
+        public void GoVegan(int index){
+            players[index].GetComponent<Movement>().veganism = true;
+            notificationSet.Notify(0);
+        }
+        public void GoHunter(int index){
+            players[index].GetComponent<Movement>().hunter = true;
+            notificationSet.Notify(1);
+            combatStageSettings.OnGoHunter();
+        }
+        void GetIndebted(int index, bool value){
+            players[index].GetComponent<Movement>().indebted = value;
+            notificationSet.Notify(3);
+            combatStageSettings.IsIndebted(value);
+        }
+
+        public void AddVeganLevel()
+        {
+            players[0].GetComponent<PathLevelManager>().veganLevel++;
+        }
+
+        public void AddHunterLevel()
+        {
+            players[0].GetComponent<PathLevelManager>().hunterLevel++;
+        }
     #endregion
+
+    public void VeganBetrayal()
+    {
+        combatStageSettings.OnVeganBetrayal();
+        notificationSet.Notify(2);
+    }
+
     public void OnPlayerLifeChange(float n)
     {
         if(n < -1){return;}
@@ -234,8 +270,10 @@ public class GameManager : MonoBehaviour
     {
         stats[0].maxlifes += num;
         uIManager.MaxLifesUp((int)stats[0].maxlifes - 1);
-        players[0].GetComponent<LifesManager>().lifes += 1;
-        players[1].GetComponent<LifesManager>().lifes += 1;
+        foreach(Movement player in players)
+        {
+            player.GetComponent<LifesManager>().lifes += num;
+        }
     }
 
     public GameObject GetObject(string key)
@@ -280,16 +318,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update() {
-        serialized_pause = paused;
-
-        // if(Input.GetMouseButtonDown(1))
-        // {
-        //     Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //     BallExplosion(pos, 40, true, 5, 8);
-        // }
-    }
-
     public void PauseSwitch(bool active)
     {
         paused = active;
@@ -303,20 +331,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        uIManager.GameOver();
         OnGameOver.Invoke();
+
         DisableGameElements();
-        foreach(GameObject en in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            en.GetComponent<Animator>().enabled = false;
-        }
+
         AudioManager.instance.Stop(currentStage.settings.musicalTheme);
         AudioManager.instance.Play("Death_theme");
-        print("GameOvers");
+
         SetAllPlayersLayers("OverUI");
         SetAllPLayerInputs(false);
-        uIManager.GameOver();
+        
         BossLifeBarIsActive(false);
     }
+
     public void RestartGame()
     {
         // print("Restart");
@@ -350,7 +378,7 @@ public class GameManager : MonoBehaviour
     public void OnStageCleared()
     {
         NextStageText();
-        currentStage.settings.LevelUp();
+        combatStageSettings.OnStageClear();
         OpenGates();
         SetUpgrader(true);
     }
@@ -459,5 +487,4 @@ public class GameManager : MonoBehaviour
     {
         eventsMemory.InitialCutscene = false;
     }
-
 }
