@@ -58,16 +58,21 @@ public class Enemy : LifesManager
     public virtual void Update() {
         if(knocked || GameManager.GM.paused){return;}
 
-        if(getNear){
-            rb.velocity = GetPlayerDirection() * stats.speed;
+        if(getNear)
+        {
+            GettingNear();
         }
 
-        if((player.transform.position.x - transform.position.x < 0 && transform.localScale.x > 0) || (player.transform.position.x - transform.position.x > 0 && transform.localScale.x < 0))
+        if ((player.transform.position.x - transform.position.x < 0 && transform.localScale.x > 0) || (player.transform.position.x - transform.position.x > 0 && transform.localScale.x < 0))
         {
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
 
+    public void GettingNear()
+    {
+        rb.velocity = GetPlayerDirection() * stats.speed * stats.modifiers["speed"];
+    }
 
     public Vector2 GetPlayerDirection()
     {

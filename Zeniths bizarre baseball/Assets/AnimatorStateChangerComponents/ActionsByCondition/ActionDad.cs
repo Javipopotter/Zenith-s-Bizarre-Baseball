@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class ActionDad : StateMachineBehaviour
 {
+    [HideInInspector] public Transform myTransform;
     [HideInInspector] public Animator an;
-
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) {
-        an = animator;
-    }
 
     public virtual void Action() {}
 }

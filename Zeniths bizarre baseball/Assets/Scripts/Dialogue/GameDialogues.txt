@@ -168,6 +168,35 @@ Muchas gracias extraña mujer*
 Adelante, puedes pasar, y estás bienvenida a mi gimnasio siempre que quieras :3*
 [END]
 
+___Otaku//
+0)[Img]Zenith[Img]*
+1)[Img]GymBoss[Img]*
+
+[NAME]Otaku[NAME]*
+[An]talk2[An]*
+Hola.
+
+[NAME]Zenith[NAME]*
+[An]talk1[An]*
+Pa ti mi cola jajsdjksjdk*
+
+[NAME]Otaku[NAME]*
+[An]talk2[An]*
+Puta*
+
+[AN]Otaku,start[AN]*
+[END]
+
+___OtakuDefeat//
+0)[Img]Zenith[Img]*
+1)[Img]GymBoss[Img]*
+
+[NAME]Otaku[NAME]*
+[An]talk2[An]*
+Jolín*
+
+[END]
+
 ___Claus_Old//
 0)[Img]Zenith[Img]*
 1)[Img]Claus[Img]*

@@ -1,23 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeCondition : ConditionDad
 {
-    [SerializeField] float timer = 5;
+    public float timerValue = 3;
+    float timer;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex) {
-        timer = 5;
+        timer = timerValue;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer -= Time.deltaTime;
-    }
-
-    public override bool GetCondition()
-    {
-        return timer <= 0;
+        if(timer <= 0) {animatorParameterSaver.value = true;}
     }
 }
 // teamorompebrazos

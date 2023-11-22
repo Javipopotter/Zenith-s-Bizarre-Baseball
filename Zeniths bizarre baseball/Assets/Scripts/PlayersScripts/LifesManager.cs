@@ -1,32 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
 
 public class LifesManager : MonoBehaviour
 {
     [SerializeField] float _lifes;
     public Stats stats;
-    public Animator an;
-    public Rigidbody2D rb;
-    public float poise;
+    [HideInInspector] public Animator an;
+    [HideInInspector] public Rigidbody2D rb;
     [SerializeField] UnityEvent DeathEvent;
-    UnityEvent _OnGetDmg;
-    public UnityEvent OnGetDmg
-    {
-        get
-        {
-            return _OnGetDmg;
-        }
-        private set
-        {
-            _OnGetDmg = value;
-        }
-    }
+    [HideInInspector] public UnityEvent OnGetDmg;
 
     public virtual float lifes
     {

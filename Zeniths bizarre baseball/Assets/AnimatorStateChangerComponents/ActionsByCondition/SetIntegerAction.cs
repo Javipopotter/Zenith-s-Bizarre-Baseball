@@ -5,7 +5,7 @@ using UnityEngine;
 public class SetIntegerAction : ActionDad
 {
     [SerializeField] string integerName;
-    [SerializeField] int value;
+    public int value;
 
     public void Action(Animator an)
     {
