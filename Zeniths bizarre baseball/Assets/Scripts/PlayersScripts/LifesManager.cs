@@ -9,7 +9,7 @@ public class LifesManager : MonoBehaviour
     [HideInInspector] public Animator an;
     [HideInInspector] public Rigidbody2D rb;
     [SerializeField] UnityEvent DeathEvent;
-    [HideInInspector] public UnityEvent OnGetDmg;
+    [HideInInspector] public UnityEvent<float> OnLifeChange;
 
     public virtual float lifes
     {
@@ -21,10 +21,11 @@ public class LifesManager : MonoBehaviour
         {
             _lifes = value;
 
+            OnLifeChange?.Invoke(value);
+
             if(transform.CompareTag("Player"))
             {
                 if(value > stats.maxlifes){_lifes = stats.maxlifes;}
-                GameManager.GM.OnPlayerLifeChange(_lifes - 1);
             }
 
             if(transform.name == "Claus")
@@ -45,13 +46,14 @@ public class LifesManager : MonoBehaviour
 
     public virtual void GetDmg(float dmg, Vector2 knockbackDir){
         if(GameManager.GM.paused){return;}
-        OnGetDmg?.Invoke();
+
         AudioManager.instance.PlayOneShot("get_bat_hit");
         GameManager.GM.CameraShake(10);
+
         lifes -= dmg;
-        an.Play("getDmg");
-        partyclesManager.FX.PlayText(transform.position, Math.Round(dmg * 10).ToString());
         rb.AddForce(knockbackDir * stats.poise, ForceMode2D.Impulse);
+
+        an.Play("getDmg");
     }
 
     public virtual void Death(){

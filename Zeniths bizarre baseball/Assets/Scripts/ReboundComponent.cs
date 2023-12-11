@@ -10,6 +10,7 @@ public class ReboundComponent : MonoBehaviour
 
     public void Rebound(Vector2 normal)
     {
+        print("Rebound");
         Vector2 newDir = Vector2.Reflect(rb.velocity.normalized, normal);
         rb.AddForce(newDir * rb.velocity.magnitude * 2, ForceMode2D.Impulse);
     }

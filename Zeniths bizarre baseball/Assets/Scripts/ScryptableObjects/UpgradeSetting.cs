@@ -14,12 +14,9 @@ public class UpgradeSetting : ScriptableObject
     public int price;
     public Sprite icon;
     public string description;
-    public UnityEvent OnUpgrade;
 
     public virtual void Upgrade()
     {
-        OnUpgrade.Invoke();
-
         if(abilityName != null)
         {
             foreach(string ability in abilityName)

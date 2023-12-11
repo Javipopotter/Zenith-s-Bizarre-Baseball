@@ -15,6 +15,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2921799105822165560, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921799105822165560, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921799105822165560, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2921799105822165561, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -22,6 +34,22 @@ PrefabInstance:
     - target: {fileID: 3868103608156195851, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Name
       value: movable_daffodil Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500223174506873510, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500223174506873511, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500223174506873511, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4500223174506873511, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6273868169606862464, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Layer

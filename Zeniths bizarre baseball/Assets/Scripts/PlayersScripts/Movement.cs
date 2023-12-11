@@ -120,7 +120,7 @@ public class Movement : MonoBehaviour
     {
         if(attackCool <= 0)
         {
-            attackCool = 0.25f;
+            attackCool = 0.3f;
             LookToMouse("attackRight", "attackDown", "attackLeft", "attackUp");
             if(veganism){psychicBat.Activate(pointer.transform.position + pointer.transform.up * 2, pointer.transform.rotation);}
         }

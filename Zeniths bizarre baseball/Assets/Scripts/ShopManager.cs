@@ -12,7 +12,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] GameObject interactText;
     [SerializeField] GameObject shopMenu;
     [SerializeField] string welcomeKey;
-    [SerializeField] InputActionReference interactAction;
+    [SerializeField] GameObject firstSelected;
     
     bool _canInteract;
     bool canInteract
@@ -26,27 +26,13 @@ public class ShopManager : MonoBehaviour
             _canInteract = value;
             if(value)
             {
-                interactAction.action.Enable();
                 interactText.SetActive(true);
             }
             else
             {
-                interactAction.action.Disable();
                 interactText.SetActive(false);
             }
         }
-    }
-
-    private void OnDestroy() {
-        interactAction.action.performed -= OnInteractActionPerformed;
-    }
-
-    private void OnEnable() {
-        interactAction.action.performed += OnInteractActionPerformed;
-    }
-
-    private void OnDisable() {
-        interactAction.action.performed -= OnInteractActionPerformed;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -77,14 +63,10 @@ public class ShopManager : MonoBehaviour
     void OpenShop()
     {
         shopMenu.SetActive(true);
+        print(firstSelected.name);
         canInteract = false;
 
         DialoguesManager.dialoguesManager.pass.action.Disable();
         DialoguesManager.dialoguesManager.ExecuteDialogViaKey(welcomeKey);
-    }
-    
-    void OnInteractActionPerformed(InputAction.CallbackContext context)
-    {
-        OpenShop();
     }
 }

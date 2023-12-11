@@ -5,6 +5,7 @@ using Cinemachine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class UIManager : MonoBehaviour
     Canvas gameUICanvas;
     CinemachineBasicMultiChannelPerlin channelPerlin;
     [SerializeField] GameObject gameOverScreen;
-    [SerializeField] GameObject notification;
+    [SerializeField] GameObject menu;
     [SerializeField] TextMeshProUGUI moneyText;
     public GameObject upgradePanel;
     
@@ -46,6 +47,11 @@ public class UIManager : MonoBehaviour
         an.Play("GameOver");
     }
 
+    public void SetMenu(bool value)
+    {
+        menu.SetActive(value);
+    }
+
     public void UpdateProgressBar(float value, float maxValue)
     {
         progressBar.value = value/maxValue;
@@ -55,12 +61,6 @@ public class UIManager : MonoBehaviour
     {
         progressBar.gameObject.SetActive(active);
     }
-
-    public void SetNotification()
-    {
-        notification.SetActive(true);
-    }
-
     public void Restart()
     {
         gameOverScreen.SetActive(false);
@@ -84,7 +84,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLifes(float lifes)
     {
-
         int hp = (int)MathF.Round(lifes);
 
         for(int i = 0; i < _lifesContainer.transform.childCount; i++)

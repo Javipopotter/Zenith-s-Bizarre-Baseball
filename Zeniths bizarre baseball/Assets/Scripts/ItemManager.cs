@@ -10,8 +10,8 @@ public class ItemManager : MonoBehaviour
     int amount = 1;
 
     private void OnEnable() {
+        GetComponent<Button>().onClick.AddListener(OnUpgrade);
         amount = 1;
-        upgradeSetting.OnUpgrade.AddListener(OnUpgrade);
         if(upgradeSetting != null)
         {
             string description = upgradeSetting.description;
@@ -27,16 +27,15 @@ public class ItemManager : MonoBehaviour
     }
 
     private void OnDisable() {
-
+        GetComponent<Button>().onClick.RemoveListener(OnUpgrade);
         GetComponentInChildren<TextMeshProUGUI>().text = "";
-        upgradeSetting.OnUpgrade.RemoveListener(OnUpgrade);
     }
 
     void OnUpgrade()
     {
+        upgradeSetting.Upgrade();
         amount--;
         if(amount <= 0){
-            // GetComponent<Button>().animator.SetTrigger("Disabled");
             GetComponent<Button>().onClick.RemoveAllListeners();
         }
     }

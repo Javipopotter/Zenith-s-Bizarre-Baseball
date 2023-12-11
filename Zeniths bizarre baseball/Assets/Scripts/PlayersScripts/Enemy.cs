@@ -44,7 +44,9 @@ public class Enemy : LifesManager
     public override void GetDmg(float dmg, Vector2 knockbackDir)
     {
         knocked = true;
+
         base.GetDmg(dmg, knockbackDir);
+        
         partyclesManager.FX.PlayEffect("bat_hit", transform.position + transform.up * 3, knockbackDir);
         AudioManager.instance.Play("get_bat_hit");
     }

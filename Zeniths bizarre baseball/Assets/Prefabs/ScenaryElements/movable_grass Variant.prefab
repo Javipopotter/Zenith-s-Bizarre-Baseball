@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: movable_grass Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4500223174506873510, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6784103468238659451, guid: bcfa5dbd3c837f944b3d658d9c6487bd, type: 3}
       propertyPath: m_Sprite
       value: 

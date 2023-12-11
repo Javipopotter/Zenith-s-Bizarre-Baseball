@@ -92,6 +92,8 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("-choice-"))
             {
+                GameObject firstChoice = choice1.transform.parent.gameObject;
+
                 choices = key.Split("-choice-");
                 choice1.transform.parent.gameObject.SetActive(true);
                 choice2.transform.parent.gameObject.SetActive(true);

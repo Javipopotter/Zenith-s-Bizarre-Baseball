@@ -230,16 +230,21 @@ public class GameManager : MonoBehaviour
 
         public void GoVegan(int index){
             players[index].GetComponent<Movement>().veganism = true;
+
             notificationSet.Notify(0);
         }
         public void GoHunter(int index){
             players[index].GetComponent<Movement>().hunter = true;
+
             notificationSet.Notify(1);
+
             combatStageSettings.OnGoHunter();
         }
         void GetIndebted(int index, bool value){
             players[index].GetComponent<Movement>().indebted = value;
+
             notificationSet.Notify(3);
+
             combatStageSettings.IsIndebted(value);
         }
 
@@ -258,12 +263,6 @@ public class GameManager : MonoBehaviour
     {
         combatStageSettings.OnVeganBetrayal();
         notificationSet.Notify(2);
-    }
-
-    public void OnPlayerLifeChange(float n)
-    {
-        if(n < -1){return;}
-        uIManager.UpdateLifes(n);
     }
 
     public void MaxLifesUp(int num)
@@ -321,7 +320,7 @@ public class GameManager : MonoBehaviour
     public void PauseSwitch(bool active)
     {
         paused = active;
-        Menu.SetActive(active);
+        uIManager.SetMenu(active);
     }
 
     public void SetTime(float time)

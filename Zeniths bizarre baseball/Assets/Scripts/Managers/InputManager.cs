@@ -35,7 +35,10 @@ public class InputManager : MonoBehaviour
 
     public void OnMoveActionPerformed(InputAction.CallbackContext context)
     {
-        movement.SetSpeed(context.ReadValue<Vector2>());
+        if(context.performed)
+            movement.SetSpeed(context.ReadValue<Vector2>());
+        else if(context.canceled)
+            movement.SetSpeed(Vector2.zero);
     }
 
     public void OnAttackActionPerformed(InputAction.CallbackContext context)
@@ -52,15 +55,15 @@ public class InputManager : MonoBehaviour
 
     public void OnPointerActionPerformed(InputAction.CallbackContext context)
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         if(context.control.device == InputSystem.GetDevice<Mouse>())
         {
             Vector2 mousePos = context.ReadValue<Vector2>() - (Vector2)Camera.main.WorldToScreenPoint(transform.position);
             movement.SetPointer(mousePos);
         }
-        if(context.ReadValue<Vector2>() != Vector2.zero)
+        else if(context.ReadValue<Vector2>() != Vector2.zero)
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             movement.SetPointer(context.ReadValue<Vector2>());
         }
     }

@@ -47,7 +47,7 @@ public class AnimationOnTrigger : MonoBehaviour
         {
             if(r.transform.position.y < other.position.y)
             {
-                r.sortingOrder = 1;
+                r.sortingOrder = 2;
             }
             else
             {
