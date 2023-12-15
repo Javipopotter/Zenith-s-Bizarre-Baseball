@@ -1,18 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] Transform ItemsContainer;
     [SerializeField] GameObject interactText;
     [SerializeField] GameObject shopMenu;
     [SerializeField] string welcomeKey;
-    [SerializeField] GameObject firstSelected;
     
     bool _canInteract;
     bool canInteract
@@ -57,13 +49,11 @@ public class ShopManager : MonoBehaviour
 
         DialoguesManager.dialoguesManager.pass.action.Enable();
         DialoguesManager.dialoguesManager.ExecuteDialog("");
-        GameManager.GM.SetAllPLayerInputs(true);
     }
 
     void OpenShop()
     {
         shopMenu.SetActive(true);
-        print(firstSelected.name);
         canInteract = false;
 
         DialoguesManager.dialoguesManager.pass.action.Disable();

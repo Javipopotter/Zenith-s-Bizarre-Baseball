@@ -17,7 +17,6 @@ public class PathLevelManager : MonoBehaviour
             switch (value)
             {
                 case 2:
-                    GameManager.GM.GoVegan(playerIndex);
                     break;
             }
         }
@@ -31,18 +30,6 @@ public class PathLevelManager : MonoBehaviour
         set
         {
             _hunterLevel = value;
-
-            switch (value)
-            {
-                case 2:
-                    GameManager.GM.GoHunter(playerIndex);
-                    break;
-            }
-
-            if(veganLevel == 2 && value > 0)
-            {
-                GameManager.GM.VeganBetrayal();
-            }
         }
     }
 

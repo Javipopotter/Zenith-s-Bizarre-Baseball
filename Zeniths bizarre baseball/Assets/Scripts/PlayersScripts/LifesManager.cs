@@ -8,7 +8,7 @@ public class LifesManager : MonoBehaviour
     public Stats stats;
     [HideInInspector] public Animator an;
     [HideInInspector] public Rigidbody2D rb;
-    [SerializeField] UnityEvent DeathEvent;
+    public UnityEvent OnDeath;
     [HideInInspector] public UnityEvent<float> OnLifeChange;
 
     public virtual float lifes
@@ -23,32 +23,18 @@ public class LifesManager : MonoBehaviour
 
             OnLifeChange?.Invoke(value);
 
-            if(transform.CompareTag("Player"))
-            {
-                if(value > stats.maxlifes){_lifes = stats.maxlifes;}
-            }
-
-            if(transform.name == "Claus")
-            {
-                GameManager.GM.UpdateBossLifeBar(_lifes, stats.maxlifes);
-            }
-
             if(_lifes <= 0){an.SetTrigger("death");}
         }
     }
 
     public virtual void Awake() {
-        stats = GetComponent<statsReference>().stats;
         an = GetComponent<Animator>();
         stats.maxlifes = lifes;
         rb = GetComponent<Rigidbody2D>();
     }
 
     public virtual void GetDmg(float dmg, Vector2 knockbackDir){
-        if(GameManager.GM.paused){return;}
-
         AudioManager.instance.PlayOneShot("get_bat_hit");
-        GameManager.GM.CameraShake(10);
 
         lifes -= dmg;
         rb.AddForce(knockbackDir * stats.poise, ForceMode2D.Impulse);
@@ -57,20 +43,10 @@ public class LifesManager : MonoBehaviour
     }
 
     public virtual void Death(){
-        DeathEvent.Invoke();
+        OnDeath.Invoke();
     }
 
-    public void LayerChange(string layer)
-    {
-        gameObject.layer = LayerMask.NameToLayer(layer);
-    }
-
-    public void Setlifes () 
-    {
+    public virtual void OnEnable() {
         lifes = stats.maxlifes;
-    }
-
-    private void OnEnable() {
-        Setlifes();
     }
 }

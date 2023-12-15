@@ -1,12 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Pointer : MonoBehaviour
 {
-    private void Update() 
+    public UnityEvent<float> onRotChange;
+    public void SetPointer(Vector2 vector)
     {
-        // if(Time.timeScale == 0){return;}
-        // var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        // var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        // transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg - 90);
+        onRotChange?.Invoke(transform.rotation.eulerAngles.z);
+    }
+
+    private void OnDestroy() {
+        onRotChange.RemoveAllListeners();
     }
 }

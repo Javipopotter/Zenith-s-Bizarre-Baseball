@@ -30,7 +30,7 @@ public class Stage : MonoBehaviour
 
     public void SetStage(int stage)
     {
-        GameManager.GM.SetStage(connectedStages[stage]);
+        StagesManager.stagesManager.SetStage(connectedStages[stage]);
     }
 
     public void OpenGates()

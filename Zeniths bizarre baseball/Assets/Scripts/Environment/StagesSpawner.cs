@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(StagesManager))]
 public class StagesSpawner : MonoBehaviour
 {
     List<List<Stage>> createdStages = new List<List<Stage>>();
@@ -39,7 +40,7 @@ public class StagesSpawner : MonoBehaviour
             }
         }
 
-        GameManager.GM.SetStage(createdStages[0][0]);
+        StagesManager.stagesManager.SetStage(createdStages[0][0]);
 
         for(int i = 0; i < createdStages.Count; i++)
         {

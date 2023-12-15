@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spawner : MonoBehaviour
 {
@@ -10,44 +7,51 @@ public class Spawner : MonoBehaviour
     float spCoolDown = 1;
     public int enemyCount = 0;
     public static Spawner sp;
-    CinematicPlayerController cine;
-    [SerializeField]TextMeshProUGUI EnemyCounter;
-    public StageSettings CurrentSettings;
+    public StageSettings currentSettings;
     int EnMax = 1;
-    int _KillCount = 0;
+    int _killCount = 0;
     bool stageTrigger = false;
     int hordes;
-    public int KillCount
+    
+    public int killCount
     {
-        get{return _KillCount;}
+        get{return _killCount;}
         set
         {
-            _KillCount = value;
-            EnemyCounter.text = KillCount + " / " + EnMax;
-            EnemyCounter.color = Color.Lerp(Color.white, Color.yellow, (float)_KillCount/(float)EnMax);
-            GameManager.GM.EnemyCounterUpdate();
+            _killCount = value;
+            OnEnemyDefeated?.Invoke(value);
         }
     }
-    
+
+    public UnityEvent OnStageCleared;
+    public UnityEvent<int> OnEnemyDefeated;
     
     private void Awake() {
         sp = this;
-        cine = GameObject.Find("Player").GetComponent<CinematicPlayerController>();
+
+        if(TryGetComponent(out StagesManager stagesManager))
+        {
+            stagesManager.OnStageSet.AddListener(SetSpawnSettings);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CurrentSettings.restArea || !GameManager.GM.gameElementsContainer.activeInHierarchy){return;}
-        if(spCoolDown <= 0 && hordes > 0 && enemyCount < CurrentSettings.maxEnLimit)
+        if(currentSettings == null) {return;}
+
+        if(spCoolDown <= 0 && hordes > 0 && enemyCount < currentSettings.maxEnLimit)
         {
             hordes--;
-            spCoolDown = CurrentSettings.spawnCoolDown;
-            for(int i = 0; i < CurrentSettings.numberOfSpawns; i++)
+            spCoolDown = currentSettings.spawnCoolDown;
+            for(int i = 0; i < currentSettings.numberOfSpawns; i++)
             {
                 enemyCount++;
-                GameObject en = GameManager.GM.GetObject(CurrentSettings.allowedEnemies[Random.Range(0, CurrentSettings.allowedEnemies.Count)]);
-                en.transform.position = spawn.transform.GetChild(Random.Range(0, spawn.transform.childCount)).transform.position;
+                
+                Vector2 desiredEnemyPos = spawn.transform.GetChild(Random.Range(0, spawn.transform.childCount)).transform.position;
+                entity desiredEnemy = currentSettings.allowedEnemies[Random.Range(0, currentSettings.allowedEnemies.Count)];
+
+                ObjectPooler.pooler.GetObject(desiredEnemy, desiredEnemyPos);
             }
         }
         else
@@ -55,28 +59,35 @@ public class Spawner : MonoBehaviour
             spCoolDown -= Time.deltaTime;
         }
 
-        if(KillCount >= EnMax && EnMax != 0 && stageTrigger)
+        if(killCount >= EnMax && EnMax != 0 && stageTrigger)
         {
             stageTrigger = false;
-            GameManager.GM.OnStageCleared();
+            OnStageCleared?.Invoke();
         }
     }
 
-    public void PlayHorde()
+    public void SetSpawnSettings(Stage newStage)
     {
+        currentSettings = newStage.settings;
+
+        enabled = true;
+        if(currentSettings.restArea){ enabled = false; }
+
         stageTrigger = true;
         spCoolDown = 2f;
-        hordes = CurrentSettings.hordes;
-        spawn = GameManager.GM.currentStage.spawners;
-        GameManager.GM.BossLifeBarIsActive(false);
+        hordes = currentSettings.hordes;
+        spawn = newStage.spawners;
 
         enemyCount = 0;
-        KillCount = 0;
-        EnMax = CurrentSettings.numberOfSpawns * CurrentSettings.hordes;
+        killCount = 0;
+        EnMax = currentSettings.numberOfSpawns * currentSettings.hordes;
+    }
 
-        //Boss Setup
-        cine.dialog = CurrentSettings.Boss;
-        GameManager.GM.SetProgressBar(CurrentSettings.Boss == "");
-        GameManager.GM.BossLifeBarIsActive(CurrentSettings.Boss != "");
+    void OnDestroy()
+    {
+        if(TryGetComponent(out StagesManager stagesManager))
+        {
+            stagesManager.OnStageSet.RemoveListener(SetSpawnSettings);
+        }
     }
 }

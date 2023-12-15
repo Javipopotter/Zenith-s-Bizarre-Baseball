@@ -4,9 +4,9 @@ public class FollowInitPlayerAction : StateMachineBehaviour
 {
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(animator.TryGetComponent(out Enemy enemy))
+        if(animator.TryGetComponent(out EnemyLifesManager enemy))
         {
-            enemy.GettingNear();
+            // enemy.GettingNear();
         }
         else
         {

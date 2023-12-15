@@ -5,32 +5,37 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] Movement movement;
+    Movement movement;
+    AttackHandler attackHandler;
+    Pointer pointer;
     PlayerInput thisPlayerInput;
-    [SerializeField] InputActionReference pauseAction;
+    
 
     private void Awake() {
         thisPlayerInput = GetComponent<PlayerInput>();
+        GetComponentInChildren<Pointer>();
         movement = GetComponent<Movement>();
-        pauseAction.action.performed += OnPauseActionPerformed;
     }
 
-    private void OnDisable() {
-        movement.SetSpeed(Vector2.zero);
-        pauseAction.action.Disable();
-    }
-
-    private void OnEnable() {
-        pauseAction.action.Enable();
+    private void Start() {
+        if(GameManager.GM != null)
+        {
+            GameManager.GM.OnStateEnter.AddListener(OnStateEnter);
+        }
     }
 
     private void OnDestroy() {
-        pauseAction.action.performed -= OnPauseActionPerformed;
+        if(GameManager.GM != null)
+        {
+            GameManager.GM.OnStateEnter.RemoveListener(OnStateEnter);
+        }
     }
+
+    void OnStateEnter(GameStates state) => InputSetEnabled(state == GameStates.playing);
 
     public void OnPauseActionPerformed(InputAction.CallbackContext context)
     {
-        GameManager.GM.PauseGame();
+        if(GameManager.GM != null) GameManager.GM.ChangeStateOfGame(GameStates.paused);
     }
 
     public void OnMoveActionPerformed(InputAction.CallbackContext context)
@@ -44,7 +49,7 @@ public class InputManager : MonoBehaviour
     public void OnAttackActionPerformed(InputAction.CallbackContext context)
     {
         if(context.performed) {
-            movement.Attack();
+            attackHandler.UseWeapon();
         }
     }
 
@@ -58,17 +63,17 @@ public class InputManager : MonoBehaviour
         if(context.control.device == InputSystem.GetDevice<Mouse>())
         {
             Vector2 mousePos = context.ReadValue<Vector2>() - (Vector2)Camera.main.WorldToScreenPoint(transform.position);
-            movement.SetPointer(mousePos);
+            pointer.SetPointer(mousePos);
         }
         else if(context.ReadValue<Vector2>() != Vector2.zero)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            movement.SetPointer(context.ReadValue<Vector2>());
+            pointer.SetPointer(context.ReadValue<Vector2>());
         }
     }
 
-    public void InputSetEnabled(bool value)
+    void InputSetEnabled(bool value)
     {
         thisPlayerInput.enabled = value;
     }

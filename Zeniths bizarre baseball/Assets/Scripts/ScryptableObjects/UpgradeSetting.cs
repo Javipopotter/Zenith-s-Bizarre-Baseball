@@ -21,7 +21,7 @@ public class UpgradeSetting : ScriptableObject
         {
             foreach(string ability in abilityName)
             {
-                GameManager.GM.UpgradeAbility(ability);
+                // GameManager.GM.UpgradeAbility(ability);
             }
         }
 
@@ -29,7 +29,7 @@ public class UpgradeSetting : ScriptableObject
         {
             for(int i = 0; i < statName.Length; i++)
             {
-                GameManager.GM.UpgradeStat(statName[i], value[i]);
+                // GameManager.GM.UpgradeStat(statName[i], value[i]);
             }
         }
     }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class DialoguesManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class DialoguesManager : MonoBehaviour
     bool skipText;
     private Coroutine executeDialogCoroutine;
     public InputActionReference pass;
+    public UnityEvent<bool> OnDialogNotPerforming;
+
     private void Awake() {
         dialoguesManager = this;
         pass.action.performed += OnPassActionPerformed;
@@ -74,9 +77,9 @@ public class DialoguesManager : MonoBehaviour
 
     IEnumerator _ExecuteDialog(string key)
     {
+        OnDialogNotPerforming?.Invoke(false);
         text.text = "";
         // InputManager.input.enabled =  false;
-        GameManager.GM.SetAllPLayerInputs(false);
         pass.action.Enable();
         if(key == "")
         {
@@ -123,9 +126,7 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[END]"))
             {
-                // InputManager.input.enabled =  true;
-                GameManager.GM.SetAllPLayerInputs(true);
-                GameManager.GM.GameElementsAreActive(true);
+                OnDialogNotPerforming?.Invoke(true);
                 cinematic = false;
                 dialogueUI.SetActive(false);
                 break;
@@ -165,7 +166,6 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[GM]"))
             {
-                GameManager.GM.GameElementsAreActive(true);
                 GameManager.GM.Invoke(line.Split("[GM]")[1], 0);
                 continue;
             }
@@ -209,7 +209,6 @@ public class DialoguesManager : MonoBehaviour
 
             if(line.Contains("[NOTGAME]"))
             {
-                GameManager.GM.GameElementsAreActive(false);
                 continue;
             }
 

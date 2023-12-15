@@ -197,15 +197,12 @@ GameObject:
   - component: {fileID: 3962199619717618850}
   - component: {fileID: 3962199619717618853}
   - component: {fileID: 8007400090366882103}
-  - component: {fileID: 7241266851846273515}
-  - component: {fileID: 1132262194815903145}
-  - component: {fileID: 2750988669577960735}
   - component: {fileID: -1052347787218109550}
-  - component: {fileID: 1157996606710269703}
   - component: {fileID: 7952382698644461578}
   - component: {fileID: 7589414081852818100}
   - component: {fileID: 3906970264486375744}
   - component: {fileID: 2893821814391209365}
+  - component: {fileID: 6302227484145235870}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -267,15 +264,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollCool: 0.5
-  pointer: {fileID: 3962199620395271327}
   atkTrigger: 0
   blockControls: 0
   rolling: 0
   sr: {fileID: 3103712300484352072}
-  IsTest: 0
-  lastFacing: {x: 0, y: 0}
-  veganism: 0
-  hunter: 0
 --- !u!95 &3962199619717618850
 Animator:
   serializedVersion: 5
@@ -313,34 +305,10 @@ MonoBehaviour:
   stats: {fileID: 0}
   an: {fileID: 0}
   rb: {fileID: 0}
-  DeathEvent:
+  OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: GameOver
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3962199619717618863}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
-        m_MethodName: OnDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnGetDmg:
+      m_Calls: []
+  OnLifeChange:
     m_PersistentCalls:
       m_Calls: []
 --- !u!70 &8007400090366882103
@@ -359,48 +327,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.09667304, y: 1.2601403}
   m_Size: {x: 0.9833649, y: 2.3591573}
   m_Direction: 0
---- !u!114 &7241266851846273515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962199619717618860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f090d6f155fb04f9cc31be1943e9a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingMotion: 0
-  loopAn: moveUp
-  vel: 0
-  moveDir: {x: 0, y: 0}
-  dialog: 
---- !u!114 &1132262194815903145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962199619717618860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a190246076ede7544a06fc69b8b49cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2750988669577960735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962199619717618860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4979522d8c46a0c45b2de3418ff1ac49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: b9796295d64fc8543ae098eaaa145652, type: 2}
 --- !u!114 &-1052347787218109550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,19 +339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610b83f285eeebc4299d0bda4bcb9c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1157996606710269703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962199619717618860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3074bccacd1191445bf010568a8ab829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  psychicBat: {fileID: 2058027210636840292, guid: cf982d7e695631d42bac934b0bf2842d, type: 3}
 --- !u!114 &7952382698644461578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,8 +471,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7c02c80c1e6c6489870486d813b272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 3962199619717618863}
-  pauseAction: {fileID: -3335954077309150459, guid: 487e3a45dfd62c246bce64431d888d28, type: 3}
 --- !u!114 &2893821814391209365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +487,20 @@ MonoBehaviour:
   _veganLevel: 0
   _hunterLevel: 0
   _isIndebted: 0
+--- !u!114 &6302227484145235870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962199619717618860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3def337f881d527458b16859ff5ac322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ROTATION_NAME: rotation
+  ACTION_NAME: action
 --- !u!1 &3962199620068469273
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +511,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3962199620068469272}
   - component: {fileID: 3962199620068469274}
-  - component: {fileID: 3962199620068469277}
   - component: {fileID: 3962199620068469276}
   m_Layer: 0
   m_Name: AttackTrigger
@@ -637,20 +561,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.717304, y: 3.4451413}
   m_EdgeRadius: 0
---- !u!114 &3962199620068469277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3962199620068469273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6169d0cdbb729a47a64a8dc57771987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: Enemy
-  stats: {fileID: 11400000, guid: b9796295d64fc8543ae098eaaa145652, type: 2}
 --- !u!50 &3962199620068469276
 Rigidbody2D:
   serializedVersion: 4
@@ -888,6 +798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e01b7bb92ba94c4da273c4cb7537524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onRotChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3992236822014430552
 GameObject:
   m_ObjectHideFlags: 0

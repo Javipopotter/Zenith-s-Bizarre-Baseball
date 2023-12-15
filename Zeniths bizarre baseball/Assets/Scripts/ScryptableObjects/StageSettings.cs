@@ -5,15 +5,15 @@ using UnityEngine;
 public class StageSettings : ScriptableObject
 {
     public bool restArea = false;
-    public List<string> allowedEnemies = new List<string>() {"pitcher"};
+    public List<entity> allowedEnemies = new List<entity>() {entity.pitcher};
 
     // ENEMIES ARRAYS
-    readonly string[] CITY_ENEMIES = {"pitcher", "man", "cart"};
-    readonly string[] SUBWAY_ENEMIES = {"skater"};
-    readonly string[] PARK_ENEMIES = {};
-    readonly string[] VEGAN_ENEMIES = {};
-    readonly string[] DEATH_ENEMIES = {};
-    readonly string[] BANK_ENEMIES = {};
+    readonly entity[] CITY_ENEMIES = {};
+    readonly entity[] SUBWAY_ENEMIES = {};
+    readonly entity[] PARK_ENEMIES = {};
+    readonly entity[] VEGAN_ENEMIES = {};
+    readonly entity[] DEATH_ENEMIES = {};
+    readonly entity[] BANK_ENEMIES = {};
 
     // SPAWN SETTINGS
     public int numberOfSpawns = 0;
@@ -75,7 +75,7 @@ public class StageSettings : ScriptableObject
 
     public void Reset() 
     {
-        allowedEnemies = new List<string>() {"pitcher"};
+        allowedEnemies = new List<entity>() {entity.pitcher};
     }
 
     public void IsIndebted(bool value)
